@@ -4,16 +4,18 @@ defmodule Chemist.Summoner do
   @user_agent     [ {"User-agent", "Chemist jscheel42@gmail.com"} ]
 
   def fetch(summoner, region \\ "na") do
-    summoner
-    |> remove_spaces
-    |> summoner_url(region)
-    |> HTTPoison.get(@user_agent)
-    |> handle_response
+    if String.match?(summoner, ~r/^[0-9\p{L} _\.]+$/) do
+      summoner
+      |> remove_spaces
+      |> summoner_url(region)
+      |> HTTPoison.get(@user_agent)
+      |> handle_response
+    else
+      {:error, "invalid summoner name"}
+    end
   end
 
-  def remove_spaces(str) do
-    String.replace(str, " ", "")
-  end
+  def remove_spaces(str), do: String.replace(str, " ", "")
 
   def summoner_url(summoner, region) do
     "https://#{region}.api.pvp.net/api/lol/#{region}/v#{@api_version}/summoner/by-name/#{summoner}?api_key=#{@api_key}"
