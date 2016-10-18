@@ -2,12 +2,16 @@ defmodule Chemist.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :chemist,
-     version: "0.1.0",
-     elixir: "~> 1.3",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      app: :chemist,
+      version: "0.1.0",
+      name: "Chemist",
+      source_url: "https://github.com/jscheel42/chemist",
+      elixir: "~> 1.3",
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application
@@ -29,7 +33,9 @@ defmodule Chemist.Mixfile do
   defp deps do
     [
       { :httpoison, "~> 0.9" },
-      { :poison,    "~> 2.2" }
+      { :poison,    "~> 2.2" },
+      { :ex_doc,    "~> 0.12" },
+      { :earmark,   "~> 1.0", override: true }
     ]
   end
 end
