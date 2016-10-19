@@ -11,7 +11,7 @@ defmodule ChampionMasteryTest do
     player_id = 22415415
     champion_id = 126
     
-    {status, data} = fetch_champion(region, player_id, champion_id)
+    {status, data} = champion(region, player_id, champion_id)
     assert status == :ok
     assert Map.fetch(data, "championId") == { :ok, champion_id }
   end
@@ -21,7 +21,7 @@ defmodule ChampionMasteryTest do
     player_id = 22415415
     champion_id = 126
     
-    {status, data} = fetch_champions(region, player_id)
+    {status, data} = champions(region, player_id)
     assert status == :ok
     assert Enum.any?(data, &( Map.fetch(&1, "championId") == { :ok, champion_id } )) == true
   end
@@ -30,7 +30,7 @@ defmodule ChampionMasteryTest do
     region = "na"
     player_id = 22415415
     
-    {status, data} = fetch_score(region, player_id)
+    {status, data} = score(region, player_id)
     assert status == :ok
     assert is_integer(data)
   end
@@ -39,7 +39,7 @@ defmodule ChampionMasteryTest do
     region = "na"
     player_id = 22415415
     
-    {status, data} = fetch_top_champions(region, player_id)
+    {status, data} = top_champions(region, player_id)
     assert status == :ok
     assert is_list(data)
     assert Enum.count(data) == 3

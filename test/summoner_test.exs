@@ -11,7 +11,7 @@ defmodule SummonerTest do
     summoner_name = "Sandvich Von Nom"
     region = "na"
     
-    {status, shortname, data} = fetch(region, summoner_name)
+    {status, shortname, data} = summoner(region, summoner_name)
     assert status == :ok
     assert shortname == "sandvichvonnom"
     assert Map.fetch(data, "name") == { :ok, summoner_name }

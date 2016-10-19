@@ -18,7 +18,7 @@ defmodule Chemist.Champion do
   map containing data for found champion
   """
   
-  def fetch(region, champion_id) do
+  def champion(region, champion_id) do
     if valid_region?(region) do
       region
       |> url(champion_id)
@@ -35,7 +35,7 @@ defmodule Chemist.Champion do
   list of maps containing champion data
   """
 
-  def fetch_all(region) do
+  def champions(region) do
     if valid_region?(region) do
       region
       |> url

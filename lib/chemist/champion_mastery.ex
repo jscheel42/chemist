@@ -16,7 +16,7 @@ defmodule Chemist.ChampionMastery do
   map containing champion mastery data
   """
 
-  def fetch_champion(region, player_id, champion_id) do
+  def champion(region, player_id, champion_id) do
     if valid_region?(region) do
       region
       |> url(player_id, "champion", champion_id)
@@ -33,7 +33,7 @@ defmodule Chemist.ChampionMastery do
   list of maps containing champion mastery data
   """
 
-  def fetch_champions(region, player_id) do
+  def champions(region, player_id) do
     if valid_region?(region) do
       region
       |> url(player_id, "champions")
@@ -49,7 +49,7 @@ defmodule Chemist.ChampionMastery do
   where data is an integer
   """
 
-  def fetch_score(region, player_id) do
+  def score(region, player_id) do
     if valid_region?(region) do
       region
       |> url(player_id, "score")
@@ -66,7 +66,7 @@ defmodule Chemist.ChampionMastery do
   mastery data for the summoner's top 3 champions by mastery score
   """
 
-  def fetch_top_champions(region, player_id) do
+  def top_champions(region, player_id) do
     if valid_region?(region) do
       region
       |> url(player_id, "topchampions")

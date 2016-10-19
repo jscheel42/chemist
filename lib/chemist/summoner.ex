@@ -18,7 +18,7 @@ defmodule Chemist.Summoner do
   is a map of returned summoner attributes
   """
 
-  def fetch(region, summoner) do
+  def summoner(region, summoner) do
     if String.match?(summoner, ~r/^[0-9\p{L} _\.]+$/) and valid_region?(region) do
       region
       |> url(remove_spaces(summoner))
