@@ -9,19 +9,6 @@ defmodule Chemist.Champion do
   @api_key        Application.get_env(:chemist, :api_key)
   @api_version    Application.get_env(:chemist, :api_version_champion)
   @user_agent     Application.get_env(:chemist, :user_agent)
-
-  @doc """
-  Return a tuple with the values
-  { :ok, data } where data is a
-  list of maps containing champion data
-  """
-
-  def fetch_all(region) do
-    region
-    |> url
-    |> HTTPoison.get(@user_agent)
-    |> handle_response_all
-  end
   
   @doc """
   Return a tuple with the values
@@ -34,6 +21,19 @@ defmodule Chemist.Champion do
     |> url(champion_id)
     |> HTTPoison.get(@user_agent)
     |> handle_response
+  end
+
+  @doc """
+  Return a tuple with the values
+  { :ok, data } where data is a
+  list of maps containing champion data
+  """
+
+  def fetch_all(region) do
+    region
+    |> url
+    |> HTTPoison.get(@user_agent)
+    |> handle_response_all
   end
 
   @doc """
@@ -53,8 +53,7 @@ defmodule Chemist.Champion do
   end
 
   @doc """
-  Make HTTP request and transform result
-  into a tuple (all champions).
+  Parse result into a tuple (all champions)
   """
 
   def handle_response_all({ :ok, %{status_code: 200, body: body}}) do
@@ -66,8 +65,7 @@ defmodule Chemist.Champion do
   end
 
   @doc """
-  Make HTTP request and transform result
-  into a tuple (one champion).
+  Parse result into a tuple (one champion)
   """
 
   def handle_response({ :ok, %{status_code: 200, body: body}}) do

@@ -33,6 +33,6 @@ defmodule ChampionTest do
     {status, data} = fetch_all(region)
     assert status == :ok
         
-    assert true == Enum.any?(data, &( Map.fetch(&1, "id") == { :ok, champion_id } ))
+    assert Enum.any?(data, &( Map.fetch(&1, "id") == { :ok, champion_id } ))
   end
 end

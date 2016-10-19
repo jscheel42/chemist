@@ -16,11 +16,10 @@ defmodule Chemist.Summoner do
   is a map of returned summoner attributes
   """
 
-  def fetch(summoner, region) do
+  def fetch(region, summoner) do
     if String.match?(summoner, ~r/^[0-9\p{L} _\.]+$/) do
-      summoner
-      |> remove_spaces
-      |> url(region)
+      region
+      |> url(remove_spaces(summoner))
       |> HTTPoison.get(@user_agent)
       |> handle_response
     else
@@ -38,13 +37,12 @@ defmodule Chemist.Summoner do
   Generate a URL based on the region, api version, and api key
   """
   
-  def url(summoner, region) do
+  def url(region, summoner) do
     "https://#{region}.api.pvp.net/api/lol/#{region}/v#{@api_version}/summoner/by-name/#{summoner}?api_key=#{@api_key}"
   end
 
   @doc """
-  Make HTTP request and transform result
-  into a tuple.
+  Parse result into a tuple
   """
 
   def handle_response({ :ok, %{status_code: 200, body: body}}) do

@@ -12,9 +12,9 @@ defmodule SummonerTest do
   end
   
   test "return summoner url, supply shortname & region" do
-    assert url("sandvichvonnom", "na") ==
+    assert url("na", "sandvichvonnom") ==
       "https://na.api.pvp.net/api/lol/na/v#{@api_version}/summoner/by-name/sandvichvonnom?api_key=#{@api_key}"
-    assert url("sandvichvonnom", "euw") ==
+    assert url("euw", "sandvichvonnom") ==
       "https://euw.api.pvp.net/api/lol/euw/v#{@api_version}/summoner/by-name/sandvichvonnom?api_key=#{@api_key}"
   end
   
@@ -22,7 +22,7 @@ defmodule SummonerTest do
     summoner_name = "Sandvich Von Nom"
     region = "na"
     
-    {status, shortname, data} = fetch(summoner_name, region)
+    {status, shortname, data} = fetch(region, summoner_name)
     assert status == :ok
     assert shortname == "sandvichvonnom"
     assert Map.fetch(data, "name") == { :ok, summoner_name }
