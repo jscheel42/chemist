@@ -4,6 +4,8 @@ defmodule Chemist.ChampionMastery do
   Retrieve champion mastery data from Riot API
   and transform it into an Elixir friendly format
   """
+    
+  import Chemist.Util
 
   @api_key        Application.get_env(:chemist, :api_key)
   @user_agent     Application.get_env(:chemist, :user_agent)
@@ -14,12 +16,15 @@ defmodule Chemist.ChampionMastery do
   map containing champion mastery data
   """
 
-  def fetch_champion(region, platform_id, player_id, champion_id) do
-    region
-    |> url(platform_id, player_id, "champion", champion_id)
-    |> HTTPoison.get(@user_agent)
-    |> handle_response
-    # |> IO.inspect
+  def fetch_champion(region, player_id, champion_id) do
+    if valid_region?(region) do
+      region
+      |> url(player_id, "champion", champion_id)
+      |> HTTPoison.get(@user_agent)
+      |> handle_response
+    else
+      {:error, "invalid request"}
+    end
   end
 
   @doc """
@@ -28,12 +33,15 @@ defmodule Chemist.ChampionMastery do
   list of maps containing champion mastery data
   """
 
-  def fetch_champions(region, platform_id, player_id) do
-    region
-    |> url(platform_id, player_id, "champions")
-    |> HTTPoison.get(@user_agent)
-    |> handle_response
-    # |> IO.inspect
+  def fetch_champions(region, player_id) do
+    if valid_region?(region) do
+      region
+      |> url(player_id, "champions")
+      |> HTTPoison.get(@user_agent)
+      |> handle_response
+    else
+      {:error, "invalid request"}
+    end
   end
   
   @doc """
@@ -41,12 +49,15 @@ defmodule Chemist.ChampionMastery do
   where data is an integer
   """
 
-  def fetch_score(region, platform_id, player_id) do
-    region
-    |> url(platform_id, player_id, "score")
-    |> HTTPoison.get(@user_agent)
-    |> handle_response
-    # |> IO.inspect
+  def fetch_score(region, player_id) do
+    if valid_region?(region) do
+      region
+      |> url(player_id, "score")
+      |> HTTPoison.get(@user_agent)
+      |> handle_response
+    else
+      {:error, "invalid request"}
+    end
   end
   
   @doc """
@@ -55,39 +66,32 @@ defmodule Chemist.ChampionMastery do
   mastery data for the summoner's top 3 champions by mastery score
   """
 
-  def fetch_top_champions(region, platform_id, player_id) do
-    region
-    |> url(platform_id, player_id, "topchampions")
-    |> HTTPoison.get(@user_agent)
-    |> handle_response
-    # |> IO.inspect
+  def fetch_top_champions(region, player_id) do
+    if valid_region?(region) do
+      region
+      |> url(player_id, "topchampions")
+      |> HTTPoison.get(@user_agent)
+      |> handle_response
+    else
+      {:error, "invalid request"}
+    end
   end
 
-  @doc """
-  Generate a URL based on the region, platform_id, player_id, category, champion_id
-  """
-
-  def url(region, platform_id, player_id, category, champion_id) do
+  defp url(region, player_id, category, champion_id) do
+    platform_id = get_platform_id(region)
     "https://#{region}.api.pvp.net/championmastery/location/#{platform_id}/player/#{player_id}/#{category}/#{champion_id}?api_key=#{@api_key}"
   end
 
-  @doc """
-  Generate a URL based on the region, platform_id, player_id, category
-  """
-
-  def url(region, platform_id, player_id, category) do
+  defp url(region, player_id, category) do
+    platform_id = get_platform_id(region)
     "https://#{region}.api.pvp.net/championmastery/location/#{platform_id}/player/#{player_id}/#{category}?api_key=#{@api_key}"
   end
 
-  @doc """
-  Parse result into a tuple
-  """
-
-  def handle_response({ :ok, %{status_code: 200, body: body}}) do
+  defp handle_response({ :ok, %{status_code: 200, body: body}}) do
     { :ok, Poison.Parser.parse!(body) }
   end
   
-  def handle_response({ _,   %{status_code: _,   body: body}}) do
+  defp handle_response({ _,   %{status_code: _,   body: body}}) do
     { :error, Poison.Parser.parse!(body) }
   end
 end

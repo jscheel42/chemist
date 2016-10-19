@@ -7,16 +7,6 @@ defmodule ChampionTest do
   @api_key      Application.get_env(:chemist, :api_key)
   @api_version  Application.get_env(:chemist, :api_version_champion)
   
-  test "return champion url for all champion in region" do
-    assert url("na") ==
-      "https://na.api.pvp.net/api/lol/na/v#{@api_version}/champion?api_key=#{@api_key}"
-  end
-  
-  test "return champion url for single champion id" do
-    assert url("euw", 126) ==
-      "https://euw.api.pvp.net/api/lol/euw/v#{@api_version}/champion/126?api_key=#{@api_key}"    
-  end
-
   test "return data for champion with id 126" do
     champion_id = 126
     region = "na"

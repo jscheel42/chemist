@@ -6,6 +6,8 @@ defmodule Chemist.Summoner do
   friendly format
   """
 
+  import Chemist.Util
+
   @api_key        Application.get_env(:chemist, :api_key)
   @api_version    Application.get_env(:chemist, :api_version_summoner)
   @user_agent     Application.get_env(:chemist, :user_agent)
@@ -17,35 +19,23 @@ defmodule Chemist.Summoner do
   """
 
   def fetch(region, summoner) do
-    if String.match?(summoner, ~r/^[0-9\p{L} _\.]+$/) do
+    if String.match?(summoner, ~r/^[0-9\p{L} _\.]+$/) and valid_region?(region) do
       region
       |> url(remove_spaces(summoner))
       |> HTTPoison.get(@user_agent)
       |> handle_response
     else
-      {:error, "invalid summoner name"}
+      {:error, "invalid request"}
     end
   end
 
-  @doc """
-  Remove spaces from a string
-  """
-
-  def remove_spaces(str), do: String.replace(str, " ", "")
-
-  @doc """
-  Generate a URL based on the region, api version, and api key
-  """
+  defp remove_spaces(str), do: String.replace(str, " ", "")
   
-  def url(region, summoner) do
+  defp url(region, summoner) do
     "https://#{region}.api.pvp.net/api/lol/#{region}/v#{@api_version}/summoner/by-name/#{summoner}?api_key=#{@api_key}"
   end
 
-  @doc """
-  Parse result into a tuple
-  """
-
-  def handle_response({ :ok, %{status_code: 200, body: body}}) do
+  defp handle_response({ :ok, %{status_code: 200, body: body}}) do
     poisoned_body = Poison.Parser.parse!(body)
     
     shortname = 
@@ -57,7 +47,7 @@ defmodule Chemist.Summoner do
     { :ok, shortname, data }
   end
 
-  def handle_response({ _,   %{status_code: _,   body: body}}) do
+  defp handle_response({ _,   %{status_code: _,   body: body}}) do
     { :error, Poison.Parser.parse!(body) }
   end
 end

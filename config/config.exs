@@ -7,6 +7,7 @@ config :chemist,
   api_version_summoner:         1.4,
   user_agent:                   [ {"User-agent", "Chemist jscheel42@gmail.com"} ]
 
+
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,
