@@ -29,9 +29,9 @@ defmodule Chemist.Champion do
   map containing data for found champion
   """
   
-  def fetch(champion_id, region) do
-    champion_id
-    |> url(region)
+  def fetch(region, champion_id) do
+    region
+    |> url(champion_id)
     |> HTTPoison.get(@user_agent)
     |> handle_response
   end
@@ -48,7 +48,7 @@ defmodule Chemist.Champion do
   Generate a URL based on the champion id and region
   """
 
-  def url(champion_id, region) do
+  def url(region, champion_id) do
     "https://#{region}.api.pvp.net/api/lol/#{region}/v#{@api_version}/champion/#{champion_id}?api_key=#{@api_key}"
   end
 

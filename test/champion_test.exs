@@ -13,7 +13,7 @@ defmodule ChampionTest do
   end
   
   test "return champion url for single champion id" do
-    assert url(126, "euw") ==
+    assert url("euw", 126) ==
       "https://euw.api.pvp.net/api/lol/euw/v#{@api_version}/champion/126?api_key=#{@api_key}"    
   end
 
@@ -21,7 +21,7 @@ defmodule ChampionTest do
     champion_id = 126
     region = "na"
     
-    {status, data} = fetch(champion_id, region)
+    {status, data} = fetch(region, champion_id)
     assert status == :ok
     assert Map.fetch(data, "id") == { :ok, champion_id }
   end
