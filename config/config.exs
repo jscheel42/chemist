@@ -3,6 +3,7 @@
 use Mix.Config
 
 config :chemist,
+  api_key:                      System.get_env("RIOT_API_KEY"),
   api_version_champion:         1.2,
   api_version_summoner:         1.4
 
@@ -33,4 +34,4 @@ config :chemist,
 #
 #     import_config "#{Mix.env}.exs"
 
-import_config "prod.secret.exs"
+# import_config "prod.secret.exs"
