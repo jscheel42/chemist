@@ -9,7 +9,6 @@ defmodule Chemist.Champion do
   import Chemist.Util
 
   @api_version    Application.get_env(:chemist, :api_version_champion)
-  @user_agent     Application.get_env(:chemist, :user_agent)
   
   @doc """
   Return a tuple with the values
@@ -21,7 +20,7 @@ defmodule Chemist.Champion do
     if valid_region?(region) do
       region
       |> url(champion_id)
-      |> HTTPoison.get(@user_agent)
+      |> HTTPoison.get
       |> handle_response
     else
       {:error, "invalid request"}
@@ -38,7 +37,7 @@ defmodule Chemist.Champion do
     if valid_region?(region) do
       region
       |> url
-      |> HTTPoison.get(@user_agent)
+      |> HTTPoison.get
       |> handle_response_all
     else
       {:error, "invalid request"}

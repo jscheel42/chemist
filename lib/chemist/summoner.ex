@@ -9,7 +9,6 @@ defmodule Chemist.Summoner do
   import Chemist.Util
 
   @api_version    Application.get_env(:chemist, :api_version_summoner)
-  @user_agent     Application.get_env(:chemist, :user_agent)
 
   @doc """
   Return a tuple with the values
@@ -28,7 +27,7 @@ defmodule Chemist.Summoner do
     end
   end
 
-  # |> HTTPoison.get(@user_agent)
+  # |> HTTPoison.get
 
   defp remove_spaces(str), do: String.replace(str, " ", "")
   

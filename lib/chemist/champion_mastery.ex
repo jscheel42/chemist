@@ -7,8 +7,6 @@ defmodule Chemist.ChampionMastery do
     
   import Chemist.Util
 
-  @user_agent     Application.get_env(:chemist, :user_agent)
-
   @doc """
   Return a tuple with the values
   { :ok, data } where data is a
@@ -19,7 +17,7 @@ defmodule Chemist.ChampionMastery do
     if valid_region?(region) do
       region
       |> url(player_id, "champion", champion_id)
-      |> HTTPoison.get(@user_agent)
+      |> HTTPoison.get
       |> handle_response
     else
       {:error, "invalid request"}
@@ -36,7 +34,7 @@ defmodule Chemist.ChampionMastery do
     if valid_region?(region) do
       region
       |> url(player_id, "champions")
-      |> HTTPoison.get(@user_agent)
+      |> HTTPoison.get
       |> handle_response
     else
       {:error, "invalid request"}
@@ -52,7 +50,7 @@ defmodule Chemist.ChampionMastery do
     if valid_region?(region) do
       region
       |> url(player_id, "score")
-      |> HTTPoison.get(@user_agent)
+      |> HTTPoison.get
       |> handle_response
     else
       {:error, "invalid request"}
@@ -69,7 +67,7 @@ defmodule Chemist.ChampionMastery do
     if valid_region?(region) do
       region
       |> url(player_id, "topchampions")
-      |> HTTPoison.get(@user_agent)
+      |> HTTPoison.get
       |> handle_response
     else
       {:error, "invalid request"}
