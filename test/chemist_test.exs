@@ -7,6 +7,6 @@ defmodule ChemistTest do
   end
   
   test "not the truth" do
-    assert 1 + 1 == 3
+    assert 1 + 1 == 4
   end
 end
