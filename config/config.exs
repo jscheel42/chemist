@@ -4,9 +4,7 @@ use Mix.Config
 
 config :chemist,
   api_version_champion:         1.2,
-  api_version_summoner:         1.4,
-  user_agent:                   [ {"User-agent", "Chemist jscheel42@gmail.com"} ]
-
+  api_version_summoner:         1.4
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this

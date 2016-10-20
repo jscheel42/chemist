@@ -7,7 +7,6 @@ defmodule Chemist.ChampionMastery do
     
   import Chemist.Util
 
-  @api_key        Application.get_env(:chemist, :api_key)
   @user_agent     Application.get_env(:chemist, :user_agent)
 
   @doc """
@@ -78,13 +77,15 @@ defmodule Chemist.ChampionMastery do
   end
 
   defp url(region, player_id, category, champion_id) do
-    platform_id = get_platform_id(region)
-    "https://#{region}.api.pvp.net/championmastery/location/#{platform_id}/player/#{player_id}/#{category}/#{champion_id}?api_key=#{@api_key}"
+    base_url_region(region)
+    <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/#{category}/#{champion_id}"
+    <> url_key()
   end
 
   defp url(region, player_id, category) do
-    platform_id = get_platform_id(region)
-    "https://#{region}.api.pvp.net/championmastery/location/#{platform_id}/player/#{player_id}/#{category}?api_key=#{@api_key}"
+    base_url_region(region)
+    <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/#{category}"
+    <> url_key()
   end
 
   defp handle_response({ :ok, %{status_code: 200, body: body}}) do

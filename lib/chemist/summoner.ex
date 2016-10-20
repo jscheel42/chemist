@@ -8,7 +8,6 @@ defmodule Chemist.Summoner do
 
   import Chemist.Util
 
-  @api_key        Application.get_env(:chemist, :api_key)
   @api_version    Application.get_env(:chemist, :api_version_summoner)
   @user_agent     Application.get_env(:chemist, :user_agent)
 
@@ -22,17 +21,21 @@ defmodule Chemist.Summoner do
     if String.match?(summoner, ~r/^[0-9\p{L} _\.]+$/) and valid_region?(region) do
       region
       |> url(remove_spaces(summoner))
-      |> HTTPoison.get(@user_agent)
+      |> HTTPoison.get
       |> handle_response
     else
       {:error, "invalid request"}
     end
   end
 
+  # |> HTTPoison.get(@user_agent)
+
   defp remove_spaces(str), do: String.replace(str, " ", "")
   
   defp url(region, summoner) do
-    "https://#{region}.api.pvp.net/api/lol/#{region}/v#{@api_version}/summoner/by-name/#{summoner}?api_key=#{@api_key}"
+    base_url_region(region)
+    <> "/api/lol/#{region}/v#{@api_version}/summoner/by-name/#{summoner}"
+    <> url_key()
   end
 
   defp handle_response({ :ok, %{status_code: 200, body: body}}) do
