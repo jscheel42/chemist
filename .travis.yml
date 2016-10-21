@@ -2,6 +2,6 @@ language: elixir
 elixir: 1.3.3
 otp_release: 18.2.1
 before_script: "kerl list installations"
-after_script: echo "Archive URL: ${archive_url}"
+after_script: "echo Archive URL is ${archive_url}"
 env:
   - MIX_ENV=test
