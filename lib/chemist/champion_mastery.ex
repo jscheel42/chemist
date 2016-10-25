@@ -10,7 +10,8 @@ defmodule Chemist.ChampionMastery do
   @doc """
   Return a tuple with the values
   { :ok, data } where data is a
-  map containing champion mastery data
+  map containing champion mastery data. \n
+  Uses "championmastery" API.
   """
 
   def champion(region, player_id, champion_id) do
@@ -27,7 +28,8 @@ defmodule Chemist.ChampionMastery do
   @doc """
   Return a tuple with the values
   { :ok, data } where data is a
-  list of maps containing champion mastery data
+  list of maps containing champion mastery data. \n
+  Uses "championmastery" API.
   """
 
   def champions(region, player_id) do
@@ -43,7 +45,8 @@ defmodule Chemist.ChampionMastery do
   
   @doc """
   Return a tuple with the values { :ok, data }
-  where data is an integer
+  where data is an integer. \n
+  Uses "championmastery" API.
   """
 
   def score(region, player_id) do
@@ -60,7 +63,8 @@ defmodule Chemist.ChampionMastery do
   @doc """
   Return a tuple with the values { :ok, data }
   where data is a list of maps containing champion
-  mastery data for the summoner's top 3 champions by mastery score
+  mastery data for the summoner's top 3 champions by mastery score. \n
+  Uses "championmastery" API.
   """
 
   def top_champions(region, player_id) do
@@ -86,11 +90,4 @@ defmodule Chemist.ChampionMastery do
     <> url_key()
   end
 
-  defp handle_response({ :ok, %{status_code: 200, body: body}}) do
-    { :ok, Poison.Parser.parse!(body) }
-  end
-  
-  defp handle_response({ _,   %{status_code: _,   body: body}}) do
-    { :error, Poison.Parser.parse!(body) }
-  end
 end

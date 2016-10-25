@@ -39,5 +39,29 @@ defmodule Chemist.Util do
   def url_key() do
     "?api_key=" <> @api_key
   end
+  
+  def handle_response({ :ok, %{status_code: 200, body: body}}) do
+    { :ok, Poison.Parser.parse!(body) }
+  end
+  
+  def handle_response({ _,   %{status_code: _,   body: body}}) do
+    { :error, Poison.Parser.parse!(body) }
+  end
+  
+  def handle_response_strip_key({ :ok, %{status_code: 200, body: body}}) do
+    poisoned_body = Poison.Parser.parse!(body)
+    
+    striped_key = 
+      Map.keys(poisoned_body)
+      |> List.first
+    
+    { :ok, data } = Map.fetch(poisoned_body, striped_key)   
+    
+    { :ok, data }
+  end
 
+  def handle_response_strip_key({ _,   %{status_code: _,   body: body}}) do
+    { :error, Poison.Parser.parse!(body) }
+  end
+  
 end

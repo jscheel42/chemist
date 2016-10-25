@@ -5,7 +5,17 @@ use Mix.Config
 config :chemist,
   api_key:                      System.get_env("RIOT_API_KEY"),
   api_version_champion:         1.2,
-  api_version_summoner:         1.4
+  api_version_current_game:     1.0,
+  api_version_featured_games:   1.0,
+  api_version_game:             1.3,
+  api_version_league:           2.5,
+  api_version_lol_static_data:  1.2,
+  api_version_lol_status:       1.0,
+  api_version_match:            2.2,
+  api_version_matchlist:        2.2,
+  api_version_stats:            1.3,
+  api_version_summoner:         1.4,
+  api_version_team:             2.4
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
