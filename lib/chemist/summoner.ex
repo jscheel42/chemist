@@ -27,6 +27,11 @@ defmodule Chemist.Summoner do
       {:error, "invalid request"}
     end
   end
+  
+  def summoner_id(region, summoner) do
+    { :ok, summoner_data } = summoner(region, summoner)
+    Map.fetch!(summoner_data, "id")
+  end
 
   defp remove_spaces(str), do: String.replace(str, " ", "")
   

@@ -9,7 +9,7 @@ defmodule ChampionTest do
   
   test "return data for champion with id 126" do
     champion_id = 126
-    region = "na"
+    region = "euw"
     
     {status, data} = champion(region, champion_id)
     assert status == :ok
@@ -18,7 +18,7 @@ defmodule ChampionTest do
 
   test "return data for all champions, ensure map w/ 'id => 126' in returned data" do
     champion_id = 126
-    region = "na"
+    region = "euw"
     
     {status, data} = champions(region)
     assert status == :ok
