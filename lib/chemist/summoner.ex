@@ -84,31 +84,31 @@ defmodule Chemist.Summoner do
   
   defp url_summoner_by_name(region, summoner) do
     base_url_region(region)
-    <> "/api/lol/#{region}/v#{@api_version_summoner}/summoner/by-name/#{summoner}"
+    <> "/api/lol/#{region}/v#{@api_version_summoner}/summoner/by-name/#{summoner}?"
     <> url_key()
   end
 
   defp url_summoner_by_id(region, id) do
     base_url_region(region)
-    <> "/api/lol/#{region}/v#{@api_version_summoner}/summoner/#{id}"
+    <> "/api/lol/#{region}/v#{@api_version_summoner}/summoner/#{id}?"
     <> url_key()
   end
   
   defp url_masteries_by_id(region, id) do
     base_url_region(region)
-    <> "/api/lol/#{region}/v#{@api_version_summoner}/summoner/#{id}/masteries"
+    <> "/api/lol/#{region}/v#{@api_version_summoner}/summoner/#{id}/masteries?"
     <> url_key()
   end
   
   defp url_name_by_id(region, id) do
     base_url_region(region)
-    <> "/api/lol/#{region}/v#{@api_version_summoner}/summoner/#{id}/name"
+    <> "/api/lol/#{region}/v#{@api_version_summoner}/summoner/#{id}/name?"
     <> url_key()
   end
   
   defp url_runes_by_id(region, id) do
     base_url_region(region)
-    <> "/api/lol/#{region}/v#{@api_version_summoner}/summoner/#{id}/runes"
+    <> "/api/lol/#{region}/v#{@api_version_summoner}/summoner/#{id}/runes?"
     <> url_key()
   end
 end

@@ -80,13 +80,13 @@ defmodule Chemist.ChampionMastery do
 
   defp url(region, player_id, category, champion_id) do
     base_url_region(region)
-    <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/#{category}/#{champion_id}"
+    <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/#{category}/#{champion_id}?"
     <> url_key()
   end
 
   defp url(region, player_id, category) do
     base_url_region(region)
-    <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/#{category}"
+    <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/#{category}?"
     <> url_key()
   end
 

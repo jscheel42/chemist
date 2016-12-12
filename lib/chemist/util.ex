@@ -37,9 +37,38 @@ defmodule Chemist.Util do
   end
   
   def url_key() do
-    "?api_key=" <> @api_key
+    "api_key=" <> @api_key
+  end
+
+  def url_opts(map, defaults) do
+    merge_defaults(map, defaults)
+    |> remove_nils
+    |> gen_opt_list
+    |> concat_opts
   end
   
+  # Merge map with defaults, use defaults where no value assigned to key
+  defp merge_defaults(map, defaults) do
+    Map.merge(defaults, map, fn _key, default, val -> val || default end)
+  end
+  
+  # Removes entries with nil values, returns a list of tuples
+  defp remove_nils(map) do
+    Enum.filter map, fn { _key, val } -> val end
+  end
+  
+  # Transform opts into rest friendly strings
+  defp gen_opt_list(list) do
+    Enum.reduce list, [], fn { key, val }, acc ->
+      acc ++ ["#{key}=#{val}"]
+    end
+  end
+  
+  # Combine opts into a single string
+  defp concat_opts(list) do
+    Enum.join(list, "&") <> "&"
+  end
+
   def strip_key(map) do
     striped_key = 
       Map.keys(map)

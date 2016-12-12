@@ -48,13 +48,13 @@ defmodule Chemist.Champion do
 
   defp url(region) do
     base_url_region(region)
-    <> "/api/lol/#{region}/v#{@api_version_champion}/champion"
+    <> "/api/lol/#{region}/v#{@api_version_champion}/champion?"
     <> url_key()
   end
   
   defp url(region, champion_id) do
     base_url_region(region)
-    <> "/api/lol/#{region}/v#{@api_version_champion}/champion/#{champion_id}"
+    <> "/api/lol/#{region}/v#{@api_version_champion}/champion/#{champion_id}?"
     <> url_key()
   end
 

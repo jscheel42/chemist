@@ -67,19 +67,19 @@ defmodule Chemist.Game do
   
   defp url_current(region, player_id) do
     base_url_region(region)
-    <> "/observer-mode/rest/consumer/getSpectatorGameInfo/#{get_platform_id(region)}/#{player_id}"
+    <> "/observer-mode/rest/consumer/getSpectatorGameInfo/#{get_platform_id(region)}/#{player_id}?"
     <> url_key()
   end
 
   defp url_featured(region) do
     base_url_region(region)
-    <> "/observer-mode/rest/featured"
+    <> "/observer-mode/rest/featured?"
     <> url_key()
   end
 
   defp url_recent(region, player_id) do
     base_url_region(region)
-    <> "/api/lol/#{region}/v#{@api_version_game}/game/by-summoner/#{player_id}/recent"
+    <> "/api/lol/#{region}/v#{@api_version_game}/game/by-summoner/#{player_id}/recent?"
     <> url_key()
   end
 
