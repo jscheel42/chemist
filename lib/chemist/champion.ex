@@ -40,7 +40,7 @@ defmodule Chemist.Champion do
       region
       |> url
       |> HTTPoison.get
-      |> handle_response_strip_key
+      |> handle_response
     else
       {:error, "invalid request"}
     end

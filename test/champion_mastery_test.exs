@@ -8,7 +8,7 @@ defmodule ChampionMasteryTest do
   
   test "return mastery data for champion" do
     region = "na"
-    player_id = 22415415
+    player_id = 51666047
     champion_id = 126
     
     {status, data} = champion(region, player_id, champion_id)
@@ -18,7 +18,7 @@ defmodule ChampionMasteryTest do
 
   test "return mastery data for all champions, ensure map w/ 'championId => 126' in returned data" do
     region = "na"
-    player_id = 22415415
+    player_id = 51666047
     champion_id = 126
     
     {status, data} = champions(region, player_id)
@@ -28,7 +28,7 @@ defmodule ChampionMasteryTest do
 
   test "return score as an integer" do
     region = "na"
-    player_id = 22415415
+    player_id = 51666047
     
     {status, data} = score(region, player_id)
     assert status == :ok
@@ -37,7 +37,7 @@ defmodule ChampionMasteryTest do
   
   test "return list of top 3 champions" do
     region = "na"
-    player_id = 22415415
+    player_id = 51666047
     
     {status, data} = top_champions(region, player_id)
     assert status == :ok

@@ -3,6 +3,7 @@ defmodule ChampionTest do
   doctest Chemist
 
   import Chemist.Champion
+  import Chemist.Util
   
   @api_key      Application.get_env(:chemist, :api_key)
   @api_version  Application.get_env(:chemist, :api_version_champion)
@@ -22,7 +23,9 @@ defmodule ChampionTest do
     
     {status, data} = champions(region)
     assert status == :ok
+    
+    data_striped_key = strip_key!(data)
         
-    assert Enum.any?(data, &( Map.fetch(&1, "id") == { :ok, champion_id } ))
+    assert Enum.any?(data_striped_key, &( Map.fetch(&1, "id") == { :ok, champion_id } ))
   end
 end

@@ -59,7 +59,7 @@ defmodule Chemist.Game do
       region
       |> url_recent(player_id)
       |> HTTPoison.get
-      |> handle_response_strip_key
+      |> handle_response
     else
       {:error, "invalid request"}
     end
