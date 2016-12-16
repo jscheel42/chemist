@@ -6,3 +6,4 @@
 ** Docs testing (inch-ci.org ?)
 * Dependency monitoring (hexfaktor.org ?)
 * Add to hex, update README
+* Review error handling

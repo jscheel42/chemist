@@ -41,10 +41,22 @@ defmodule Chemist.Util do
   end
 
   def url_opts(map, defaults) do
-    merge_defaults(map, defaults)
-    |> remove_nils
-    |> gen_opt_list
-    |> concat_opts
+    if allowed_keys?(map, defaults) do
+      merge_defaults(map, defaults)
+      |> remove_nils
+      |> gen_opt_list
+      |> concat_opts
+    else
+      {:error, "Option config invalid"}
+    end
+  end
+  
+  # Return true if all keys in check_map exist in the allowed_map
+  def allowed_keys?(check_map, allowed_map) do
+    check_keys = Map.keys(check_map)
+    allowed_keys = Map.keys(allowed_map)
+    
+    Enum.empty?(check_keys -- allowed_keys)
   end
   
   # Merge map with defaults, use defaults where no value assigned to key
