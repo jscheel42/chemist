@@ -52,7 +52,7 @@ defmodule Chemist.Util do
   end
   
   # Return true if all keys in check_map exist in the allowed_map
-  def allowed_keys?(check_map, allowed_map) do
+  defp allowed_keys?(check_map, allowed_map) do
     check_keys = Map.keys(check_map)
     allowed_keys = Map.keys(allowed_map)
     
