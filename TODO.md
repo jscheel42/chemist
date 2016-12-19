@@ -1,9 +1,6 @@
-* Features for:
-** lol-static-data, lol-status, match, matchlist, stats
-* Tests for:
-** league, lol-static-data, lol-status, match, matchlist, stats
-* Review & complete docs
-** Docs testing (inch-ci.org ?)
+* Add opts to remaining modules (first added w/ Chemist.Static)
+* Tests for: league, lol-static-data, lol-status, match, matchlist, stats
+* Review & complete docs (inch-ci.org ?)
 * Dependency monitoring (hexfaktor.org ?)
-* Add to hex, update README
 * Review error handling
+* Add to hex, update README

@@ -19,6 +19,14 @@ defmodule Chemist.Util do
     Map.has_key?(@regions_and_platform_ids, String.to_atom(region))
   end
   
+  # Return true if all keys in check_map exist in the allowed_map
+  def valid_keys?(check_map, allowed_map) do
+    check_keys = Map.keys(check_map)
+    allowed_keys = Map.keys(allowed_map)
+    
+    Enum.empty?(check_keys -- allowed_keys)
+  end  
+  
   def get_platform_id(region) do
     { :ok, platform_id } = Map.fetch(@regions_and_platform_ids, String.to_atom(region))
     platform_id
@@ -41,24 +49,12 @@ defmodule Chemist.Util do
   end
 
   def url_opts(map, defaults) do
-    if allowed_keys?(map, defaults) do
-      merge_defaults(map, defaults)
-      |> remove_nils
-      |> gen_opt_list
-      |> concat_opts
-    else
-      {:error, "Option config invalid"}
-    end
+    merge_defaults(map, defaults)
+    |> remove_nils
+    |> gen_opt_list
+    |> concat_opts
   end
-  
-  # Return true if all keys in check_map exist in the allowed_map
-  defp allowed_keys?(check_map, allowed_map) do
-    check_keys = Map.keys(check_map)
-    allowed_keys = Map.keys(allowed_map)
     
-    Enum.empty?(check_keys -- allowed_keys)
-  end
-  
   # Merge map with defaults, use defaults where no value assigned to key
   defp merge_defaults(map, defaults) do
     Map.merge(defaults, map, fn _key, default, val -> val || default end)
