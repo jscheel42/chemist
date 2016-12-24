@@ -17,7 +17,7 @@ defmodule Chemist.ChampionMastery do
   def champion(region, player_id, champion_id) do
     if valid_region?(region) do
       region
-      |> url(player_id, "champion", champion_id)
+      |> url_champion(player_id, champion_id)
       |> HTTPoison.get
       |> handle_response
     else
@@ -35,7 +35,7 @@ defmodule Chemist.ChampionMastery do
   def champions(region, player_id) do
     if valid_region?(region) do
       region
-      |> url(player_id, "champions")
+      |> url_champions(player_id)
       |> HTTPoison.get
       |> handle_response
     else
@@ -52,7 +52,7 @@ defmodule Chemist.ChampionMastery do
   def score(region, player_id) do
     if valid_region?(region) do
       region
-      |> url(player_id, "score")
+      |> url_score(player_id)
       |> HTTPoison.get
       |> handle_response
     else
@@ -67,26 +67,41 @@ defmodule Chemist.ChampionMastery do
   Uses "championmastery" API.
   """
 
-  def top_champions(region, player_id) do
-    if valid_region?(region) do
+  def top_champions(region, player_id, opts \\ %{}) do
+    default_opts = %{count: nil}
+    
+    if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
-      |> url(player_id, "topchampions")
+      |> url_top_champions(player_id, opts, default_opts)
       |> HTTPoison.get
       |> handle_response
     else
       {:error, "invalid request"}
     end
   end
-
-  defp url(region, player_id, category, champion_id) do
+  
+  defp url_champion(region, player_id, champion_id) do
     base_url_region(region)
-    <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/#{category}/#{champion_id}?"
+    <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/champion/#{champion_id}?"
     <> url_key()
   end
 
-  defp url(region, player_id, category) do
+  defp url_champions(region, player_id) do
     base_url_region(region)
-    <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/#{category}?"
+    <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/champions?"
+    <> url_key()
+  end
+
+  defp url_score(region, player_id) do
+    base_url_region(region)
+    <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/score?"
+    <> url_key()
+  end
+
+  defp url_top_champions(region, player_id, opts, default_opts) do
+    base_url_region(region)
+    <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/topchampions?"
+    <> url_opts(opts, default_opts)
     <> url_key()
   end
 

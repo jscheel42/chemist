@@ -31,10 +31,12 @@ defmodule Chemist.League do
     end
   end
   
-  def challenger(region, type) do
-    if valid_region?(region) do
+  def challenger(region, opts \\ %{}) do
+    default_opts = %{type: "RANKED_FLEX_SR"}
+    
+    if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
-      |> url_challenger(type)
+      |> url_challenger(opts, default_opts)
       |> HTTPoison.get
       |> handle_response
     else
@@ -42,10 +44,12 @@ defmodule Chemist.League do
     end
   end
   
-  def master(region, type) do
-    if valid_region?(region) do
+  def master(region, opts \\ %{}) do
+    default_opts = %{type: "RANKED_FLEX_SR"}
+    
+    if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
-      |> url_master(type)
+      |> url_master(opts, default_opts)
       |> HTTPoison.get
       |> handle_response
     else
@@ -65,15 +69,17 @@ defmodule Chemist.League do
     <> url_key()
   end
 
-  defp url_challenger(region, type) do
+  defp url_challenger(region, opts, default_opts) do
     base_url_region(region)
-    <> "/api/lol/#{region}/v#{@api_version_league}/league/challenger?type=#{type}&"
+    <> "/api/lol/#{region}/v#{@api_version_league}/league/challenger?"
+    <> url_opts(opts, default_opts)
     <> url_key()
   end
 
-  defp url_master(region, type) do
+  defp url_master(region, opts, default_opts) do
     base_url_region(region)
-    <> "/api/lol/#{region}/v#{@api_version_league}/league/master?type=#{type}&"
+    <> "/api/lol/#{region}/v#{@api_version_league}/league/master?"
+    <> url_opts(opts, default_opts)
     <> url_key()
   end
 

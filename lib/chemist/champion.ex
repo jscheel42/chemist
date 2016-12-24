@@ -20,7 +20,7 @@ defmodule Chemist.Champion do
   def champion(region, champion_id) do
     if valid_region?(region) do
       region
-      |> url(champion_id)
+      |> url_champion(champion_id)
       |> HTTPoison.get
       |> handle_response
     else
@@ -35,10 +35,12 @@ defmodule Chemist.Champion do
   Uses "champion-v#{@api_version_champion}" API.
   """
 
-  def champions(region) do
-    if valid_region?(region) do
+  def champions(region, opts \\ %{}) do
+    default_opts = %{freeToPlay: nil}
+
+    if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
-      |> url
+      |> url_champions(opts, default_opts)
       |> HTTPoison.get
       |> handle_response
     else
@@ -46,13 +48,14 @@ defmodule Chemist.Champion do
     end
   end
 
-  defp url(region) do
+  defp url_champions(region, opts, default_opts) do
     base_url_region(region)
     <> "/api/lol/#{region}/v#{@api_version_champion}/champion?"
+    <> url_opts(opts, default_opts)
     <> url_key()
   end
   
-  defp url(region, champion_id) do
+  defp url_champion(region, champion_id) do
     base_url_region(region)
     <> "/api/lol/#{region}/v#{@api_version_champion}/champion/#{champion_id}?"
     <> url_key()

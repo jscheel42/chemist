@@ -8,7 +8,7 @@ defmodule GameTest do
   @api_key            Application.get_env(:chemist, :api_key)
   
   test "Return featured games" do
-    region = "euw"
+    region = "oce"
     
     { :ok, featured_games } = featured(region)
 
@@ -28,6 +28,8 @@ defmodule GameTest do
     
     first_participant_name = Map.fetch!(first_participant, "summonerName")
         
+    # Chemist.Summoner.id_by_name(region, first_participant_name)
+    # |> IO.inspect
     player_id = Chemist.Summoner.id_by_name(region, first_participant_name)
     
     { :ok, current_game } = current(region, player_id)
