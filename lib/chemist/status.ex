@@ -7,10 +7,11 @@ defmodule Chemist.Status do
     
   import Chemist.Util
 
-  @api_version_status             Application.get_env(:chemist, :api_version_status)
+  # Not used in any current urls, may be used in future
+  # @api_version_status             Application.get_env(:chemist, :api_version_status)
 
   def shards() do
-    url_shards
+    url_shards()
     |> HTTPoison.get
     |> handle_response
   end
@@ -27,13 +28,13 @@ defmodule Chemist.Status do
   end
     
   defp url_shards() do
-    base_url_status
+    base_url_status()
     <> "/shards?"
     <> url_key()
   end
 
   defp url_shard(region) do
-    base_url_status
+    base_url_status()
     <> "/shards/#{region}?"
     <> url_key()
   end

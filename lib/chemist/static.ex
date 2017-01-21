@@ -199,103 +199,103 @@ defmodule Chemist.Static do
   end
 
   defp url_champions(region, opts, default_opts) do
-    base_url_global
+    base_url_global()
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/champion?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
 
   defp url_champion(region, id, opts, default_opts) do
-    base_url_global
+    base_url_global()
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/champion/#{id}?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
 
   defp url_items(region, opts, default_opts) do
-    base_url_global
+    base_url_global()
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/item?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
 
   defp url_item(region, id, opts, default_opts) do
-    base_url_global
+    base_url_global()
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/item/#{id}?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
 
   defp url_language_strings(region, opts, default_opts) do
-    base_url_global
+    base_url_global()
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/language-strings?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
 
   defp url_languages(region) do
-    base_url_global
+    base_url_global()
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/languages?"
     <> url_key()
   end
 
   defp url_map(region, opts, default_opts) do
-    base_url_global
+    base_url_global()
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/map?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
 
   defp url_masteries(region, opts, default_opts) do
-    base_url_global
+    base_url_global()
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/mastery?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
 
   defp url_mastery(region, id, opts, default_opts) do
-    base_url_global
+    base_url_global()
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/mastery/#{id}?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
 
   defp url_realm(region) do
-    base_url_global
+    base_url_global()
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/realm?"
     <> url_key()
   end
   
   defp url_runes(region, opts, default_opts) do
-    base_url_global
+    base_url_global()
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/rune?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
   
   defp url_rune(region, id, opts, default_opts) do
-    base_url_global
+    base_url_global()
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/rune/#{id}?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
   
   defp url_summoner_spells(region, opts, default_opts) do
-    base_url_global
+    base_url_global()
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/summoner-spell?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
   
   defp url_summoner_spell(region, id, opts, default_opts) do
-    base_url_global
+    base_url_global()
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/summoner-spell/#{id}?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
   
   defp url_versions(region) do
-    base_url_global
+    base_url_global()
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/versions?"
     <> url_key()
   end

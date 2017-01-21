@@ -7,7 +7,7 @@ defmodule Chemist.Mixfile do
       version: "0.1.0",
       name: "Chemist",
       source_url: "https://github.com/jscheel42/chemist",
-      elixir: "~> 1.3",
+      elixir: "~> 1.4",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
       deps: deps()
@@ -32,10 +32,9 @@ defmodule Chemist.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      { :httpoison, "~> 0.9" },
-      { :poison,    "~> 2.2" },
-      { :ex_doc,    "~> 0.12" },
-      { :earmark,   "~> 1.0", override: true }
+      { :httpoison, "~> 0.11" },
+      { :poison,    "~> 3.1" },
+      { :ex_doc,    "~> 0.14.5" }
     ]
   end
 end
