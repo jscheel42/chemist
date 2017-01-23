@@ -4,9 +4,7 @@ defmodule GameTest do
 
   import Chemist.Game
   import Chemist.Util
-  
-  @api_key            Application.get_env(:chemist, :api_key)
-  
+    
   test "Return featured games" do
     region = "oce"
     

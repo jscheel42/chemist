@@ -4,10 +4,7 @@ defmodule ChampionTest do
 
   import Chemist.Champion
   import Chemist.Util
-  
-  @api_key      Application.get_env(:chemist, :api_key)
-  @api_version  Application.get_env(:chemist, :api_version_champion)
-  
+    
   test "return data for champion with id 126" do
     champion_id = 126
     region = "euw"

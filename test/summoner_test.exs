@@ -4,10 +4,7 @@ defmodule SummonerTest do
 
   import Chemist.Summoner
   import Chemist.Util
-  
-  @api_key      Application.get_env(:chemist, :api_key)
-  @api_version  Application.get_env(:chemist, :api_version_summoner)
-  
+    
   test "return summoner json, supply summoner name" do
     summoner_name = "jrizznezz"
     region = "na"

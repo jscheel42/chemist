@@ -3,9 +3,7 @@ defmodule ChampionMasteryTest do
   doctest Chemist
 
   import Chemist.ChampionMastery
-  
-  @api_key      Application.get_env(:chemist, :api_key)
-  
+    
   test "return mastery data for champion" do
     region = "na"
     player_id = 51666047
