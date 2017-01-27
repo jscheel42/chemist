@@ -1,0 +1,6 @@
+# Taken randomly from a sample match
+
+region: "na"
+summoner id: 51666047
+summoner name: jrizznezz
+champion id: 36

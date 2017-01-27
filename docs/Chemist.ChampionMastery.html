@@ -8,7 +8,7 @@
     <title>Chemist.ChampionMastery – Chemist v0.1.0</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-2c0b276e48.js"></script>
+    <script src="dist/sidebar_items-ee59c97784.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -70,8 +70,7 @@
 
       
         <section id="moduledoc">
-          <p>Retrieve champion mastery data from Riot API
-and transform it into an Elixir friendly format</p>
+          <p>Uses “championmastery” API.</p>
 
         </section>
       
@@ -96,9 +95,7 @@ and transform it into an Elixir friendly format</p>
     <a href="#champion/3">champion(region, player_id, champion_id)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Return a tuple with the values
-{ :ok, data } where data is a
-map containing champion mastery data</p>
+    <div class="summary-synopsis"><p>Contains Champion Mastery information for a player’s single champion; retrieved by player id and champion id</p>
 </div>
   
 </div>
@@ -107,9 +104,7 @@ map containing champion mastery data</p>
     <a href="#champions/2">champions(region, player_id)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Return a tuple with the values
-{ :ok, data } where data is a
-list of maps containing champion mastery data</p>
+    <div class="summary-synopsis"><p>Contains a list of Champion Mastery information for all a player’s champions; retrieved by player id</p>
 </div>
   
 </div>
@@ -118,8 +113,7 @@ list of maps containing champion mastery data</p>
     <a href="#score/2">score(region, player_id)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Return a tuple with the values { :ok, data }
-where data is an integer</p>
+    <div class="summary-synopsis"><p>Contains an integer with Champion Mastery score for a player; retrieved by player id</p>
 </div>
   
 </div>
@@ -128,9 +122,7 @@ where data is an integer</p>
     <a href="#top_champions/3">top_champions(region, player_id, opts \\ %{})</a>
   </div>
   
-    <div class="summary-synopsis"><p>Return a tuple with the values { :ok, data }
-where data is a list of maps containing champion
-mastery data for the summoner’s top 3 champions by mastery score</p>
+    <div class="summary-synopsis"><p>Contains a list of Champion Mastery information for a player’s top champions; retrieved by player id</p>
 </div>
   
 </div>
@@ -163,7 +155,7 @@ mastery data for the summoner’s top 3 champions by mastery score</p>
     </a>
     <span class="signature">champion(region, player_id, champion_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L17" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L16" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -171,10 +163,10 @@ mastery data for the summoner’s top 3 champions by mastery score</p>
     
   </div>
   <section class="docstring">
-    <p>Return a tuple with the values
-{ :ok, data } where data is a
-map containing champion mastery data. </p>
-<p>Uses “championmastery” API.</p>
+    <p>Contains Champion Mastery information for a player’s single champion; retrieved by player id and champion id.</p>
+<p>Sample output:</p>
+<blockquote><p>{:ok, %{“championId” =&gt; 36, “championLevel” =&gt; 4, “championPoints” =&gt; 12917, “championPointsSinceLastLevel” =&gt; 317, “championPointsUntilNextLevel” =&gt; 8683, “chestGranted” =&gt; false, “lastPlayTime” =&gt; 1481350108000, “playerId” =&gt; 51666047, “tokensEarned” =&gt; 0}}</p>
+</blockquote>
 
   </section>
 </div>
@@ -186,7 +178,7 @@ map containing champion mastery data. </p>
     </a>
     <span class="signature">champions(region, player_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L35" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L34" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -194,10 +186,10 @@ map containing champion mastery data. </p>
     
   </div>
   <section class="docstring">
-    <p>Return a tuple with the values
-{ :ok, data } where data is a
-list of maps containing champion mastery data. </p>
-<p>Uses “championmastery” API.</p>
+    <p>Contains a list of Champion Mastery information for all a player’s champions; retrieved by player id.</p>
+<p>Sample output:</p>
+<blockquote><p>{:ok, [%{“championId” =&gt; 53, “championLevel” =&gt; 7, “championPoints” =&gt; 137316, “championPointsSinceLastLevel” =&gt; 115716, “championPointsUntilNextLevel” =&gt; 0, “chestGranted” =&gt; true, “lastPlayTime” =&gt; 1485463951000, “playerId” =&gt; 51666047, “tokensEarned” =&gt; 0}, …</p>
+</blockquote>
 
   </section>
 </div>
@@ -217,9 +209,10 @@ list of maps containing champion mastery data. </p>
     
   </div>
   <section class="docstring">
-    <p>Return a tuple with the values { :ok, data }
-where data is an integer. </p>
-<p>Uses “championmastery” API.</p>
+    <p>Contains an integer with Champion Mastery score for a player; retrieved by player id.</p>
+<p>Sample output:</p>
+<blockquote><p>{:ok, 195}</p>
+</blockquote>
 
   </section>
 </div>
@@ -233,7 +226,7 @@ where data is an integer. </p>
     </a>
     <span class="signature">top_champions(region, player_id, opts \\ %{})</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L70" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L74" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -241,10 +234,19 @@ where data is an integer. </p>
     
   </div>
   <section class="docstring">
-    <p>Return a tuple with the values { :ok, data }
-where data is a list of maps containing champion
-mastery data for the summoner’s top 3 champions by mastery score. </p>
-<p>Uses “championmastery” API.</p>
+    <p>Contains a list of Champion Mastery information for a player’s top champions; retrieved by player id.</p>
+<p>Default opts:</p>
+<ul>
+<li><p>count: 3</p>
+<ul>
+<li>Number of entries to retrieve
+</li>
+</ul>
+</li>
+</ul>
+<p>Sample output (default options):</p>
+<blockquote><p> {:ok, [%{“championId” =&gt; 53, “championLevel” =&gt; 7, “championPoints” =&gt; 137316, “championPointsSinceLastLevel” =&gt; 115716, “championPointsUntilNextLevel” =&gt; 0, “chestGranted” =&gt; true, “lastPlayTime” =&gt; 1485463951000, “playerId” =&gt; 51666047, “tokensEarned” =&gt; 0}, …</p>
+</blockquote>
 
   </section>
 </div>

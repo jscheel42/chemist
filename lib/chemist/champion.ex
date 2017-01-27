@@ -1,20 +1,18 @@
 defmodule Chemist.Champion do
 
+  @api_version_champion    Application.get_env(:chemist, :api_version_champion)
+
   @moduledoc """
-  Retrieve champion data from Riot API
-  and transform it into an Elixir
-  friendly format
+  Uses "champion-v#{@api_version_champion}" API.
   """
 
   import Chemist.Util
-
-  @api_version_champion    Application.get_env(:chemist, :api_version_champion)
   
   @doc """
-  Return a tuple with the values
-  { :ok, data } where data is a
-  map containing data for found champion. \n
-  Uses "champion-v#{@api_version_champion}" API.
+  Contains champion information for a single champion; retrieved by champion id.
+  
+  Sample output:
+  > {:ok, %{"active" => true, "botEnabled" => false, "botMmEnabled" => false, "freeToPlay" => true, "id" => 131, "rankedPlayEnabled" => true}}  
   """
   
   def champion(region, champion_id) do
@@ -29,10 +27,14 @@ defmodule Chemist.Champion do
   end
 
   @doc """
-  Return a tuple with the values
-  { :ok, data } where data is a
-  list of maps containing champion data. \n
-  Uses "champion-v#{@api_version_champion}" API.
+  Contains a list of champion information for all champions.
+  
+  Default opts:
+  * freeToPlay: false
+      * Optional filter param to retrieve only free to play champions.
+  
+  Sample output:
+  > {:ok, %{"champions" => [%{"active" => true, "botEnabled" => false, "botMmEnabled" => false, "freeToPlay" => false, "id" => 266, "rankedPlayEnabled" => true}, ...
   """
 
   def champions(region, opts \\ %{}) do

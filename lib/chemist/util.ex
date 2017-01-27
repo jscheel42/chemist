@@ -54,6 +54,11 @@ defmodule Chemist.Util do
     |> gen_opt_list
     |> concat_opts
   end
+  
+  def create_example(sample) do
+    IO.inspect sample
+    |> to_string
+  end
     
   # Merge map with defaults, use defaults where no value assigned to key
   defp merge_defaults(map, defaults) do

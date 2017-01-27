@@ -1,17 +1,16 @@
 defmodule Chemist.ChampionMastery do
 
   @moduledoc """
-  Retrieve champion mastery data from Riot API
-  and transform it into an Elixir friendly format
+  Uses "championmastery" API.
   """
     
   import Chemist.Util
 
   @doc """
-  Return a tuple with the values
-  { :ok, data } where data is a
-  map containing champion mastery data. \n
-  Uses "championmastery" API.
+  Contains Champion Mastery information for a player's single champion; retrieved by player id and champion id.
+  
+  Sample output:
+  > {:ok, %{"championId" => 36, "championLevel" => 4, "championPoints" => 12917, "championPointsSinceLastLevel" => 317, "championPointsUntilNextLevel" => 8683, "chestGranted" => false, "lastPlayTime" => 1481350108000, "playerId" => 51666047, "tokensEarned" => 0}}
   """
 
   def champion(region, player_id, champion_id) do
@@ -26,10 +25,10 @@ defmodule Chemist.ChampionMastery do
   end
 
   @doc """
-  Return a tuple with the values
-  { :ok, data } where data is a
-  list of maps containing champion mastery data. \n
-  Uses "championmastery" API.
+  Contains a list of Champion Mastery information for all a player's champions; retrieved by player id.
+  
+  Sample output:
+  > {:ok, [%{"championId" => 53, "championLevel" => 7, "championPoints" => 137316, "championPointsSinceLastLevel" => 115716, "championPointsUntilNextLevel" => 0, "chestGranted" => true, "lastPlayTime" => 1485463951000, "playerId" => 51666047, "tokensEarned" => 0}, ...
   """
 
   def champions(region, player_id) do
@@ -44,9 +43,10 @@ defmodule Chemist.ChampionMastery do
   end
   
   @doc """
-  Return a tuple with the values { :ok, data }
-  where data is an integer. \n
-  Uses "championmastery" API.
+  Contains an integer with Champion Mastery score for a player; retrieved by player id.
+  
+  Sample output:
+  >  {:ok, 195}
   """
 
   def score(region, player_id) do
@@ -61,10 +61,14 @@ defmodule Chemist.ChampionMastery do
   end
   
   @doc """
-  Return a tuple with the values { :ok, data }
-  where data is a list of maps containing champion
-  mastery data for the summoner's top 3 champions by mastery score. \n
-  Uses "championmastery" API.
+  Contains a list of Champion Mastery information for a player's top champions; retrieved by player id.
+  
+  Default opts:
+  * count: 3
+      * Number of entries to retrieve
+
+  Sample output (default options):
+  >  {:ok, [%{"championId" => 53, "championLevel" => 7, "championPoints" => 137316, "championPointsSinceLastLevel" => 115716, "championPointsUntilNextLevel" => 0, "chestGranted" => true, "lastPlayTime" => 1485463951000, "playerId" => 51666047, "tokensEarned" => 0}, ...
   """
 
   def top_champions(region, player_id, opts \\ %{}) do

@@ -8,7 +8,7 @@
     <title>Chemist.Champion – Chemist v0.1.0</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-2c0b276e48.js"></script>
+    <script src="dist/sidebar_items-ee59c97784.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -70,9 +70,7 @@
 
       
         <section id="moduledoc">
-          <p>Retrieve champion data from Riot API
-and transform it into an Elixir
-friendly format</p>
+          <p>Uses “champion-v1.2” API.</p>
 
         </section>
       
@@ -97,9 +95,7 @@ friendly format</p>
     <a href="#champion/2">champion(region, champion_id)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Return a tuple with the values
-{ :ok, data } where data is a
-map containing data for found champion</p>
+    <div class="summary-synopsis"><p>Contains champion information for a single champion; retrieved by champion id</p>
 </div>
   
 </div>
@@ -108,9 +104,7 @@ map containing data for found champion</p>
     <a href="#champions/2">champions(region, opts \\ %{})</a>
   </div>
   
-    <div class="summary-synopsis"><p>Return a tuple with the values
-{ :ok, data } where data is a
-list of maps containing champion data</p>
+    <div class="summary-synopsis"><p>Contains a list of champion information for all champions</p>
 </div>
   
 </div>
@@ -143,7 +137,7 @@ list of maps containing champion data</p>
     </a>
     <span class="signature">champion(region, champion_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion.ex#L20" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion.ex#L18" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -151,10 +145,10 @@ list of maps containing champion data</p>
     
   </div>
   <section class="docstring">
-    <p>Return a tuple with the values
-{ :ok, data } where data is a
-map containing data for found champion. </p>
-<p>Uses “champion-v1.2” API.</p>
+    <p>Contains champion information for a single champion; retrieved by champion id.</p>
+<p>Sample output:</p>
+<blockquote><p>{:ok, %{“active” =&gt; true, “botEnabled” =&gt; false, “botMmEnabled” =&gt; false, “freeToPlay” =&gt; true, “id” =&gt; 131, “rankedPlayEnabled” =&gt; true}}  </p>
+</blockquote>
 
   </section>
 </div>
@@ -168,7 +162,7 @@ map containing data for found champion. </p>
     </a>
     <span class="signature">champions(region, opts \\ %{})</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion.ex#L38" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion.ex#L40" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -176,10 +170,19 @@ map containing data for found champion. </p>
     
   </div>
   <section class="docstring">
-    <p>Return a tuple with the values
-{ :ok, data } where data is a
-list of maps containing champion data. </p>
-<p>Uses “champion-v1.2” API.</p>
+    <p>Contains a list of champion information for all champions.</p>
+<p>Default opts:</p>
+<ul>
+<li><p>freeToPlay: false</p>
+<ul>
+<li>Optional filter param to retrieve only free to play champions.
+</li>
+</ul>
+</li>
+</ul>
+<p>Sample output:</p>
+<blockquote><p>{:ok, %{“champions” =&gt; [%{“active” =&gt; true, “botEnabled” =&gt; false, “botMmEnabled” =&gt; false, “freeToPlay” =&gt; false, “id” =&gt; 266, “rankedPlayEnabled” =&gt; true}, …</p>
+</blockquote>
 
   </section>
 </div>
