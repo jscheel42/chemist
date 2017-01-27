@@ -5,10 +5,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>Chemist.ChampionMastery – Chemist v0.1.0</title>
-    <link rel="stylesheet" href="dist/app-091c05798a.css" />
+    <title>Chemist.Game – Chemist v0.1.0</title>
+    <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-dee80c1b2b.js"></script>
+    <script src="dist/sidebar_items-2c0b276e48.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -20,7 +20,7 @@
 <section class="sidebar">
 
   
-  <a href="api-reference.html" class="sidebar-projectLink">
+  <a href="Chemist.html" class="sidebar-projectLink">
     <div class="sidebar-projectDetails">
       <h1 class="sidebar-projectName">
         Chemist
@@ -59,10 +59,10 @@
 
       <h1>
         <small class="visible-xs">Chemist v0.1.0</small>
-        Chemist.ChampionMastery
+        Chemist.Game
         
         
-          <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/game.ex#L1" title="View Source" class="view-source" rel="help">
             <i class="icon-code"></i>
           </a>
         
@@ -70,7 +70,7 @@
 
       
         <section id="moduledoc">
-          <p>Retrieve champion mastery data from Riot API
+          <p>Retrieve game data from Riot API
 and transform it into an Elixir friendly format</p>
 
         </section>
@@ -93,44 +93,34 @@ and transform it into an Elixir friendly format</p>
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#champion/3">champion(region, player_id, champion_id)</a>
+    <a href="#current/2">current(region, player_id)</a>
   </div>
   
     <div class="summary-synopsis"><p>Return a tuple with the values
-{ :ok, data } where data is a
-map containing champion mastery data</p>
+{ :ok, data } where data is a map containing
+current game data</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#champions/2">champions(region, player_id)</a>
+    <a href="#featured/1">featured(region)</a>
   </div>
   
     <div class="summary-synopsis"><p>Return a tuple with the values
-{ :ok, data } where data is a
-list of maps containing champion mastery data</p>
+{ :ok, data } where data is a map containing
+featured game data</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#score/2">score(region, player_id)</a>
+    <a href="#recent/2">recent(region, player_id)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Return a tuple with the values { :ok, data }
-where data is an integer</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#top_champions/3">top_champions(region, player_id, opts \\ %{})</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Return a tuple with the values { :ok, data }
-where data is a list of maps containing champion
-mastery data for the summoner’s top 3 champions by mastery score</p>
+    <div class="summary-synopsis"><p>Return a tuple with the values
+{ :ok, data } where data is a list of maps
+containing the summoner’s recent game data</p>
 </div>
   
 </div>
@@ -155,15 +145,15 @@ mastery data for the summoner’s top 3 champions by mastery score</p>
             </a>
             Functions
           </h1>
-          <div class="detail" id="champion/3">
+          <div class="detail" id="current/2">
   
   <div class="detail-header">
-    <a href="#champion/3" class="detail-link" title="Link to this function">
+    <a href="#current/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">champion(region, player_id, champion_id)</span>
+    <span class="signature">current(region, player_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L17" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/game.ex#L21" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -172,21 +162,21 @@ mastery data for the summoner’s top 3 champions by mastery score</p>
   </div>
   <section class="docstring">
     <p>Return a tuple with the values
-{ :ok, data } where data is a
-map containing champion mastery data. </p>
-<p>Uses “championmastery” API.</p>
+{ :ok, data } where data is a map containing
+current game data. </p>
+<p>Uses “current-game-v1.0” API.</p>
 
   </section>
 </div>
-<div class="detail" id="champions/2">
+<div class="detail" id="featured/1">
   
   <div class="detail-header">
-    <a href="#champions/2" class="detail-link" title="Link to this function">
+    <a href="#featured/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">champions(region, player_id)</span>
+    <span class="signature">featured(region)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L35" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/game.ex#L39" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -195,21 +185,21 @@ map containing champion mastery data. </p>
   </div>
   <section class="docstring">
     <p>Return a tuple with the values
-{ :ok, data } where data is a
-list of maps containing champion mastery data. </p>
-<p>Uses “championmastery” API.</p>
+{ :ok, data } where data is a map containing
+featured game data. </p>
+<p>Uses “featured-games-v1.0” API.</p>
 
   </section>
 </div>
-<div class="detail" id="score/2">
+<div class="detail" id="recent/2">
   
   <div class="detail-header">
-    <a href="#score/2" class="detail-link" title="Link to this function">
+    <a href="#recent/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">score(region, player_id)</span>
+    <span class="signature">recent(region, player_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L52" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/game.ex#L57" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -217,34 +207,10 @@ list of maps containing champion mastery data. </p>
     
   </div>
   <section class="docstring">
-    <p>Return a tuple with the values { :ok, data }
-where data is an integer. </p>
-<p>Uses “championmastery” API.</p>
-
-  </section>
-</div>
-<div class="detail" id="top_champions/3">
-  
-    <span id="top_champions/2" />
-  
-  <div class="detail-header">
-    <a href="#top_champions/3" class="detail-link" title="Link to this function">
-      <i class="icon-link"></i>
-    </a>
-    <span class="signature">top_champions(region, player_id, opts \\ %{})</span>
-    
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L70" class="view-source" rel="help" title="View Source">
-       <i class="icon-code"></i>
-     </a>
-    
-    
-    
-  </div>
-  <section class="docstring">
-    <p>Return a tuple with the values { :ok, data }
-where data is a list of maps containing champion
-mastery data for the summoner’s top 3 champions by mastery score. </p>
-<p>Uses “championmastery” API.</p>
+    <p>Return a tuple with the values
+{ :ok, data } where data is a list of maps
+containing the summoner’s recent game data. </p>
+<p>Uses “game-v1.3” API.</p>
 
   </section>
 </div>

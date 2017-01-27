@@ -5,10 +5,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>Chemist.League – Chemist v0.1.0</title>
-    <link rel="stylesheet" href="dist/app-091c05798a.css" />
+    <title>Chemist.Summoner – Chemist v0.1.0</title>
+    <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-dee80c1b2b.js"></script>
+    <script src="dist/sidebar_items-2c0b276e48.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -20,7 +20,7 @@
 <section class="sidebar">
 
   
-  <a href="api-reference.html" class="sidebar-projectLink">
+  <a href="Chemist.html" class="sidebar-projectLink">
     <div class="sidebar-projectDetails">
       <h1 class="sidebar-projectName">
         Chemist
@@ -59,10 +59,10 @@
 
       <h1>
         <small class="visible-xs">Chemist v0.1.0</small>
-        Chemist.League
+        Chemist.Summoner
         
         
-          <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L1" title="View Source" class="view-source" rel="help">
             <i class="icon-code"></i>
           </a>
         
@@ -70,8 +70,9 @@
 
       
         <section id="moduledoc">
-          <p>Retrieve league data from Riot API
-and transform it into an Elixir friendly format</p>
+          <p>Retrieve summoner data from Riot API
+and transform it into an Elixir
+friendly format</p>
 
         </section>
       
@@ -93,26 +94,43 @@ and transform it into an Elixir friendly format</p>
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#challenger/2">challenger(region, opts \\ %{})</a>
+    <a href="#id_by_name/2">id_by_name(region, name)</a>
   </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#entry_by_id/2">entry_by_id(region, player_id)</a>
+    <a href="#masteries_by_id/2">masteries_by_id(region, id)</a>
   </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#league_by_id/2">league_by_id(region, player_id)</a>
+    <a href="#name_by_id/2">name_by_id(region, id)</a>
   </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#master/2">master(region, opts \\ %{})</a>
+    <a href="#runes_by_id/2">runes_by_id(region, id)</a>
   </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#summoner_by_id/2">summoner_by_id(region, id)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#summoner_by_name/2">summoner_by_name(region, summoner)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Return a tuple with the values
+{ :ok, data } where data
+is a map of returned summoner attributes</p>
+</div>
   
 </div>
 
@@ -136,17 +154,15 @@ and transform it into an Elixir friendly format</p>
             </a>
             Functions
           </h1>
-          <div class="detail" id="challenger/2">
-  
-    <span id="challenger/1" />
+          <div class="detail" id="id_by_name/2">
   
   <div class="detail-header">
-    <a href="#challenger/2" class="detail-link" title="Link to this function">
+    <a href="#id_by_name/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">challenger(region, opts \\ %{})</span>
+    <span class="signature">id_by_name(region, name)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L34" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L75" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -157,15 +173,15 @@ and transform it into an Elixir friendly format</p>
     
   </section>
 </div>
-<div class="detail" id="entry_by_id/2">
+<div class="detail" id="masteries_by_id/2">
   
   <div class="detail-header">
-    <a href="#entry_by_id/2" class="detail-link" title="Link to this function">
+    <a href="#masteries_by_id/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">entry_by_id(region, player_id)</span>
+    <span class="signature">masteries_by_id(region, id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L23" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L42" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -176,15 +192,15 @@ and transform it into an Elixir friendly format</p>
     
   </section>
 </div>
-<div class="detail" id="league_by_id/2">
+<div class="detail" id="name_by_id/2">
   
   <div class="detail-header">
-    <a href="#league_by_id/2" class="detail-link" title="Link to this function">
+    <a href="#name_by_id/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">league_by_id(region, player_id)</span>
+    <span class="signature">name_by_id(region, id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L12" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L53" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -195,17 +211,15 @@ and transform it into an Elixir friendly format</p>
     
   </section>
 </div>
-<div class="detail" id="master/2">
-  
-    <span id="master/1" />
+<div class="detail" id="runes_by_id/2">
   
   <div class="detail-header">
-    <a href="#master/2" class="detail-link" title="Link to this function">
+    <a href="#runes_by_id/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">master(region, opts \\ %{})</span>
+    <span class="signature">runes_by_id(region, id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L47" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L64" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -214,6 +228,48 @@ and transform it into an Elixir friendly format</p>
   </div>
   <section class="docstring">
     
+  </section>
+</div>
+<div class="detail" id="summoner_by_id/2">
+  
+  <div class="detail-header">
+    <a href="#summoner_by_id/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">summoner_by_id(region, id)</span>
+    
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L31" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="summoner_by_name/2">
+  
+  <div class="detail-header">
+    <a href="#summoner_by_name/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">summoner_by_name(region, summoner)</span>
+    
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L20" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    <p>Return a tuple with the values
+{ :ok, data } where data
+is a map of returned summoner attributes. </p>
+<p>Uses “summoner-v1.4 API.”</p>
+
   </section>
 </div>
 

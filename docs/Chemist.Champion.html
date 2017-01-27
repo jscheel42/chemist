@@ -5,10 +5,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>Chemist.Stats – Chemist v0.1.0</title>
-    <link rel="stylesheet" href="dist/app-091c05798a.css" />
+    <title>Chemist.Champion – Chemist v0.1.0</title>
+    <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-dee80c1b2b.js"></script>
+    <script src="dist/sidebar_items-2c0b276e48.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -20,7 +20,7 @@
 <section class="sidebar">
 
   
-  <a href="api-reference.html" class="sidebar-projectLink">
+  <a href="Chemist.html" class="sidebar-projectLink">
     <div class="sidebar-projectDetails">
       <h1 class="sidebar-projectName">
         Chemist
@@ -59,10 +59,10 @@
 
       <h1>
         <small class="visible-xs">Chemist v0.1.0</small>
-        Chemist.Stats
+        Chemist.Champion
         
         
-          <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/stats.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion.ex#L1" title="View Source" class="view-source" rel="help">
             <i class="icon-code"></i>
           </a>
         
@@ -70,8 +70,9 @@
 
       
         <section id="moduledoc">
-          <p>Retrieve league data from Riot API
-and transform it into an Elixir friendly format</p>
+          <p>Retrieve champion data from Riot API
+and transform it into an Elixir
+friendly format</p>
 
         </section>
       
@@ -93,14 +94,24 @@ and transform it into an Elixir friendly format</p>
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#ranked_by_id/3">ranked_by_id(region, id, opts \\ %{})</a>
+    <a href="#champion/2">champion(region, champion_id)</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Return a tuple with the values
+{ :ok, data } where data is a
+map containing data for found champion</p>
+</div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#summary_by_id/3">summary_by_id(region, id, opts \\ %{})</a>
+    <a href="#champions/2">champions(region, opts \\ %{})</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Return a tuple with the values
+{ :ok, data } where data is a
+list of maps containing champion data</p>
+</div>
   
 </div>
 
@@ -124,17 +135,15 @@ and transform it into an Elixir friendly format</p>
             </a>
             Functions
           </h1>
-          <div class="detail" id="ranked_by_id/3">
-  
-    <span id="ranked_by_id/2" />
+          <div class="detail" id="champion/2">
   
   <div class="detail-header">
-    <a href="#ranked_by_id/3" class="detail-link" title="Link to this function">
+    <a href="#champion/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">ranked_by_id(region, id, opts \\ %{})</span>
+    <span class="signature">champion(region, champion_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/stats.ex#L12" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion.ex#L20" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -142,20 +151,24 @@ and transform it into an Elixir friendly format</p>
     
   </div>
   <section class="docstring">
-    
+    <p>Return a tuple with the values
+{ :ok, data } where data is a
+map containing data for found champion. </p>
+<p>Uses “champion-v1.2” API.</p>
+
   </section>
 </div>
-<div class="detail" id="summary_by_id/3">
+<div class="detail" id="champions/2">
   
-    <span id="summary_by_id/2" />
+    <span id="champions/1" />
   
   <div class="detail-header">
-    <a href="#summary_by_id/3" class="detail-link" title="Link to this function">
+    <a href="#champions/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">summary_by_id(region, id, opts \\ %{})</span>
+    <span class="signature">champions(region, opts \\ %{})</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/stats.ex#L25" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion.ex#L38" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -163,7 +176,11 @@ and transform it into an Elixir friendly format</p>
     
   </div>
   <section class="docstring">
-    
+    <p>Return a tuple with the values
+{ :ok, data } where data is a
+list of maps containing champion data. </p>
+<p>Uses “champion-v1.2” API.</p>
+
   </section>
 </div>
 

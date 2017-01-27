@@ -5,10 +5,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.14.5">
-    <title>Chemist.Champion – Chemist v0.1.0</title>
-    <link rel="stylesheet" href="dist/app-091c05798a.css" />
+    <title>Chemist.League – Chemist v0.1.0</title>
+    <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-dee80c1b2b.js"></script>
+    <script src="dist/sidebar_items-2c0b276e48.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -20,7 +20,7 @@
 <section class="sidebar">
 
   
-  <a href="api-reference.html" class="sidebar-projectLink">
+  <a href="Chemist.html" class="sidebar-projectLink">
     <div class="sidebar-projectDetails">
       <h1 class="sidebar-projectName">
         Chemist
@@ -59,10 +59,10 @@
 
       <h1>
         <small class="visible-xs">Chemist v0.1.0</small>
-        Chemist.Champion
+        Chemist.League
         
         
-          <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L1" title="View Source" class="view-source" rel="help">
             <i class="icon-code"></i>
           </a>
         
@@ -70,9 +70,8 @@
 
       
         <section id="moduledoc">
-          <p>Retrieve champion data from Riot API
-and transform it into an Elixir
-friendly format</p>
+          <p>Retrieve league data from Riot API
+and transform it into an Elixir friendly format</p>
 
         </section>
       
@@ -94,24 +93,26 @@ friendly format</p>
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#champion/2">champion(region, champion_id)</a>
+    <a href="#challenger/2">challenger(region, opts \\ %{})</a>
   </div>
-  
-    <div class="summary-synopsis"><p>Return a tuple with the values
-{ :ok, data } where data is a
-map containing data for found champion</p>
-</div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#champions/2">champions(region, opts \\ %{})</a>
+    <a href="#entry_by_id/2">entry_by_id(region, player_id)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Return a tuple with the values
-{ :ok, data } where data is a
-list of maps containing champion data</p>
 </div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#league_by_id/2">league_by_id(region, player_id)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#master/2">master(region, opts \\ %{})</a>
+  </div>
   
 </div>
 
@@ -135,15 +136,17 @@ list of maps containing champion data</p>
             </a>
             Functions
           </h1>
-          <div class="detail" id="champion/2">
+          <div class="detail" id="challenger/2">
+  
+    <span id="challenger/1" />
   
   <div class="detail-header">
-    <a href="#champion/2" class="detail-link" title="Link to this function">
+    <a href="#challenger/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">champion(region, champion_id)</span>
+    <span class="signature">challenger(region, opts \\ %{})</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion.ex#L20" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L34" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -151,24 +154,18 @@ list of maps containing champion data</p>
     
   </div>
   <section class="docstring">
-    <p>Return a tuple with the values
-{ :ok, data } where data is a
-map containing data for found champion. </p>
-<p>Uses “champion-v1.2” API.</p>
-
+    
   </section>
 </div>
-<div class="detail" id="champions/2">
-  
-    <span id="champions/1" />
+<div class="detail" id="entry_by_id/2">
   
   <div class="detail-header">
-    <a href="#champions/2" class="detail-link" title="Link to this function">
+    <a href="#entry_by_id/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">champions(region, opts \\ %{})</span>
+    <span class="signature">entry_by_id(region, player_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion.ex#L38" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L23" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -176,11 +173,47 @@ map containing data for found champion. </p>
     
   </div>
   <section class="docstring">
-    <p>Return a tuple with the values
-{ :ok, data } where data is a
-list of maps containing champion data. </p>
-<p>Uses “champion-v1.2” API.</p>
-
+    
+  </section>
+</div>
+<div class="detail" id="league_by_id/2">
+  
+  <div class="detail-header">
+    <a href="#league_by_id/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">league_by_id(region, player_id)</span>
+    
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L12" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="master/2">
+  
+    <span id="master/1" />
+  
+  <div class="detail-header">
+    <a href="#master/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">master(region, opts \\ %{})</span>
+    
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L47" class="view-source" rel="help" title="View Source">
+       <i class="icon-code"></i>
+     </a>
+    
+    
+    
+  </div>
+  <section class="docstring">
+    
   </section>
 </div>
 
