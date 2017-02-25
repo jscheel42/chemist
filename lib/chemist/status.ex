@@ -10,12 +10,28 @@ defmodule Chemist.Status do
   # Not used in any current urls, may be used in future
   # @api_version_status             Application.get_env(:chemist, :api_version_status)
 
+  @doc """
+  Contains .
+  
+  Sample output:
+
+
+  """
+
   def shards() do
     url_shards()
     |> HTTPoison.get
     |> handle_response
   end
-    
+
+  @doc """
+  Contains .
+  
+  Sample output:
+
+
+  """
+
   def shard(region) do
     if valid_region?(region) do
       region

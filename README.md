@@ -2,6 +2,17 @@
 
 # Chemist
 
+To use this module, you must set the environmental variable "RIOT_API_KEY" to the key which Riot provides.
+
+## Sample startup script:
+```
+#!/bin/bash
+
+export RIOT_API_KEY="myriotkey"
+
+iex -S mix
+```
+
 **TODO: Add description**
 
 ## Installation

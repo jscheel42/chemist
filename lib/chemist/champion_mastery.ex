@@ -1,7 +1,7 @@
 defmodule Chemist.ChampionMastery do
 
   @moduledoc """
-  Uses "championmastery" API.
+  Uses championmastery API.
   """
     
   import Chemist.Util
@@ -10,7 +10,12 @@ defmodule Chemist.ChampionMastery do
   Contains Champion Mastery information for a player's single champion; retrieved by player id and champion id.
   
   Sample output:
-  > {:ok, %{"championId" => 36, "championLevel" => 4, "championPoints" => 12917, "championPointsSinceLastLevel" => 317, "championPointsUntilNextLevel" => 8683, "chestGranted" => false, "lastPlayTime" => 1481350108000, "playerId" => 51666047, "tokensEarned" => 0}}
+      {:ok,
+       %{"championId" => 36, "championLevel" => 4, "championPoints" => 12917,
+         "championPointsSinceLastLevel" => 317,
+         "championPointsUntilNextLevel" => 8683, "chestGranted" => false,
+         "lastPlayTime" => 1481350108000, "playerId" => 51666047,
+         "tokensEarned" => 0}}
   """
 
   def champion(region, player_id, champion_id) do
@@ -28,7 +33,12 @@ defmodule Chemist.ChampionMastery do
   Contains a list of Champion Mastery information for all a player's champions; retrieved by player id.
   
   Sample output:
-  > {:ok, [%{"championId" => 53, "championLevel" => 7, "championPoints" => 137316, "championPointsSinceLastLevel" => 115716, "championPointsUntilNextLevel" => 0, "chestGranted" => true, "lastPlayTime" => 1485463951000, "playerId" => 51666047, "tokensEarned" => 0}, ...
+      {:ok,
+       [%{"championId" => 104, "championLevel" => 5,
+          "championPoints" => 152302, "championPointsSinceLastLevel" => 130702, 
+          "championPointsUntilNextLevel" => 0, "chestGranted" => true,
+          "lastPlayTime" => 1487921982000, "playerId" => 51666047,
+          "tokensEarned" => 2}, ...
   """
 
   def champions(region, player_id) do
@@ -46,7 +56,7 @@ defmodule Chemist.ChampionMastery do
   Contains an integer with Champion Mastery score for a player; retrieved by player id.
   
   Sample output:
-  >  {:ok, 195}
+      {:ok, 195}
   """
 
   def score(region, player_id) do
@@ -68,7 +78,12 @@ defmodule Chemist.ChampionMastery do
       * Number of entries to retrieve
 
   Sample output (default options):
-  >  {:ok, [%{"championId" => 53, "championLevel" => 7, "championPoints" => 137316, "championPointsSinceLastLevel" => 115716, "championPointsUntilNextLevel" => 0, "chestGranted" => true, "lastPlayTime" => 1485463951000, "playerId" => 51666047, "tokensEarned" => 0}, ...
+      {:ok,
+       [%{"championId" => 104, "championLevel" => 5,
+          "championPoints" => 152302, "championPointsSinceLastLevel" => 130702, 
+          "championPointsUntilNextLevel" => 0, "chestGranted" => true,
+          "lastPlayTime" => 1487921982000, "playerId" => 51666047,
+          "tokensEarned" => 2}, ...
   """
 
   def top_champions(region, player_id, opts \\ %{}) do

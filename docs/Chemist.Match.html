@@ -8,7 +8,7 @@
     <title>Chemist.Match – Chemist v0.1.0</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-ee59c97784.js"></script>
+    <script src="dist/sidebar_items-434bc30579.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -70,8 +70,8 @@
 
       
         <section id="moduledoc">
-          <p>Retrieve league data from Riot API
-and transform it into an Elixir friendly format</p>
+          <p>Uses match-v2.2 and 
+matchlist-v2.2 APIs.</p>
 
         </section>
       
@@ -93,14 +93,20 @@ and transform it into an Elixir friendly format</p>
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#match_by_id/3">match_by_id(region, id, opts \\ %{})</a>
+    <a href="#match_by_id/3">match_by_id(region, match_id, opts \\ %{})</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Contains match data; retrieved by match id</p>
+</div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#matchlist_by_id/3">matchlist_by_id(region, id, opts \\ %{})</a>
+    <a href="#matchlist_by_id/3">matchlist_by_id(region, player_id, opts \\ %{})</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Contains recent matches for a player; retrieved by player id</p>
+</div>
   
 </div>
 
@@ -132,9 +138,9 @@ and transform it into an Elixir friendly format</p>
     <a href="#match_by_id/3" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">match_by_id(region, id, opts \\ %{})</span>
+    <span class="signature">match_by_id(region, match_id, opts \\ %{})</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/match.ex#L13" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/match.ex#L110" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -142,7 +148,105 @@ and transform it into an Elixir friendly format</p>
     
   </div>
   <section class="docstring">
-    
+    <p>Contains match data; retrieved by match id.</p>
+<p>Default opts:</p>
+<ul>
+<li><p>includeTimeline: false</p>
+<ul>
+<li>Flag indicating whether or not to include match timeline data
+</li>
+</ul>
+</li>
+</ul>
+<p>Sample output:</p>
+<pre><code class="elixir">{:ok,
+ %{&quot;mapId&quot; =&gt; 11, &quot;matchCreation&quot; =&gt; 1487968224848,
+   &quot;matchDuration&quot; =&gt; 1904, &quot;matchId&quot; =&gt; 2434912258,
+   &quot;matchMode&quot; =&gt; &quot;CLASSIC&quot;, &quot;matchType&quot; =&gt; &quot;MATCHED_GAME&quot;,
+   &quot;matchVersion&quot; =&gt; &quot;7.4.176.9828&quot;,
+   &quot;participantIdentities&quot; =&gt; [%{&quot;participantId&quot; =&gt; 1,
+      &quot;player&quot; =&gt; %{&quot;matchHistoryUri&quot; =&gt; &quot;/v1/stats/player_history/NA1/231272990&quot;,
+        &quot;profileIcon&quot; =&gt; 1301, &quot;summonerId&quot; =&gt; 72469211,
+        &quot;summonerName&quot; =&gt; &quot;Dubaya is Back&quot;}},
+    ...
+    ],
+    &quot;participants&quot; =&gt; [%{&quot;championId&quot; =&gt; 117,
+       &quot;highestAchievedSeasonTier&quot; =&gt; &quot;DIAMOND&quot;,
+       &quot;masteries&quot; =&gt; [%{&quot;masteryId&quot; =&gt; 6211, &quot;rank&quot; =&gt; 5},
+        %{&quot;masteryId&quot; =&gt; 6223, &quot;rank&quot; =&gt; 1},
+        %{&quot;masteryId&quot; =&gt; 6232, &quot;rank&quot; =&gt; 5},
+        %{&quot;masteryId&quot; =&gt; 6241, &quot;rank&quot; =&gt; 1},
+        %{&quot;masteryId&quot; =&gt; 6311, &quot;rank&quot; =&gt; 5},
+        %{&quot;masteryId&quot; =&gt; 6322, &quot;rank&quot; =&gt; 1},
+        %{&quot;masteryId&quot; =&gt; 6332, &quot;rank&quot; =&gt; 5},
+        %{&quot;masteryId&quot; =&gt; 6342, &quot;rank&quot; =&gt; 1},
+        %{&quot;masteryId&quot; =&gt; 6352, &quot;rank&quot; =&gt; 5},
+        %{&quot;masteryId&quot; =&gt; 6363, &quot;rank&quot; =&gt; 1}], &quot;participantId&quot; =&gt; 1,
+       &quot;runes&quot; =&gt; [%{&quot;rank&quot; =&gt; 1, &quot;runeId&quot; =&gt; 5053},
+        %{&quot;rank&quot; =&gt; 9, &quot;runeId&quot; =&gt; 5273},
+        %{&quot;rank&quot; =&gt; 1, &quot;runeId&quot; =&gt; 5289},
+        %{&quot;rank&quot; =&gt; 7, &quot;runeId&quot; =&gt; 5296},
+        %{&quot;rank&quot; =&gt; 3, &quot;runeId&quot; =&gt; 5317},
+        %{&quot;rank&quot; =&gt; 6, &quot;runeId&quot; =&gt; 5320},
+        %{&quot;rank&quot; =&gt; 3, &quot;runeId&quot; =&gt; 5357}], &quot;spell1Id&quot; =&gt; 4,
+       &quot;spell2Id&quot; =&gt; 3,
+       &quot;stats&quot; =&gt; %{&quot;firstInhibitorKill&quot; =&gt; false,
+         &quot;totalDamageTaken&quot; =&gt; 15553, &quot;neutralMinionsKilled&quot; =&gt; 0,
+         &quot;kills&quot; =&gt; 0, &quot;totalScoreRank&quot; =&gt; 0,
+         &quot;totalTimeCrowdControlDealt&quot; =&gt; 524, &quot;wardsKilled&quot; =&gt; 6,
+         &quot;physicalDamageDealt&quot; =&gt; 7104, &quot;towerKills&quot; =&gt; 0,
+         &quot;trueDamageTaken&quot; =&gt; 121, &quot;magicDamageDealtToChampions&quot; =&gt; 6105,
+         &quot;totalDamageDealtToChampions&quot; =&gt; 8415, &quot;combatPlayerScore&quot; =&gt; 0,
+         &quot;largestKillingSpree&quot; =&gt; 0, &quot;sightWardsBoughtInGame&quot; =&gt; 0,
+         &quot;item5&quot; =&gt; 0, &quot;firstBloodAssist&quot; =&gt; false,
+         &quot;largestCriticalStrike&quot; =&gt; 0, &quot;totalHeal&quot; =&gt; 4589,
+         &quot;visionWardsBoughtInGame&quot; =&gt; 3, &quot;tripleKills&quot; =&gt; 0,
+         &quot;objectivePlayerScore&quot; =&gt; 0, &quot;firstTowerAssist&quot; =&gt; false,
+         &quot;winner&quot; =&gt; false, &quot;trueDamageDealt&quot; =&gt; 2049,
+         &quot;inhibitorKills&quot; =&gt; 0, &quot;largestMultiKill&quot; =&gt; 0,
+         &quot;firstInhibitorAssist&quot; =&gt; false, &quot;item1&quot; =&gt; 3504,
+         &quot;neutralMinionsKilledTeamJungle&quot; =&gt; 0, &quot;minionsKilled&quot; =&gt; 24,
+         ...}, &quot;teamId&quot; =&gt; 100,
+       &quot;timeline&quot; =&gt; %{&quot;creepsPerMinDeltas&quot; =&gt; %{&quot;tenToTwenty&quot; =&gt; 1.0,
+           &quot;twentyToThirty&quot; =&gt; 1.2000000000000002, &quot;zeroToTen&quot; =&gt; 0.1},
+         &quot;csDiffPerMinDeltas&quot; =&gt; %{&quot;tenToTwenty&quot; =&gt; -1.3499999999999996,
+           &quot;twentyToThirty&quot; =&gt; -1.1500000000000004, &quot;zeroToTen&quot; =&gt; -1.4},
+         &quot;damageTakenDiffPerMinDeltas&quot; =&gt; %{&quot;tenToTwenty&quot; =&gt; -259.35,
+           &quot;twentyToThirty&quot; =&gt; -95.10000000000002,
+           &quot;zeroToTen&quot; =&gt; 1.049999999999983},
+         &quot;damageTakenPerMinDeltas&quot; =&gt; %{&quot;tenToTwenty&quot; =&gt; 241.1,
+           &quot;twentyToThirty&quot; =&gt; 832.4, &quot;zeroToTen&quot; =&gt; 261.5},
+         &quot;goldPerMinDeltas&quot; =&gt; %{&quot;tenToTwenty&quot; =&gt; 314.6,
+           &quot;twentyToThirty&quot; =&gt; 318.6, &quot;zeroToTen&quot; =&gt; 167.0},
+         &quot;lane&quot; =&gt; &quot;BOTTOM&quot;, &quot;role&quot; =&gt; &quot;DUO_SUPPORT&quot;,
+         &quot;xpDiffPerMinDeltas&quot; =&gt; %{&quot;tenToTwenty&quot; =&gt; 46.349999999999994,
+           &quot;twentyToThirty&quot; =&gt; -4.850000000000023,
+           &quot;zeroToTen&quot; =&gt; -42.40000000000002},
+         &quot;xpPerMinDeltas&quot; =&gt; %{&quot;tenToTwenty&quot; =&gt; 373.8,
+           &quot;twentyToThirty&quot; =&gt; 611.8, &quot;zeroToTen&quot; =&gt; 232.4}}},
+     ...
+     ],
+     &quot;platformId&quot; =&gt; &quot;NA1&quot;, &quot;queueType&quot; =&gt; &quot;TEAM_BUILDER_RANKED_SOLO&quot;,
+     &quot;region&quot; =&gt; &quot;NA&quot;, &quot;season&quot; =&gt; &quot;PRESEASON2017&quot;,
+     &quot;teams&quot; =&gt; [%{&quot;bans&quot; =&gt; [%{&quot;championId&quot; =&gt; 114, &quot;pickTurn&quot; =&gt; 1},
+         %{&quot;championId&quot; =&gt; 164, &quot;pickTurn&quot; =&gt; 3},
+         %{&quot;championId&quot; =&gt; 7, &quot;pickTurn&quot; =&gt; 5}], &quot;baronKills&quot; =&gt; 0,
+        &quot;dominionVictoryScore&quot; =&gt; 0, &quot;dragonKills&quot; =&gt; 3,
+        &quot;firstBaron&quot; =&gt; false, &quot;firstBlood&quot; =&gt; false,
+        &quot;firstDragon&quot; =&gt; true, &quot;firstInhibitor&quot; =&gt; false,
+        &quot;firstRiftHerald&quot; =&gt; false, &quot;firstTower&quot; =&gt; false,
+        &quot;inhibitorKills&quot; =&gt; 0, &quot;riftHeraldKills&quot; =&gt; 0, &quot;teamId&quot; =&gt; 100,
+        &quot;towerKills&quot; =&gt; 2, &quot;vilemawKills&quot; =&gt; 0, &quot;winner&quot; =&gt; false},
+      %{&quot;bans&quot; =&gt; [%{&quot;championId&quot; =&gt; 17, &quot;pickTurn&quot; =&gt; 2},
+         %{&quot;championId&quot; =&gt; 107, &quot;pickTurn&quot; =&gt; 4},
+         %{&quot;championId&quot; =&gt; 126, &quot;pickTurn&quot; =&gt; 6}], &quot;baronKills&quot; =&gt; 1,
+        &quot;dominionVictoryScore&quot; =&gt; 0, &quot;dragonKills&quot; =&gt; 1,
+        &quot;firstBaron&quot; =&gt; true, &quot;firstBlood&quot; =&gt; true, &quot;firstDragon&quot; =&gt; false, 
+        &quot;firstInhibitor&quot; =&gt; true, &quot;firstRiftHerald&quot; =&gt; false,
+        &quot;firstTower&quot; =&gt; true, &quot;inhibitorKills&quot; =&gt; 3,
+        &quot;riftHeraldKills&quot; =&gt; 0, &quot;teamId&quot; =&gt; 200, &quot;towerKills&quot; =&gt; 11,
+        &quot;vilemawKills&quot; =&gt; 0, &quot;winner&quot; =&gt; true}]}}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="matchlist_by_id/3">
@@ -153,9 +257,9 @@ and transform it into an Elixir friendly format</p>
     <a href="#matchlist_by_id/3" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">matchlist_by_id(region, id, opts \\ %{})</span>
+    <span class="signature">matchlist_by_id(region, player_id, opts \\ %{})</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/match.ex#L26" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/match.ex#L155" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -163,7 +267,64 @@ and transform it into an Elixir friendly format</p>
     
   </div>
   <section class="docstring">
-    
+    <p>Contains recent matches for a player; retrieved by player id.</p>
+<p>Default opts:</p>
+<ul>
+<li><p>championIds: no default</p>
+<ul>
+<li>Comma-separated list of champion IDs to use for fetching games.
+</li>
+</ul>
+</li>
+<li><p>rankedQueues: no default</p>
+<ul>
+<li>Comma-separated list of ranked queue types to use for fetching games. Non-ranked queue types will be ignored.
+</li>
+</ul>
+</li>
+<li><p>seasons: no default</p>
+<ul>
+<li>Comma-separated list of seasons to use for fetching games.
+</li>
+</ul>
+</li>
+<li><p>beginTime: no default</p>
+<ul>
+<li>The begin time to use for fetching games specified as epoch milliseconds.
+</li>
+</ul>
+</li>
+<li><p>endTime: no default</p>
+<ul>
+<li>The end time to use for fetching games specified as epoch milliseconds.
+</li>
+</ul>
+</li>
+<li><p>beginIndex: no default</p>
+<ul>
+<li>The begin index to use for fetching games.
+</li>
+</ul>
+</li>
+<li><p>endIndex: no default</p>
+<ul>
+<li>The end index to use for fetching games.
+</li>
+</ul>
+</li>
+</ul>
+<p>Sample output:</p>
+<pre><code class="elixir">{:ok,
+ %{&quot;endIndex&quot; =&gt; 1097,
+   &quot;matches&quot; =&gt; [%{&quot;champion&quot; =&gt; 104, &quot;lane&quot; =&gt; &quot;JUNGLE&quot;,
+      &quot;matchId&quot; =&gt; 2434387924, &quot;platformId&quot; =&gt; &quot;NA1&quot;,
+      &quot;queue&quot; =&gt; &quot;TEAM_BUILDER_RANKED_SOLO&quot;, &quot;region&quot; =&gt; &quot;NA&quot;,
+      &quot;role&quot; =&gt; &quot;NONE&quot;, &quot;season&quot; =&gt; &quot;PRESEASON2017&quot;,
+      &quot;timestamp&quot; =&gt; 1487920099077},
+    ...
+    ], &quot;startIndex&quot; =&gt; 0,
+ &quot;totalGames&quot; =&gt; 1097}}</code></pre>
+
   </section>
 </div>
 

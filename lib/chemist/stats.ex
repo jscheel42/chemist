@@ -8,7 +8,15 @@ defmodule Chemist.Stats do
   import Chemist.Util
 
   @api_version_stats             Application.get_env(:chemist, :api_version_stats)
-    
+
+  @doc """
+  Contains ; retrieved by .
+  
+  Sample output:
+
+
+  """
+
   def ranked_by_id(region, id, opts \\ %{}) do
     default_opts = %{season: nil}
 
@@ -21,7 +29,15 @@ defmodule Chemist.Stats do
       {:error, "invalid request"}
     end
   end
-    
+
+  @doc """
+  Contains ; retrieved by .
+  
+  Sample output:
+
+
+  """
+  
   def summary_by_id(region, id, opts \\ %{}) do
     default_opts = %{season: nil}
 

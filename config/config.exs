@@ -3,7 +3,6 @@
 use Mix.Config
 
 config :chemist,
-  api_key:                      System.get_env("RIOT_API_KEY"),
   api_version_champion:         1.2,
   api_version_current_game:     1.0,
   api_version_featured_games:   1.0,

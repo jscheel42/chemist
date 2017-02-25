@@ -11,10 +11,11 @@ defmodule Chemist.Summoner do
   @api_version_summoner    Application.get_env(:chemist, :api_version_summoner)
 
   @doc """
-  Return a tuple with the values
-  { :ok, data } where data
-  is a map of returned summoner attributes. \n
-  Uses "summoner-v#{@api_version_summoner} API."
+  Contains ; retrieved by .
+  
+  Sample output:
+
+
   """
 
   def summoner_by_name(region, summoner) do
@@ -27,7 +28,15 @@ defmodule Chemist.Summoner do
       {:error, "invalid request"}
     end
   end
+
+  @doc """
+  Contains ; retrieved by .
   
+  Sample output:
+
+
+  """
+
   def summoner_by_id(region, id) do
     if valid_region?(region) do
       region
@@ -38,7 +47,15 @@ defmodule Chemist.Summoner do
       {:error, "invalid request"}
     end
   end
+
+  @doc """
+  Contains ; retrieved by .
   
+  Sample output:
+
+
+  """
+
   def masteries_by_id(region, id) do
     if valid_region?(region) do
       region
@@ -49,6 +66,14 @@ defmodule Chemist.Summoner do
       {:error, "invalid request"}
     end
   end
+
+  @doc """
+  Contains ; retrieved by .
+  
+  Sample output:
+
+
+  """
 
   def name_by_id(region, id) do
     if valid_region?(region) do
@@ -61,6 +86,14 @@ defmodule Chemist.Summoner do
     end
   end
 
+  @doc """
+  Contains ; retrieved by .
+  
+  Sample output:
+
+
+  """
+
   def runes_by_id(region, id) do
     if valid_region?(region) do
       region
@@ -71,6 +104,14 @@ defmodule Chemist.Summoner do
       {:error, "invalid request"}
     end
   end
+
+  @doc """
+  Contains ; retrieved by .
+  
+  Sample output:
+
+
+  """
 
   def id_by_name(region, name) do
     { :ok, summoner_data } = summoner_by_name(region, name)

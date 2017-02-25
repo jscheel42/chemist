@@ -8,7 +8,7 @@
     <title>Chemist.Game – Chemist v0.1.0</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-ee59c97784.js"></script>
+    <script src="dist/sidebar_items-434bc30579.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -70,8 +70,9 @@
 
       
         <section id="moduledoc">
-          <p>Retrieve game data from Riot API
-and transform it into an Elixir friendly format</p>
+          <p>Uses current-game-v1.0, 
+featured-games-v1.0, 
+and game-v1.3 APIs.</p>
 
         </section>
       
@@ -96,9 +97,7 @@ and transform it into an Elixir friendly format</p>
     <a href="#current/2">current(region, player_id)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Return a tuple with the values
-{ :ok, data } where data is a map containing
-current game data</p>
+    <div class="summary-synopsis"><p>Contains game data for a player’s current game; retrieved by player id</p>
 </div>
   
 </div>
@@ -107,9 +106,7 @@ current game data</p>
     <a href="#featured/1">featured(region)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Return a tuple with the values
-{ :ok, data } where data is a map containing
-featured game data</p>
+    <div class="summary-synopsis"><p>Contains game data for multiple featured games</p>
 </div>
   
 </div>
@@ -118,9 +115,7 @@ featured game data</p>
     <a href="#recent/2">recent(region, player_id)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Return a tuple with the values
-{ :ok, data } where data is a list of maps
-containing the summoner’s recent game data</p>
+    <div class="summary-synopsis"><p>Contains game data for a player’s recent games; retrieved by player id</p>
 </div>
   
 </div>
@@ -153,7 +148,7 @@ containing the summoner’s recent game data</p>
     </a>
     <span class="signature">current(region, player_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/game.ex#L21" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/game.ex#L53" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -161,10 +156,40 @@ containing the summoner’s recent game data</p>
     
   </div>
   <section class="docstring">
-    <p>Return a tuple with the values
-{ :ok, data } where data is a map containing
-current game data. </p>
-<p>Uses “current-game-v1.0” API.</p>
+    <p>Contains game data for a player’s current game; retrieved by player id.</p>
+<p>Sample output:  </p>
+<pre><code class="elixir">{:ok,
+ %{&quot;bannedChampions&quot; =&gt; [%{&quot;championId&quot; =&gt; 114, &quot;pickTurn&quot; =&gt; 1,
+      &quot;teamId&quot; =&gt; 100},
+    %{&quot;championId&quot; =&gt; 17, &quot;pickTurn&quot; =&gt; 2, &quot;teamId&quot; =&gt; 200},
+    %{&quot;championId&quot; =&gt; 164, &quot;pickTurn&quot; =&gt; 3, &quot;teamId&quot; =&gt; 100},
+    %{&quot;championId&quot; =&gt; 107, &quot;pickTurn&quot; =&gt; 4, &quot;teamId&quot; =&gt; 200},
+    %{&quot;championId&quot; =&gt; 7, &quot;pickTurn&quot; =&gt; 5, &quot;teamId&quot; =&gt; 100},
+    %{&quot;championId&quot; =&gt; 126, &quot;pickTurn&quot; =&gt; 6, &quot;teamId&quot; =&gt; 200}],
+   &quot;gameId&quot; =&gt; 2434912258, &quot;gameLength&quot; =&gt; 368, &quot;gameMode&quot; =&gt; &quot;CLASSIC&quot;,
+   &quot;gameQueueConfigId&quot; =&gt; 420, &quot;gameStartTime&quot; =&gt; 1487968292999,
+   &quot;gameType&quot; =&gt; &quot;MATCHED_GAME&quot;, &quot;mapId&quot; =&gt; 11,
+   &quot;observers&quot; =&gt; %{&quot;encryptionKey&quot; =&gt; &quot;MCZnljIAgQqSfRhxnSDGhsgTe3r396mj&quot;},
+   &quot;participants&quot; =&gt; [%{&quot;bot&quot; =&gt; false, &quot;championId&quot; =&gt; 117,
+      &quot;masteries&quot; =&gt; [%{&quot;masteryId&quot; =&gt; 6211, &quot;rank&quot; =&gt; 5},
+       %{&quot;masteryId&quot; =&gt; 6223, &quot;rank&quot; =&gt; 1},
+       %{&quot;masteryId&quot; =&gt; 6232, &quot;rank&quot; =&gt; 5},
+       %{&quot;masteryId&quot; =&gt; 6241, &quot;rank&quot; =&gt; 1},
+       %{&quot;masteryId&quot; =&gt; 6311, &quot;rank&quot; =&gt; 5},
+       %{&quot;masteryId&quot; =&gt; 6322, &quot;rank&quot; =&gt; 1},
+       %{&quot;masteryId&quot; =&gt; 6332, &quot;rank&quot; =&gt; 5},
+       %{&quot;masteryId&quot; =&gt; 6342, &quot;rank&quot; =&gt; 1},
+       %{&quot;masteryId&quot; =&gt; 6352, &quot;rank&quot; =&gt; 5},
+       %{&quot;masteryId&quot; =&gt; 6363, &quot;rank&quot; =&gt; 1}], &quot;profileIconId&quot; =&gt; 1301,
+      &quot;runes&quot; =&gt; [%{&quot;count&quot; =&gt; 1, &quot;runeId&quot; =&gt; 5053},
+       %{&quot;count&quot; =&gt; 9, &quot;runeId&quot; =&gt; 5273},
+       %{&quot;count&quot; =&gt; 1, &quot;runeId&quot; =&gt; 5289},
+       %{&quot;count&quot; =&gt; 7, &quot;runeId&quot; =&gt; 5296},
+       %{&quot;count&quot; =&gt; 3, &quot;runeId&quot; =&gt; 5317},
+       %{&quot;count&quot; =&gt; 6, &quot;runeId&quot; =&gt; 5320},
+       %{&quot;count&quot; =&gt; 3, &quot;runeId&quot; =&gt; 5357}], &quot;spell1Id&quot; =&gt; 4,
+      &quot;spell2Id&quot; =&gt; 3, &quot;summonerId&quot; =&gt; 72469211,
+      &quot;summonerName&quot; =&gt; &quot;Dubaya is Back&quot;, &quot;teamId&quot; =&gt; 100}, ...</code></pre>
 
   </section>
 </div>
@@ -176,7 +201,7 @@ current game data. </p>
     </a>
     <span class="signature">featured(region)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/game.ex#L39" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/game.ex#L83" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -184,10 +209,21 @@ current game data. </p>
     
   </div>
   <section class="docstring">
-    <p>Return a tuple with the values
-{ :ok, data } where data is a map containing
-featured game data. </p>
-<p>Uses “featured-games-v1.0” API.</p>
+    <p>Contains game data for multiple featured games.</p>
+<p>Sample output:</p>
+<pre><code class="elixir">{:ok,
+ %{&quot;clientRefreshInterval&quot; =&gt; 300,
+   &quot;gameList&quot; =&gt; [%{&quot;bannedChampions&quot; =&gt; [], &quot;gameId&quot; =&gt; 2434932035,
+      &quot;gameLength&quot; =&gt; 122, &quot;gameMode&quot; =&gt; &quot;ARAM&quot;,
+      &quot;gameQueueConfigId&quot; =&gt; 65, &quot;gameStartTime&quot; =&gt; 1487970919876,
+      &quot;gameType&quot; =&gt; &quot;MATCHED_GAME&quot;, &quot;mapId&quot; =&gt; 12,
+      &quot;observers&quot; =&gt; %{&quot;encryptionKey&quot; =&gt; &quot;ntCf4aznxDjgXZNWsypBIrqZTd+XwYbG&quot;},
+      &quot;participants&quot; =&gt; [%{&quot;bot&quot; =&gt; false, &quot;championId&quot; =&gt; 40,
+         &quot;profileIconId&quot; =&gt; 709, &quot;spell1Id&quot; =&gt; 3, &quot;spell2Id&quot; =&gt; 4,
+         &quot;summonerName&quot; =&gt; &quot;Oceanman93&quot;, &quot;teamId&quot; =&gt; 100},
+       %{&quot;bot&quot; =&gt; false, &quot;championId&quot; =&gt; 59, &quot;profileIconId&quot; =&gt; 551,
+         &quot;spell1Id&quot; =&gt; 32, &quot;spell2Id&quot; =&gt; 4,
+         &quot;summonerName&quot; =&gt; &quot;Coldstream Guard&quot;, &quot;teamId&quot; =&gt; 100}, ...</code></pre>
 
   </section>
 </div>
@@ -199,7 +235,7 @@ featured game data. </p>
     </a>
     <span class="signature">recent(region, player_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/game.ex#L57" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/game.ex#L135" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -207,10 +243,43 @@ featured game data. </p>
     
   </div>
   <section class="docstring">
-    <p>Return a tuple with the values
-{ :ok, data } where data is a list of maps
-containing the summoner’s recent game data. </p>
-<p>Uses “game-v1.3” API.</p>
+    <p>Contains game data for a player’s recent games; retrieved by player id.</p>
+<p>Sample Output:</p>
+<pre><code class="elixir">{:ok,
+  %{&quot;games&quot; =&gt; [%{&quot;championId&quot; =&gt; 104, &quot;createDate&quot; =&gt; 1487921982640,
+    &quot;fellowPlayers&quot; =&gt; [%{&quot;championId&quot; =&gt; 31, &quot;summonerId&quot; =&gt; 25238654, 
+       &quot;teamId&quot; =&gt; 200},
+     %{&quot;championId&quot; =&gt; 81, &quot;summonerId&quot; =&gt; 45434952, &quot;teamId&quot; =&gt; 100},
+     %{&quot;championId&quot; =&gt; 13, &quot;summonerId&quot; =&gt; 59735223, &quot;teamId&quot; =&gt; 100},
+     %{&quot;championId&quot; =&gt; 53, &quot;summonerId&quot; =&gt; 43095159, &quot;teamId&quot; =&gt; 100},
+     %{&quot;championId&quot; =&gt; 157, &quot;summonerId&quot; =&gt; 71470965, &quot;teamId&quot; =&gt; 200}, 
+     %{&quot;championId&quot; =&gt; 111, &quot;summonerId&quot; =&gt; 34173835, &quot;teamId&quot; =&gt; 200}, 
+     %{&quot;championId&quot; =&gt; 64, &quot;summonerId&quot; =&gt; 43551883, &quot;teamId&quot; =&gt; 200},
+     %{&quot;championId&quot; =&gt; 202, &quot;summonerId&quot; =&gt; 37304326, &quot;teamId&quot; =&gt; 200}, 
+     %{&quot;championId&quot; =&gt; 17, &quot;summonerId&quot; =&gt; 29491836, &quot;teamId&quot; =&gt; 100}], 
+    &quot;gameId&quot; =&gt; 2434387924, &quot;gameMode&quot; =&gt; &quot;CLASSIC&quot;,
+    &quot;gameType&quot; =&gt; &quot;MATCHED_GAME&quot;, &quot;invalid&quot; =&gt; false,
+    &quot;ipEarned&quot; =&gt; 235, &quot;level&quot; =&gt; 30, &quot;mapId&quot; =&gt; 11, &quot;spell1&quot; =&gt; 4,
+    &quot;spell2&quot; =&gt; 11,
+    &quot;stats&quot; =&gt; %{&quot;totalDamageTaken&quot; =&gt; 24174,
+      &quot;neutralMinionsKilled&quot; =&gt; 135, &quot;wardPlaced&quot; =&gt; 8,
+      &quot;totalTimeCrowdControlDealt&quot; =&gt; 536, &quot;wardKilled&quot; =&gt; 1,
+      &quot;trueDamageTaken&quot; =&gt; 1187, &quot;level&quot; =&gt; 15,
+      &quot;magicDamageDealtToChampions&quot; =&gt; 1552,
+      &quot;totalDamageDealtToChampions&quot; =&gt; 14200,
+      &quot;physicalDamageDealtPlayer&quot; =&gt; 164961,
+      &quot;largestKillingSpree&quot; =&gt; 4, &quot;item5&quot; =&gt; 3134,
+      &quot;visionWardsBought&quot; =&gt; 1, &quot;timePlayed&quot; =&gt; 1751,
+      &quot;playerPosition&quot; =&gt; 3, &quot;totalHeal&quot; =&gt; 10792, &quot;team&quot; =&gt; 100,
+      &quot;bountyLevel&quot; =&gt; 2, &quot;trueDamageDealtPlayer&quot; =&gt; 12858,
+      &quot;magicDamageDealtPlayer&quot; =&gt; 5937, &quot;largestMultiKill&quot; =&gt; 2,
+      &quot;item1&quot; =&gt; 1033, &quot;minionsKilled&quot; =&gt; 31, &quot;turretsKilled&quot; =&gt; 2,
+      &quot;magicDamageTaken&quot; =&gt; 5616, &quot;barracksKilled&quot; =&gt; 1,
+      &quot;numDeaths&quot; =&gt; 2, &quot;championsKilled&quot; =&gt; 6, &quot;win&quot; =&gt; true,
+      &quot;item0&quot; =&gt; 1412, &quot;item3&quot; =&gt; 3047, &quot;totalDamageDealt&quot; =&gt; 183758,
+      &quot;trueDamageDealtToChampions&quot; =&gt; 294,
+      &quot;neutralMinionsKilledYourJungle&quot; =&gt; 74, ...},
+    &quot;subType&quot; =&gt; &quot;RANKED_SOLO_5x5&quot;, &quot;teamId&quot; =&gt; 100}, ...</code></pre>
 
   </section>
 </div>

@@ -8,7 +8,7 @@
     <title>Chemist.Champion – Chemist v0.1.0</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-ee59c97784.js"></script>
+    <script src="dist/sidebar_items-434bc30579.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -70,7 +70,7 @@
 
       
         <section id="moduledoc">
-          <p>Uses “champion-v1.2” API.</p>
+          <p>Uses champion-v1.2 API.</p>
 
         </section>
       
@@ -137,7 +137,7 @@
     </a>
     <span class="signature">champion(region, champion_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion.ex#L18" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion.ex#L20" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -147,8 +147,9 @@
   <section class="docstring">
     <p>Contains champion information for a single champion; retrieved by champion id.</p>
 <p>Sample output:</p>
-<blockquote><p>{:ok, %{“active” =&gt; true, “botEnabled” =&gt; false, “botMmEnabled” =&gt; false, “freeToPlay” =&gt; true, “id” =&gt; 131, “rankedPlayEnabled” =&gt; true}}  </p>
-</blockquote>
+<pre><code class="elixir">{:ok,
+ %{&quot;active&quot; =&gt; true, &quot;botEnabled&quot; =&gt; true, &quot;botMmEnabled&quot; =&gt; true,
+   &quot;freeToPlay&quot; =&gt; false, &quot;id&quot; =&gt; 236, &quot;rankedPlayEnabled&quot; =&gt; true}}</code></pre>
 
   </section>
 </div>
@@ -162,7 +163,7 @@
     </a>
     <span class="signature">champions(region, opts \\ %{})</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion.ex#L40" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion.ex#L45" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -181,8 +182,10 @@
 </li>
 </ul>
 <p>Sample output:</p>
-<blockquote><p>{:ok, %{“champions” =&gt; [%{“active” =&gt; true, “botEnabled” =&gt; false, “botMmEnabled” =&gt; false, “freeToPlay” =&gt; false, “id” =&gt; 266, “rankedPlayEnabled” =&gt; true}, …</p>
-</blockquote>
+<pre><code class="elixir">{:ok,
+ %{&quot;champions&quot; =&gt; [%{&quot;active&quot; =&gt; true, &quot;botEnabled&quot; =&gt; false,
+      &quot;botMmEnabled&quot; =&gt; false, &quot;freeToPlay&quot; =&gt; false, &quot;id&quot; =&gt; 266,
+      &quot;rankedPlayEnabled&quot; =&gt; true}, ...</code></pre>
 
   </section>
 </div>

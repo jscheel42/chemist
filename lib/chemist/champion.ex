@@ -3,7 +3,7 @@ defmodule Chemist.Champion do
   @api_version_champion    Application.get_env(:chemist, :api_version_champion)
 
   @moduledoc """
-  Uses "champion-v#{@api_version_champion}" API.
+  Uses champion-v#{@api_version_champion} API.
   """
 
   import Chemist.Util
@@ -12,7 +12,9 @@ defmodule Chemist.Champion do
   Contains champion information for a single champion; retrieved by champion id.
   
   Sample output:
-  > {:ok, %{"active" => true, "botEnabled" => false, "botMmEnabled" => false, "freeToPlay" => true, "id" => 131, "rankedPlayEnabled" => true}}  
+      {:ok,
+       %{"active" => true, "botEnabled" => true, "botMmEnabled" => true,
+         "freeToPlay" => false, "id" => 236, "rankedPlayEnabled" => true}}
   """
   
   def champion(region, champion_id) do
@@ -34,7 +36,10 @@ defmodule Chemist.Champion do
       * Optional filter param to retrieve only free to play champions.
   
   Sample output:
-  > {:ok, %{"champions" => [%{"active" => true, "botEnabled" => false, "botMmEnabled" => false, "freeToPlay" => false, "id" => 266, "rankedPlayEnabled" => true}, ...
+      {:ok,
+       %{"champions" => [%{"active" => true, "botEnabled" => false,
+            "botMmEnabled" => false, "freeToPlay" => false, "id" => 266,
+            "rankedPlayEnabled" => true}, ...
   """
 
   def champions(region, opts \\ %{}) do

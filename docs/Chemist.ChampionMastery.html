@@ -8,7 +8,7 @@
     <title>Chemist.ChampionMastery – Chemist v0.1.0</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-ee59c97784.js"></script>
+    <script src="dist/sidebar_items-434bc30579.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -70,7 +70,7 @@
 
       
         <section id="moduledoc">
-          <p>Uses “championmastery” API.</p>
+          <p>Uses championmastery API.</p>
 
         </section>
       
@@ -155,7 +155,7 @@
     </a>
     <span class="signature">champion(region, player_id, champion_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L16" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L21" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -165,8 +165,12 @@
   <section class="docstring">
     <p>Contains Champion Mastery information for a player’s single champion; retrieved by player id and champion id.</p>
 <p>Sample output:</p>
-<blockquote><p>{:ok, %{“championId” =&gt; 36, “championLevel” =&gt; 4, “championPoints” =&gt; 12917, “championPointsSinceLastLevel” =&gt; 317, “championPointsUntilNextLevel” =&gt; 8683, “chestGranted” =&gt; false, “lastPlayTime” =&gt; 1481350108000, “playerId” =&gt; 51666047, “tokensEarned” =&gt; 0}}</p>
-</blockquote>
+<pre><code class="elixir">{:ok,
+ %{&quot;championId&quot; =&gt; 36, &quot;championLevel&quot; =&gt; 4, &quot;championPoints&quot; =&gt; 12917,
+   &quot;championPointsSinceLastLevel&quot; =&gt; 317,
+   &quot;championPointsUntilNextLevel&quot; =&gt; 8683, &quot;chestGranted&quot; =&gt; false,
+   &quot;lastPlayTime&quot; =&gt; 1481350108000, &quot;playerId&quot; =&gt; 51666047,
+   &quot;tokensEarned&quot; =&gt; 0}}</code></pre>
 
   </section>
 </div>
@@ -178,7 +182,7 @@
     </a>
     <span class="signature">champions(region, player_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L34" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L44" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -188,8 +192,12 @@
   <section class="docstring">
     <p>Contains a list of Champion Mastery information for all a player’s champions; retrieved by player id.</p>
 <p>Sample output:</p>
-<blockquote><p>{:ok, [%{“championId” =&gt; 53, “championLevel” =&gt; 7, “championPoints” =&gt; 137316, “championPointsSinceLastLevel” =&gt; 115716, “championPointsUntilNextLevel” =&gt; 0, “chestGranted” =&gt; true, “lastPlayTime” =&gt; 1485463951000, “playerId” =&gt; 51666047, “tokensEarned” =&gt; 0}, …</p>
-</blockquote>
+<pre><code class="elixir">{:ok,
+ [%{&quot;championId&quot; =&gt; 104, &quot;championLevel&quot; =&gt; 5,
+    &quot;championPoints&quot; =&gt; 152302, &quot;championPointsSinceLastLevel&quot; =&gt; 130702, 
+    &quot;championPointsUntilNextLevel&quot; =&gt; 0, &quot;chestGranted&quot; =&gt; true,
+    &quot;lastPlayTime&quot; =&gt; 1487921982000, &quot;playerId&quot; =&gt; 51666047,
+    &quot;tokensEarned&quot; =&gt; 2}, ...</code></pre>
 
   </section>
 </div>
@@ -201,7 +209,7 @@
     </a>
     <span class="signature">score(region, player_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L52" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L62" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -211,8 +219,7 @@
   <section class="docstring">
     <p>Contains an integer with Champion Mastery score for a player; retrieved by player id.</p>
 <p>Sample output:</p>
-<blockquote><p>{:ok, 195}</p>
-</blockquote>
+<pre><code class="elixir">{:ok, 195}</code></pre>
 
   </section>
 </div>
@@ -226,7 +233,7 @@
     </a>
     <span class="signature">top_champions(region, player_id, opts \\ %{})</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L74" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/champion_mastery.ex#L89" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -245,8 +252,12 @@
 </li>
 </ul>
 <p>Sample output (default options):</p>
-<blockquote><p> {:ok, [%{“championId” =&gt; 53, “championLevel” =&gt; 7, “championPoints” =&gt; 137316, “championPointsSinceLastLevel” =&gt; 115716, “championPointsUntilNextLevel” =&gt; 0, “chestGranted” =&gt; true, “lastPlayTime” =&gt; 1485463951000, “playerId” =&gt; 51666047, “tokensEarned” =&gt; 0}, …</p>
-</blockquote>
+<pre><code class="elixir">{:ok,
+ [%{&quot;championId&quot; =&gt; 104, &quot;championLevel&quot; =&gt; 5,
+    &quot;championPoints&quot; =&gt; 152302, &quot;championPointsSinceLastLevel&quot; =&gt; 130702, 
+    &quot;championPointsUntilNextLevel&quot; =&gt; 0, &quot;chestGranted&quot; =&gt; true,
+    &quot;lastPlayTime&quot; =&gt; 1487921982000, &quot;playerId&quot; =&gt; 51666047,
+    &quot;tokensEarned&quot; =&gt; 2}, ...</code></pre>
 
   </section>
 </div>

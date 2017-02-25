@@ -1,6 +1,5 @@
 defmodule Chemist.Util do
 
-  @api_key                  Application.get_env(:chemist, :api_key)
   @regions_and_platform_ids %{
     br: "BR1",
     eune: "EUN1",
@@ -45,7 +44,14 @@ defmodule Chemist.Util do
   end
   
   def url_key() do
-    "api_key=" <> @api_key
+    # case Application.get_env(:chemist, :api_key) do
+    #   nil ->
+    #     Application.put_env(:chemist, :api_key, System.get_env("RIOT_API_KEY") || "nokey")
+    #     url_key()
+    #   api_key ->
+    #     "api_key=" <> api_key
+    # end
+    "api_key=" <> System.get_env("RIOT_API_KEY")
   end
 
   def url_opts(map, defaults) do

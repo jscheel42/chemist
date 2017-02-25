@@ -8,7 +8,7 @@
     <title>Chemist.League – Chemist v0.1.0</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-ee59c97784.js"></script>
+    <script src="dist/sidebar_items-434bc30579.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -70,8 +70,7 @@
 
       
         <section id="moduledoc">
-          <p>Retrieve league data from Riot API
-and transform it into an Elixir friendly format</p>
+          <p>Uses league-v2.5 API.</p>
 
         </section>
       
@@ -96,11 +95,17 @@ and transform it into an Elixir friendly format</p>
     <a href="#challenger/2">challenger(region, opts \\ %{})</a>
   </div>
   
+    <div class="summary-synopsis"><p>Contains league entries for the challenger league</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#entry_by_id/2">entry_by_id(region, player_id)</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Contains all league entries for specified summoners and summoners’ teams; retrieved by</p>
+</div>
   
 </div>
 <div class="summary-row">
@@ -108,11 +113,17 @@ and transform it into an Elixir friendly format</p>
     <a href="#league_by_id/2">league_by_id(region, player_id)</a>
   </div>
   
+    <div class="summary-synopsis"><p>Contains all leagues for specified summoners and summoners’ teams, including for teams where the player is inactive; retrieved by player id</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#master/2">master(region, opts \\ %{})</a>
   </div>
+  
+    <div class="summary-synopsis"><p>Contains league entries for the master league</p>
+</div>
   
 </div>
 
@@ -146,7 +157,7 @@ and transform it into an Elixir friendly format</p>
     </a>
     <span class="signature">challenger(region, opts \\ %{})</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L34" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L88" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -154,7 +165,39 @@ and transform it into an Elixir friendly format</p>
     
   </div>
   <section class="docstring">
-    
+    <p>Contains league entries for the challenger league.</p>
+<p>Default opts:</p>
+<ul>
+<li><p>type: “RANKED_FLEX_SR”</p>
+<ul>
+<li>Type of matchmaking
+</li>
+<li><p>Possible values:</p>
+<ul>
+<li>RANKED_FLEX_TT
+</li>
+<li>RANKED_SOLO_5x5
+</li>
+<li>RANKED_TEAM_3x3
+</li>
+<li>RANKED_TEAM_5x5
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Sample output:</p>
+<pre><code class="elixir">{:ok,
+ %{&quot;entries&quot; =&gt; [%{&quot;division&quot; =&gt; &quot;I&quot;, &quot;isFreshBlood&quot; =&gt; true,
+      &quot;isHotStreak&quot; =&gt; true, &quot;isInactive&quot; =&gt; false, &quot;isVeteran&quot; =&gt; false, 
+      &quot;leaguePoints&quot; =&gt; 0, &quot;losses&quot; =&gt; 18,
+      &quot;playerOrTeamId&quot; =&gt; &quot;25270227&quot;, &quot;playerOrTeamName&quot; =&gt; &quot;DusKRaptor&quot;, 
+      &quot;wins&quot; =&gt; 43},
+      ...
+      &quot;name&quot; =&gt; &quot;Poppy&#39;s Paladins&quot;, &quot;queue&quot; =&gt; &quot;RANKED_FLEX_SR&quot;,
+      &quot;tier&quot; =&gt; &quot;CHALLENGER&quot;}}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="entry_by_id/2">
@@ -165,7 +208,7 @@ and transform it into an Elixir friendly format</p>
     </a>
     <span class="signature">entry_by_id(region, player_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L23" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L53" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -173,7 +216,18 @@ and transform it into an Elixir friendly format</p>
     
   </div>
   <section class="docstring">
-    
+    <p>Contains all league entries for specified summoners and summoners’ teams; retrieved by .</p>
+<p>Sample output:</p>
+<pre><code class="elixir">{:ok,
+ %{&quot;51666047&quot; =&gt; [%{&quot;entries&quot; =&gt; [%{&quot;division&quot; =&gt; &quot;V&quot;,
+         &quot;isFreshBlood&quot; =&gt; true, &quot;isHotStreak&quot; =&gt; false,
+         &quot;isInactive&quot; =&gt; false, &quot;isVeteran&quot; =&gt; false,
+         &quot;leaguePoints&quot; =&gt; 21, &quot;losses&quot; =&gt; 133,
+         &quot;playerOrTeamId&quot; =&gt; &quot;51666047&quot;,
+         &quot;playerOrTeamName&quot; =&gt; &quot;jrizznezz&quot;, &quot;wins&quot; =&gt; 139}],
+      &quot;name&quot; =&gt; &quot;Draven&#39;s Renegades&quot;, &quot;queue&quot; =&gt; &quot;RANKED_SOLO_5x5&quot;,
+      &quot;tier&quot; =&gt; &quot;GOLD&quot;}]}}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="league_by_id/2">
@@ -184,7 +238,7 @@ and transform it into an Elixir friendly format</p>
     </a>
     <span class="signature">league_by_id(region, player_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L12" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L27" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -192,7 +246,19 @@ and transform it into an Elixir friendly format</p>
     
   </div>
   <section class="docstring">
-    
+    <p>Contains all leagues for specified summoners and summoners’ teams, including for teams where the player is inactive; retrieved by player id.</p>
+<p>Sample output:</p>
+<pre><code class="elixir">{:ok,
+ %{&quot;51666047&quot; =&gt; [%{&quot;entries&quot; =&gt; [%{&quot;division&quot; =&gt; &quot;IV&quot;,
+         &quot;isFreshBlood&quot; =&gt; false, &quot;isHotStreak&quot; =&gt; false,
+         &quot;isInactive&quot; =&gt; false, &quot;isVeteran&quot; =&gt; false,
+         &quot;leaguePoints&quot; =&gt; 0, &quot;losses&quot; =&gt; 7,
+         &quot;playerOrTeamId&quot; =&gt; &quot;24883051&quot;,
+         &quot;playerOrTeamName&quot; =&gt; &quot;The Bootyologist&quot;, &quot;wins&quot; =&gt; 4},
+         ...
+         &quot;name&quot; =&gt; &quot;Draven&#39;s Renegades&quot;, &quot;participantId&quot; =&gt; &quot;51666047&quot;,
+              &quot;queue&quot; =&gt; &quot;RANKED_SOLO_5x5&quot;, &quot;tier&quot; =&gt; &quot;GOLD&quot;}]}}</code></pre>
+
   </section>
 </div>
 <div class="detail" id="master/2">
@@ -205,7 +271,7 @@ and transform it into an Elixir friendly format</p>
     </a>
     <span class="signature">master(region, opts \\ %{})</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L47" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/league.ex#L125" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -213,7 +279,39 @@ and transform it into an Elixir friendly format</p>
     
   </div>
   <section class="docstring">
-    
+    <p>Contains league entries for the master league.</p>
+<p>Default opts:</p>
+<ul>
+<li><p>type: “RANKED_FLEX_SR”</p>
+<ul>
+<li>Type of matchmaking
+</li>
+<li><p>Possible values:</p>
+<ul>
+<li>RANKED_FLEX_TT
+</li>
+<li>RANKED_SOLO_5x5
+</li>
+<li>RANKED_TEAM_3x3
+</li>
+<li>RANKED_TEAM_5x5
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Sample output:</p>
+<pre><code class="elixir">{:ok,
+ %{&quot;entries&quot; =&gt; [%{&quot;division&quot; =&gt; &quot;I&quot;, &quot;isFreshBlood&quot; =&gt; true,
+      &quot;isHotStreak&quot; =&gt; false, &quot;isInactive&quot; =&gt; false,
+      &quot;isVeteran&quot; =&gt; false, &quot;leaguePoints&quot; =&gt; 0, &quot;losses&quot; =&gt; 36,
+      &quot;playerOrTeamId&quot; =&gt; &quot;38809624&quot;,
+      &quot;playerOrTeamName&quot; =&gt; &quot;Sophist Sage&quot;, &quot;wins&quot; =&gt; 49}],
+      ...
+   &quot;name&quot; =&gt; &quot;Darius&#39;s Blackguards&quot;, &quot;queue&quot; =&gt; &quot;RANKED_FLEX_SR&quot;,
+   &quot;tier&quot; =&gt; &quot;MASTER&quot;}}</code></pre>
+
   </section>
 </div>
 

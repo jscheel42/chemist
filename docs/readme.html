@@ -8,7 +8,7 @@
     <title>Chemist – Chemist v0.1.0</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-ee59c97784.js"></script>
+    <script src="dist/sidebar_items-434bc30579.js"></script>
   </head>
   <body data-type="extras">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -59,6 +59,17 @@
 
 <p><a href="https://travis-ci.org/jscheel42/chemist"><img src="https://travis-ci.org/jscheel42/chemist.svg?branch=master" alt="Build Status"/></a></p>
 <h1>Chemist</h1>
+<p>To use this module, you must set the environmental variable “RIOT_API_KEY” to the key which Riot provides.</p>
+<h2 id="sample-startup-script" class="section-heading">
+  <a href="#sample-startup-script" class="hover-link"><i class="icon-link"></i></a>
+  Sample startup script:
+</h2>
+
+<pre><code class="elixir">#!/bin/bash
+
+export RIOT_API_KEY=&quot;myriotkey&quot;
+
+iex -S mix</code></pre>
 <p><strong>TODO: Add description</strong></p>
 <h2 id="installation" class="section-heading">
   <a href="#installation" class="hover-link"><i class="icon-link"></i></a>

@@ -13,5 +13,6 @@ erl_crash.dump
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
 
-# API Key
+# Files w/ API Key
 /export_api_key.sh
+/start*
