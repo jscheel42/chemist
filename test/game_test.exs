@@ -23,16 +23,11 @@ defmodule GameTest do
       |> List.first
       
     assert Map.has_key?(first_participant, "summonerName")
-    
-    first_participant_name = Map.fetch!(first_participant, "summonerName")
-        
-    # Chemist.Summoner.id_by_name(region, first_participant_name)
-    # |> IO.inspect
-    player_id = Chemist.Summoner.id_by_name(region, first_participant_name)
-    
-    { :ok, current_game } = current(region, player_id)
-    
-    assert Map.has_key?(current_game, "gameId")
+  end
+  
+  test "Return recent games" do
+    player_id = "51666047"
+    region = "na"
     
     { :ok, recent_games } = recent(region, player_id)
         
@@ -42,6 +37,5 @@ defmodule GameTest do
       |> List.first
     
     assert Map.has_key?(first_recent, "championId")
-      
   end
 end
