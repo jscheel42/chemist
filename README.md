@@ -2,6 +2,8 @@
 
 # Chemist
 
+[Chemist Documentation]
+
 Chemist is an Elixir wrapper for the Riot API.
 
 ## Preparation
@@ -38,9 +40,10 @@ iex -S mix
 
 ## Other implementations for the Riot API in Elixir
 
-[viktor]
-[velkoz]
+* [velkoz]
+* [viktor]
 
+[Chemist Documentation]:https://hexdocs.pm/chemist
 [Riot Games Developer]:https://developer.riotgames.com/
-[viktor]:https://github.com/josephyi/viktor
 [velkoz]:https://github.com/Tim-Machine/velkoz
+[viktor]:https://github.com/josephyi/viktor

@@ -8,7 +8,9 @@
     <title>Chemist – Chemist v0.1.0</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-6c4a888e5b.js"></script>
+      <link rel="canonical" href="https://hexdocs.pm/chemist/readme.html" />
+    
+    <script src="dist/sidebar_items-d436fe54bc.js"></script>
   </head>
   <body data-type="extras">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -59,10 +61,17 @@
 
 <p><a href="https://travis-ci.org/jscheel42/chemist"><img src="https://travis-ci.org/jscheel42/chemist.svg?branch=master" alt="Build Status"/></a></p>
 <h1>Chemist</h1>
-<p>To use this module, you must set the environmental variable “RIOT_API_KEY” to the key which Riot provides.</p>
-<h2 id="sample-startup-script" class="section-heading">
-  <a href="#sample-startup-script" class="hover-link"><i class="icon-link"></i></a>
-  Sample startup script:
+<p>Chemist is an Elixir wrapper for the Riot API.</p>
+<h2 id="preparation" class="section-heading">
+  <a href="#preparation" class="hover-link"><i class="icon-link"></i></a>
+  Preparation
+</h2>
+
+<p>You will need a Riot Api Key, which you can get by signing up at the [Riot Games Developer] site.
+Set the environmental variable “RIOT_API_KEY” to your key.</p>
+<h2 id="sample-standalone-startup-script" class="section-heading">
+  <a href="#sample-standalone-startup-script" class="hover-link"><i class="icon-link"></i></a>
+  Sample standalone startup script:
 </h2>
 
 <pre><code class="elixir">#!/bin/bash
@@ -70,13 +79,11 @@
 export RIOT_API_KEY=&quot;myriotkey&quot;
 
 iex -S mix</code></pre>
-<p><strong>TODO: Add description</strong></p>
 <h2 id="installation" class="section-heading">
   <a href="#installation" class="hover-link"><i class="icon-link"></i></a>
   Installation
 </h2>
 
-<p>If <a href="https://hex.pm/docs/publish">available in Hex</a>, the package can be installed as:</p>
 <ol>
 <li><p>Add <code class="inline">chemist</code> to your list of dependencies in <code class="inline">mix.exs</code>:</p>
 <pre><code class="elixir">def deps do
@@ -89,6 +96,21 @@ end</code></pre>
 end</code></pre>
 </li>
 </ol>
+<h2 id="other-implementations-for-the-riot-api-in-elixir" class="section-heading">
+  <a href="#other-implementations-for-the-riot-api-in-elixir" class="hover-link"><i class="icon-link"></i></a>
+  Other implementations for the Riot API in Elixir
+</h2>
+
+<ul>
+<li>[velkoz]
+</li>
+<li>[viktor]
+</li>
+</ul>
+<p>[documentation]:https://hexdocs.pm/viktor/0.0.8/Viktor.html#content
+[Riot Games Developer]:https://developer.riotgames.com/
+[velkoz]:https://github.com/Tim-Machine/velkoz
+[viktor]:https://github.com/josephyi/viktor</p>
 
       <footer class="footer">
         <p>
