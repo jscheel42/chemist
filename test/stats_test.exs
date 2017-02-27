@@ -8,7 +8,7 @@ defmodule StatsTest do
     region = "na"
     player_id = 51666047
     
-    { :ok, ranked_stats } = ranked_by_id(region, player_id)
+    { :ok, ranked_stats } = ranked(region, player_id)
     
     assert Map.has_key?(ranked_stats, "champions")
   end
@@ -17,7 +17,7 @@ defmodule StatsTest do
     region = "na"
     player_id = 51666047
     
-    { :ok, summary } = summary_by_id(region, player_id)
+    { :ok, summary } = summary(region, player_id)
 
     assert Map.has_key?(summary, "playerStatSummaries")
   end

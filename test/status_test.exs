@@ -5,7 +5,9 @@ defmodule StatusTest do
   import Chemist.Status
       
   test "Return shards" do
-    { :ok, shards } = shards()
+    region = "oce"
+    
+    { :ok, shards } = shards(region)
     
     first_shard = List.first(shards)
     
