@@ -6,7 +6,7 @@ defmodule GameTest do
   import Chemist.Util
     
   test "Return featured games" do
-    region = "oce"
+    region = "lan"
     
     { :ok, featured_games } = featured(region)
 

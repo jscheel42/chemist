@@ -2,9 +2,14 @@
 
 # Chemist
 
-To use this module, you must set the environmental variable "RIOT_API_KEY" to the key which Riot provides.
+Chemist is an Elixir wrapper for the Riot API.
 
-## Sample startup script:
+## Preparation
+
+You will need a Riot Api Key, which you can get by signing up at the [Riot Games Developer] site.
+Set the environmental variable "RIOT_API_KEY" to your key.
+
+## Sample standalone startup script:
 ```
 #!/bin/bash
 
@@ -13,11 +18,7 @@ export RIOT_API_KEY="myriotkey"
 iex -S mix
 ```
 
-**TODO: Add description**
-
 ## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
 
   1. Add `chemist` to your list of dependencies in `mix.exs`:
 
@@ -34,3 +35,12 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
       [applications: [:chemist]]
     end
     ```
+
+## Other implementations for the Riot API in Elixir
+
+[viktor]
+[velkoz]
+
+[Riot Games Developer]:https://developer.riotgames.com/
+[viktor]:https://github.com/josephyi/viktor
+[velkoz]:https://github.com/Tim-Machine/velkoz
