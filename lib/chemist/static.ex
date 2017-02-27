@@ -1,13 +1,12 @@
 defmodule Chemist.Static do
 
+  @api_version_lol_static_data             Application.get_env(:chemist, :api_version_lol_static_data)
+
   @moduledoc """
-  Retrieve league data from Riot API
-  and transform it into an Elixir friendly format
+  Use lol-static-v#{@api_version_lol_static_data} API.
   """
     
   import Chemist.Util
-
-  @api_version_lol_static_data             Application.get_env(:chemist, :api_version_lol_static_data)
 
   @doc """
   Contains champion data for all champions.
@@ -246,10 +245,45 @@ defmodule Chemist.Static do
   end
 
   @doc """
-  Contains .
+  Contains language string values.
+
+  Default opts:
+  * locale: default varies based on region
+      * Locale code for returned data (e.g., en_US, es_ES).
+  * version: latest version based on region
+      * Data dragon version for returned data.
   
   Sample output:
-
+      {:ok,
+       %{"data" => %{"FlatArmorMod" => "Armor", "PercentBlockMod" => "Block %", 
+           "PrimaryRole" => "Primary Role",
+           "rFlatMagicDamageModPerLevel" => "Ability Power at level 18",
+           "categoryMastery" => "Masteries", "colloq_Tenacity" => ";",
+           "colloq_Boots" => ";", "Attack" => "Attack", "Active" => "Active",
+           "Language" => "Language", "Map12" => "Howling Abyss",
+           "spells_target_0" => "Self", "PercentArmorMod" => "Armor %",
+           "Map10" => "The Twisted Treeline", "Slow" => "Slow",
+           "Magic" => "Magic",
+           "rFlatSpellBlockModPerLevel" => "Magic Resist at level 18",
+           "native_ro" => "română", "spells_target_3" => "Cone",
+           "Mage" => "Mage", "rFlatEnergyModPerLevel" => "Energy at level 18",
+           "FlatMPRegenMod" => "Mana Regen / 5",
+           "rFlatArmorModPerLevel" => "Armor at level 18",
+           "SpecialRecipeLarge" => "Special", "Movement" => "Movement",
+           "SpellVamp" => "Spell Vamp", "categoryChampion" => "Champions",
+           "Aura" => "Aura", "FlatAttackSpeedMod" => "Attack Speed",
+           "FlatBlockMod" => "Block",
+           "MagicPenetration" => "Magic Penetration",
+           "categoryRune" => "Runes", "SellsFor_" => "Sells for:",
+           "Armor" => "Armor", "Rank_" => "Rank:", "colloq_Consumable" => ";",
+           "FlatHPRegenMod" => "Health Regen / 5",
+           "rFlatGoldPer10Mod" => "Gold per 10", "categoryItem" => "Items",
+           "modeOneforall" => "FRONTEND_oneforall_game_mode_name",
+           "rPercentTimeDeadMod" => "Time Dead %", "modeAram" => "ARAM",
+           "colloq_Armor" => ";armour", "Tenacity" => "Tenacity",
+           "PercentHPRegenMod" => "Health % / 5", "Require_" => "Requires:",
+           "colloq_HealthRegen" => ";hpregen;hp5", "ManaRegen" => "Mana Regen", 
+           ...}, "type" => "language", "version" => "7.4.3"}}
   """
 
   def language_strings(region, opts \\ %{}) do
@@ -266,11 +300,14 @@ defmodule Chemist.Static do
   end
 
   @doc """
-  Contains .
+  Contains languages for the region.
   
   Sample output:
-
-
+      {:ok,
+       ["en_US", "cs_CZ", "de_DE", "el_GR", "en_AU", "en_GB", "en_PH", "en_PL", 
+        "en_SG", "es_AR", "es_ES", "es_MX", "fr_FR", "hu_HU", "id_ID", "it_IT", 
+        "ja_JP", "ko_KR", "ms_MY", "pl_PL", "pt_BR", "ro_RO", "ru_RU", "th_TH", 
+        "tr_TR", "vn_VN", "zh_CN", "zh_MY", "zh_TW"]}
   """
 
   def languages(region) do
@@ -285,11 +322,33 @@ defmodule Chemist.Static do
   end
 
   @doc """
-  Contains .
-  
+  Contains map data.
+
+  Default opts:
+  * locale: default varies based on region
+      * Locale code for returned data (e.g., en_US, es_ES).
+  * version: latest version based on region
+      * Data dragon version for returned data.
+
   Sample output:
-
-
+      {:ok,
+       %{"data" => %{"10" => %{"image" => %{"full" => "map10.png",
+               "group" => "map", "h" => 48, "sprite" => "map0.png", "w" => 48,
+               "x" => 48, "y" => 0}, "mapId" => 10,
+             "mapName" => "The Twisted Treeline"},
+           "11" => %{"image" => %{"full" => "map11.png", "group" => "map",
+               "h" => 48, "sprite" => "map0.png", "w" => 48, "x" => 96,
+               "y" => 0}, "mapId" => 11, "mapName" => "Summoner's Rift"},
+           "12" => %{"image" => %{"full" => "map12.png", "group" => "map",
+               "h" => 48, "sprite" => "map0.png", "w" => 48, "x" => 144,
+               "y" => 0}, "mapId" => 12, "mapName" => "Howling Abyss"},
+           "14" => %{"image" => %{"full" => "map14.png", "group" => "map",
+               "h" => 48, "sprite" => "map0.png", "w" => 48, "x" => 192,
+               "y" => 0}, "mapId" => 14, "mapName" => "Butcher's Bridge"},
+           "8" => %{"image" => %{"full" => "map8.png", "group" => "map",
+               "h" => 48, "sprite" => "map0.png", "w" => 48, "x" => 0,
+               "y" => 0}, "mapId" => 8, "mapName" => "The Crystal Scar"}},
+         "type" => "map", "version" => "7.4.3"}}
   """
 
   def map(region, opts \\ %{}) do
@@ -306,11 +365,32 @@ defmodule Chemist.Static do
   end
 
   @doc """
-  Contains .
-  
+  Contains mastery data for all masteries.
+
+  Default opts:
+  * locale: default varies based on region
+      * Locale code for returned data (e.g., en_US, es_ES).
+  * version: latest version based on region
+      * Data dragon version for returned data.
+  * masteryListData: Only type, version, data, id, name, and description are returned by default if this parameter isn't specified
+      * Tags to return additional data. 
+      * Possible values:
+          * all
+          * image
+          * masteryTree
+          * prereq
+          * ranks
+          * sanitizedDescription
+          * tree
+
   Sample output:
-
-
+      {:ok,
+       %{"data" => %{"6343" => %{"description" => ["Champion kills and assists restore 5% of your missing Health and Mana"],
+             "id" => 6343, "name" => "Dangerous Game"},
+            ...
+          }, 
+          "type" => "mastery",
+          "version" => "7.4.3"}}
   """
 
   def masteries(region, opts \\ %{}) do
@@ -327,19 +407,35 @@ defmodule Chemist.Static do
   end
 
   @doc """
-  Contains .
+  Contains mastery data for a mastery; retrieved by mastery id.
   
+  Default opts:
+  * locale: default varies based on region
+      * Locale code for returned data (e.g., en_US, es_ES).
+  * version: latest version based on region
+      * Data dragon version for returned data.
+  * masteryData: Only type, version, data, id, name, and description are returned by default if this parameter isn't specified
+      * Tags to return additional data. 
+      * Possible values:
+          * all
+          * image
+          * masteryTree
+          * prereq
+          * ranks
+          * sanitizedDescription
+
   Sample output:
-
-
+      {:ok,
+       %{"description" => ["+15 Movement Speed in Brush and River"],
+         "id" => 6221, "name" => "Explorer"}}
   """
 
-  def mastery(region, id, opts \\ %{}) do
-    default_opts = %{locale: nil, version: nil, masteryListData: nil}
+  def mastery(region, mastery_id, opts \\ %{}) do
+    default_opts = %{locale: nil, version: nil, masteryData: nil}
     
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
-      |> url_mastery(id, opts, default_opts)
+      |> url_mastery(mastery_id, opts, default_opts)
       |> HTTPoison.get
       |> handle_response
     else
@@ -348,11 +444,16 @@ defmodule Chemist.Static do
   end
 
   @doc """
-  Contains .
+  Contains realm data.
   
   Sample output:
-
-
+      {:ok,
+       %{"cdn" => "http://ddragon.leagueoflegends.com/cdn", "css" => "7.4.3",
+         "dd" => "7.4.3", "l" => "en_US", "lg" => "7.4.3",
+         "n" => %{"champion" => "7.4.3", "item" => "7.4.3",
+           "language" => "7.4.3", "map" => "7.4.3", "mastery" => "7.4.3",
+           "profileicon" => "7.4.3", "rune" => "7.4.3", "summoner" => "7.4.3"}, 
+         "profileiconmax" => 28, "v" => "7.4.3"}}
   """
 
   def realm(region) do
@@ -367,11 +468,44 @@ defmodule Chemist.Static do
   end
 
   @doc """
-  Contains .
-  
+  Contains rune data for all runes.
+
+  Default opts:
+  * locale: default varies based on region
+      * Locale code for returned data (e.g., en_US, es_ES).
+  * version: latest version based on region
+      * Data dragon version for returned data.
+  * runeListData: Only type, version, data, id, name, rune, and description are returned by default if this parameter isn't specified.
+      * Tags to return additional data.
+      * Possible values:
+          * all
+          * basic
+          * colloq
+          * consumeOnFull
+          * consumed
+          * depth
+          * from
+          * gold
+          * hideFromAll
+          * image
+          * inStore
+          * into
+          * maps
+          * requiredChampion
+          * sanitizedDescription
+          * specialRecipe
+          * stacks
+          * stats
+          * tags
+
   Sample output:
-
-
+      {:ok,
+       %{"data" => %{"5300" => %{"description" => "+1.42 mana per level (+25.56 at champion level 18)",
+             "id" => 5300, "name" => "Greater Glyph of Scaling Mana",
+             "rune" => %{"isRune" => true, "tier" => "3", "type" => "blue"}},
+        ...
+        },
+        "type" => "rune", "version" => "7.4.3"}}
   """
 
   def runes(region, opts \\ %{}) do
@@ -388,19 +522,49 @@ defmodule Chemist.Static do
   end
 
   @doc """
-  Contains .
-  
+  Contains rune data for requested rune; retrieved by rune id.
+
+  Default opts:
+  * locale: default varies based on region
+      * Locale code for returned data (e.g., en_US, es_ES).
+  * version: latest version based on region
+      * Data dragon version for returned data.
+  * runeData: Only type, version, data, id, name, rune, and description are returned by default if this parameter isn't specified.
+      * Tags to return additional data.
+      * Possible values:
+          * all
+          * basic
+          * colloq
+          * consumeOnFull
+          * consumed
+          * depth
+          * from
+          * gold
+          * hideFromAll
+          * image
+          * inStore
+          * into
+          * maps
+          * requiredChampion
+          * sanitizedDescription
+          * specialRecipe
+          * stacks
+          * stats
+          * tags
+
   Sample output:
-
-
+      {:ok,
+       %{"description" => "+1.04 magic resist", "id" => 5167,
+         "name" => "Glyph of Magic Resist",
+         "rune" => %{"isRune" => true, "tier" => "2", "type" => "blue"}}}
   """
 
-  def rune(region, id, opts \\ %{}) do
-    default_opts = %{locale: nil, version: nil, runeListData: nil}
+  def rune(region, rune_id, opts \\ %{}) do
+    default_opts = %{locale: nil, version: nil, runeData: nil}
     
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
-      |> url_rune(id, opts, default_opts)
+      |> url_rune(rune_id, opts, default_opts)
       |> HTTPoison.get
       |> handle_response
     else
@@ -409,11 +573,48 @@ defmodule Chemist.Static do
   end
 
   @doc """
-  Contains .
-  
+  Contains summoner spell data for all summoner spells.
+
+  Default opts:
+  * locale: default varies based on region
+      * Locale code for returned data (e.g., en_US, es_ES).
+  * version: latest version based on region
+      * Data dragon version for returned data.
+  * dataById: false
+      * If specified as true, the returned data map will use the spells' IDs as the keys.
+  * spellData: Only type, version, data, id, key, name, description, and summonerLevel are returned by default if this parameter isn't specified.
+      * Tags to return additional data.
+      * Possible values:
+          * all
+          * cooldown
+          * cooldownBurn
+          * cost
+          * costBurn
+          * costType
+          * effect
+          * effectBurn
+          * image
+          * key
+          * leveltip
+          * maxrank
+          * modes
+          * range
+          * rangeBurn
+          * resource
+          * sanitizedDescription
+          * sanitizedTooltip
+          * tooltip
+          * vars
+
   Sample output:
-
-
+      {:ok,
+       %{"data" => %{"SummonerBarrier" => %{"description" => "Shields your champion from 115-455 damage (depending on champion level) for 2 seconds.",
+             "id" => 21, "key" => "SummonerBarrier", "name" => "Barrier",
+             "summonerLevel" => 4},
+          ...
+          },
+          "type" => "summoner",
+          "version" => "7.4.3"}}
   """
 
   def summoner_spells(region, opts \\ %{}) do
@@ -430,19 +631,50 @@ defmodule Chemist.Static do
   end
 
   @doc """
-  Contains .
-  
+  Contains summoner spell data for requested summoner spell; retrieved by summoner spell id.
+
+  Default opts:
+  * locale: default varies based on region
+      * Locale code for returned data (e.g., en_US, es_ES).
+  * version: latest version based on region
+      * Data dragon version for returned data.
+  * spellData: Only type, version, data, id, key, name, description, and summonerLevel are returned by default if this parameter isn't specified.
+      * Tags to return additional data.
+      * Possible values:
+          * all
+          * cooldown
+          * cooldownBurn
+          * cost
+          * costBurn
+          * costType
+          * effect
+          * effectBurn
+          * image
+          * key
+          * leveltip
+          * maxrank
+          * modes
+          * range
+          * rangeBurn
+          * resource
+          * sanitizedDescription
+          * sanitizedTooltip
+          * tooltip
+          * vars
+
   Sample output:
-
-
+      {:ok,
+       %{"description" => "After channeling for 4.5 seconds, teleports your champion to target allied structure, minion, or ward.",
+         "id" => 12, "key" => "SummonerTeleport", "name" => "Teleport",
+         "summonerLevel" => 6}}
   """
 
-  def summoner_spell(region, id, opts \\ %{}) do
+  def summoner_spell(region, summoner_spell_id, opts \\ %{}) do
     default_opts = %{locale: nil, version: nil, dataById: nil, spellData: nil}
     
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
-      |> url_summoner_spell(id, opts, default_opts)
+      |> url_summoner_spell(summoner_spell_id, opts, default_opts)
       |> HTTPoison.get
       |> handle_response
     else
@@ -451,11 +683,17 @@ defmodule Chemist.Static do
   end
 
   @doc """
-  Contains .
+  Contains version list.
   
   Sample output:
-
-
+      {:ok,
+       ["7.4.3", "7.4.2", "7.4.1", "7.3.3", "7.3.2", "7.3.1", "7.2.1", "7.1.1", 
+        "6.24.1", "6.23.1", "6.22.1", "6.21.1", "6.20.1", "6.19.1", "6.18.1",
+        "6.17.1", "6.16.2", "6.16.1", "6.15.1", "6.14.2", "6.14.1", "6.13.1",
+        "6.12.1", "6.11.1", "6.10.1", "6.9.1", "6.8.1", "6.7.1", "6.6.1",
+        "6.5.1", "6.4.2", "6.4.1", "6.3.1", "6.2.1", "6.1.1", "5.24.2",
+        "5.24.1", "5.23.1", "5.22.3", "5.22.2", "5.22.1", "5.21.1", "5.20.1",
+        "5.19.1", "5.18.1", "5.17.1", "5.16.1", "5.15.1", "5.14.1", ...]}
   """
 
   def versions(region) do

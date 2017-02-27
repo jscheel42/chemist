@@ -8,7 +8,7 @@
     <title>Chemist.Status – Chemist v0.1.0</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-434bc30579.js"></script>
+    <script src="dist/sidebar_items-6c4a888e5b.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -70,8 +70,7 @@
 
       
         <section id="moduledoc">
-          <p>Retrieve league data from Riot API
-and transform it into an Elixir friendly format</p>
+          <p>Uses Status-v1 API.</p>
 
         </section>
       
@@ -96,16 +95,16 @@ and transform it into an Elixir friendly format</p>
     <a href="#shard/1">shard(region)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Contains</p>
+    <div class="summary-synopsis"><p>Contains shard status for requested region</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#shards/0">shards()</a>
+    <a href="#shards/1">shards(region)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Contains</p>
+    <div class="summary-synopsis"><p>Contains shard status for all regions</p>
 </div>
   
 </div>
@@ -138,7 +137,7 @@ and transform it into an Elixir friendly format</p>
     </a>
     <span class="signature">shard(region)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/status.ex#L35" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/status.ex#L83" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -146,20 +145,41 @@ and transform it into an Elixir friendly format</p>
     
   </div>
   <section class="docstring">
-    <p>Contains .</p>
+    <p>Contains shard status for requested region.</p>
 <p>Sample output:</p>
+<pre><code class="elixir">{:ok,
+ %{&quot;hostname&quot; =&gt; &quot;prod.na1.lol.riotgames.com&quot;, &quot;locales&quot; =&gt; [&quot;en_US&quot;],
+   &quot;name&quot; =&gt; &quot;North America&quot;, &quot;region_tag&quot; =&gt; &quot;na1&quot;,
+   &quot;services&quot; =&gt; [%{&quot;incidents&quot; =&gt; [], &quot;name&quot; =&gt; &quot;Game&quot;,
+      &quot;slug&quot; =&gt; &quot;game&quot;, &quot;status&quot; =&gt; &quot;online&quot;},
+    %{&quot;incidents&quot; =&gt; [], &quot;name&quot; =&gt; &quot;Store&quot;, &quot;slug&quot; =&gt; &quot;store&quot;,
+      &quot;status&quot; =&gt; &quot;online&quot;},
+    %{&quot;incidents&quot; =&gt; [], &quot;name&quot; =&gt; &quot;Website&quot;, &quot;slug&quot; =&gt; &quot;website&quot;,
+      &quot;status&quot; =&gt; &quot;online&quot;},
+    %{&quot;incidents&quot; =&gt; [%{&quot;active&quot; =&gt; true,
+         &quot;created_at&quot; =&gt; &quot;2017-02-17T20:47:27.971Z&quot;, &quot;id&quot; =&gt; 3206,
+         &quot;updates&quot; =&gt; [%{&quot;author&quot; =&gt; &quot;&quot;,
+            &quot;content&quot; =&gt; &quot;If you&#39;re having trouble updating to the League client beta please check out: http://riot.com/2llV9cD&quot;,
+            &quot;created_at&quot; =&gt; &quot;2017-02-17T20:47:27.971Z&quot;,
+            &quot;id&quot; =&gt; &quot;58a7615f2e6ef101005108f8&quot;, &quot;severity&quot; =&gt; &quot;info&quot;,
+            &quot;translations&quot; =&gt; [],
+            &quot;updated_at&quot; =&gt; &quot;2017-02-20T09:52:21.303Z&quot;}]}],
+      &quot;name&quot; =&gt; &quot;Client&quot;, &quot;slug&quot; =&gt; &quot;client&quot;, &quot;status&quot; =&gt; &quot;online&quot;},
+    %{&quot;incidents&quot; =&gt; [], &quot;name&quot; =&gt; &quot;League client update&quot;,
+      &quot;slug&quot; =&gt; &quot;league client update&quot;, &quot;status&quot; =&gt; &quot;online&quot;}],
+   &quot;slug&quot; =&gt; &quot;na&quot;}}</code></pre>
 
   </section>
 </div>
-<div class="detail" id="shards/0">
+<div class="detail" id="shards/1">
   
   <div class="detail-header">
-    <a href="#shards/0" class="detail-link" title="Link to this function">
+    <a href="#shards/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">shards()</span>
+    <span class="signature">shards(region)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/status.ex#L21" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/status.ex#L49" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -167,8 +187,37 @@ and transform it into an Elixir friendly format</p>
     
   </div>
   <section class="docstring">
-    <p>Contains .</p>
+    <p>Contains shard status for all regions.</p>
 <p>Sample output:</p>
+<pre><code class="elixir">{:ok,
+ [%{&quot;hostname&quot; =&gt; &quot;prod.na1.lol.riotgames.com&quot;, &quot;locales&quot; =&gt; [&quot;en_US&quot;],
+    &quot;name&quot; =&gt; &quot;North America&quot;, &quot;region_tag&quot; =&gt; &quot;na1&quot;, &quot;slug&quot; =&gt; &quot;na&quot;},
+  %{&quot;hostname&quot; =&gt; &quot;prod.euw1.lol.riotgames.com&quot;,
+    &quot;locales&quot; =&gt; [&quot;en_GB&quot;, &quot;fr_FR&quot;, &quot;it_IT&quot;, &quot;es_ES&quot;, &quot;de_DE&quot;],
+    &quot;name&quot; =&gt; &quot;EU West&quot;, &quot;region_tag&quot; =&gt; &quot;eu&quot;, &quot;slug&quot; =&gt; &quot;euw&quot;},
+  %{&quot;hostname&quot; =&gt; &quot;prod.eun1.lol.riotgames.com&quot;,
+    &quot;locales&quot; =&gt; [&quot;en_PL&quot;, &quot;hu_HU&quot;, &quot;pl_PL&quot;, &quot;ro_RO&quot;, &quot;cs_CZ&quot;, &quot;el_GR&quot;],
+    &quot;name&quot; =&gt; &quot;EU Nordic &amp; East&quot;, &quot;region_tag&quot; =&gt; &quot;eun1&quot;,
+    &quot;slug&quot; =&gt; &quot;eune&quot;},
+  %{&quot;hostname&quot; =&gt; &quot;prod.la1.lol.riotgames.com&quot;, &quot;locales&quot; =&gt; [&quot;es_MX&quot;],
+    &quot;name&quot; =&gt; &quot;Latin America North&quot;, &quot;region_tag&quot; =&gt; &quot;la1&quot;,
+    &quot;slug&quot; =&gt; &quot;lan&quot;},
+  %{&quot;hostname&quot; =&gt; &quot;prod.la2.lol.riotgames.com&quot;, &quot;locales&quot; =&gt; [&quot;es_AR&quot;],
+    &quot;name&quot; =&gt; &quot;Latin America South&quot;, &quot;region_tag&quot; =&gt; &quot;la2&quot;,
+    &quot;slug&quot; =&gt; &quot;las&quot;},
+  %{&quot;hostname&quot; =&gt; &quot;prod.br.lol.riotgames.com&quot;, &quot;locales&quot; =&gt; [&quot;pt_BR&quot;],
+    &quot;name&quot; =&gt; &quot;Brazil&quot;, &quot;region_tag&quot; =&gt; &quot;br1&quot;, &quot;slug&quot; =&gt; &quot;br&quot;},
+  %{&quot;hostname&quot; =&gt; &quot;prod.ru.lol.riotgames.com&quot;, &quot;locales&quot; =&gt; [&quot;ru_RU&quot;],
+    &quot;name&quot; =&gt; &quot;Russia&quot;, &quot;region_tag&quot; =&gt; &quot;ru1&quot;, &quot;slug&quot; =&gt; &quot;ru&quot;},
+  %{&quot;hostname&quot; =&gt; &quot;prod.tr.lol.riotgames.com&quot;, &quot;locales&quot; =&gt; [&quot;tr_TR&quot;],
+    &quot;name&quot; =&gt; &quot;Turkey&quot;, &quot;region_tag&quot; =&gt; &quot;tr1&quot;, &quot;slug&quot; =&gt; &quot;tr&quot;},
+  %{&quot;hostname&quot; =&gt; &quot;prod.oc1.lol.riotgames.com&quot;, &quot;locales&quot; =&gt; [&quot;en_AU&quot;],
+    &quot;name&quot; =&gt; &quot;Oceania&quot;, &quot;region_tag&quot; =&gt; &quot;oc1&quot;, &quot;slug&quot; =&gt; &quot;oce&quot;},
+  %{&quot;hostname&quot; =&gt; &quot;prod.kr.lol.riotgames.com&quot;, &quot;locales&quot; =&gt; [&quot;ko_KR&quot;],
+    &quot;name&quot; =&gt; &quot;Republic of Korea&quot;, &quot;region_tag&quot; =&gt; &quot;kr1&quot;,
+    &quot;slug&quot; =&gt; &quot;kr&quot;},
+  %{&quot;hostname&quot; =&gt; &quot;prod.jp1.lol.riotgames.com&quot;, &quot;locales&quot; =&gt; [&quot;ja_JP&quot;],
+    &quot;name&quot; =&gt; &quot;Japan&quot;, &quot;region_tag&quot; =&gt; &quot;jp1&quot;, &quot;slug&quot; =&gt; &quot;jp&quot;}]}</code></pre>
 
   </section>
 </div>

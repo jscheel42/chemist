@@ -13,6 +13,7 @@ config :chemist,
   api_version_match:            2.2,
   api_version_matchlist:        2.2,
   api_version_stats:            1.3,
+  api_version_status:           1,
   api_version_summoner:         1.4,
   api_version_team:             2.4
 

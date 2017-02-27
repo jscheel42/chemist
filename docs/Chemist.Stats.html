@@ -8,7 +8,7 @@
     <title>Chemist.Stats – Chemist v0.1.0</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-434bc30579.js"></script>
+    <script src="dist/sidebar_items-6c4a888e5b.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -70,8 +70,7 @@
 
       
         <section id="moduledoc">
-          <p>Retrieve league data from Riot API
-and transform it into an Elixir friendly format</p>
+          <p>Uses stats-v1.3 API.</p>
 
         </section>
       
@@ -93,19 +92,19 @@ and transform it into an Elixir friendly format</p>
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#ranked_by_id/3">ranked_by_id(region, id, opts \\ %{})</a>
+    <a href="#ranked/3">ranked(region, summoner_id, opts \\ %{})</a>
   </div>
   
-    <div class="summary-synopsis"><p>Contains ; retrieved by</p>
+    <div class="summary-synopsis"><p>Contains ranked stats information; retrieved by summoner id</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#summary_by_id/3">summary_by_id(region, id, opts \\ %{})</a>
+    <a href="#summary/3">summary(region, summoner_id, opts \\ %{})</a>
   </div>
   
-    <div class="summary-synopsis"><p>Contains ; retrieved by</p>
+    <div class="summary-synopsis"><p>Contains player stats summary information; retrieved by summoner id</p>
 </div>
   
 </div>
@@ -130,17 +129,17 @@ and transform it into an Elixir friendly format</p>
             </a>
             Functions
           </h1>
-          <div class="detail" id="ranked_by_id/3">
+          <div class="detail" id="ranked/3">
   
-    <span id="ranked_by_id/2" />
+    <span id="ranked/2" />
   
   <div class="detail-header">
-    <a href="#ranked_by_id/3" class="detail-link" title="Link to this function">
+    <a href="#ranked/3" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">ranked_by_id(region, id, opts \\ %{})</span>
+    <span class="signature">ranked(region, summoner_id, opts \\ %{})</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/stats.ex#L20" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/stats.ex#L44" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -148,22 +147,62 @@ and transform it into an Elixir friendly format</p>
     
   </div>
   <section class="docstring">
-    <p>Contains ; retrieved by .</p>
+    <p>Contains ranked stats information; retrieved by summoner id.</p>
+<p>Default opts:</p>
+<ul>
+<li><p>season: defaults to current season</p>
+<ul>
+<li>Specifies ranked season from which to gather data.
+</li>
+<li><p>Possible values:</p>
+<ul>
+<li>SEASON3
+</li>
+<li>SEASON2014
+</li>
+<li>SEASON2015
+</li>
+<li>SEASON2016
+</li>
+<li>SEASON2017
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <p>Sample output:</p>
+<pre><code class="elixir">{:ok,
+ %{&quot;champions&quot; =&gt; [%{&quot;id&quot; =&gt; 75,
+      &quot;stats&quot; =&gt; %{&quot;maxChampionsKilled&quot; =&gt; 6, &quot;maxNumDeaths&quot; =&gt; 7,
+        &quot;mostChampionKillsPerSession&quot; =&gt; 6, &quot;mostSpellsCast&quot; =&gt; 0,
+        &quot;totalAssists&quot; =&gt; 22, &quot;totalChampionKills&quot; =&gt; 18,
+        &quot;totalDamageDealt&quot; =&gt; 465145, &quot;totalDamageTaken&quot; =&gt; 124065,
+        &quot;totalDeathsPerSession&quot; =&gt; 20, &quot;totalDoubleKills&quot; =&gt; 1,
+        &quot;totalFirstBlood&quot; =&gt; 0, &quot;totalGoldEarned&quot; =&gt; 47122,
+        &quot;totalMagicDamageDealt&quot; =&gt; 251986, &quot;totalMinionKills&quot; =&gt; 710,
+        &quot;totalPentaKills&quot; =&gt; 0, &quot;totalPhysicalDamageDealt&quot; =&gt; 211682,
+        &quot;totalQuadraKills&quot; =&gt; 0, &quot;totalSessionsLost&quot; =&gt; 3,
+        &quot;totalSessionsPlayed&quot; =&gt; 4, &quot;totalSessionsWon&quot; =&gt; 1,
+        &quot;totalTripleKills&quot; =&gt; 0, &quot;totalTurretsKilled&quot; =&gt; 1,
+        &quot;totalUnrealKills&quot; =&gt; 0}},
+    ...
+    ],
+    &quot;modifyDate&quot; =&gt; 1488042401000, &quot;summonerId&quot; =&gt; 51666047}}</code></pre>
 
   </section>
 </div>
-<div class="detail" id="summary_by_id/3">
+<div class="detail" id="summary/3">
   
-    <span id="summary_by_id/2" />
+    <span id="summary/2" />
   
   <div class="detail-header">
-    <a href="#summary_by_id/3" class="detail-link" title="Link to this function">
+    <a href="#summary/3" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">summary_by_id(region, id, opts \\ %{})</span>
+    <span class="signature">summary(region, summoner_id, opts \\ %{})</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/stats.ex#L41" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/stats.ex#L82" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -171,8 +210,40 @@ and transform it into an Elixir friendly format</p>
     
   </div>
   <section class="docstring">
-    <p>Contains ; retrieved by .</p>
+    <p>Contains player stats summary information; retrieved by summoner id.</p>
+<p>Default opts:</p>
+<ul>
+<li><p>season: defaults to current season</p>
+<ul>
+<li>Specifies ranked season from which to gather data.
+</li>
+<li><p>Possible values:</p>
+<ul>
+<li>SEASON3
+</li>
+<li>SEASON2014
+</li>
+<li>SEASON2015
+</li>
+<li>SEASON2016
+</li>
+<li>SEASON2017
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <p>Sample output:</p>
+<pre><code class="elixir">{:ok,
+ %{&quot;playerStatSummaries&quot; =&gt; [%{&quot;aggregatedStats&quot; =&gt; %{&quot;totalAssists&quot; =&gt; 40,
+        &quot;totalChampionKills&quot; =&gt; 42, &quot;totalMinionKills&quot; =&gt; 920,
+        &quot;totalNeutralMinionsKilled&quot; =&gt; 29, &quot;totalTurretsKilled&quot; =&gt; 3},
+      &quot;modifyDate&quot; =&gt; 1481137880000, &quot;playerStatSummaryType&quot; =&gt; &quot;CAP5x5&quot;, 
+      &quot;wins&quot; =&gt; 5},
+  ...
+  ],
+  &quot;summonerId&quot; =&gt; 51666047}}</code></pre>
 
   </section>
 </div>

@@ -8,7 +8,7 @@
     <title>Chemist.Summoner – Chemist v0.1.0</title>
     <link rel="stylesheet" href="dist/app-a07cea761b.css" />
     
-    <script src="dist/sidebar_items-434bc30579.js"></script>
+    <script src="dist/sidebar_items-6c4a888e5b.js"></script>
   </head>
   <body data-type="modules">
     <script>if(localStorage.getItem('night-mode')) document.body.className += ' night-mode';</script>
@@ -70,9 +70,7 @@
 
       
         <section id="moduledoc">
-          <p>Retrieve summoner data from Riot API
-and transform it into an Elixir
-friendly format</p>
+          <p>Uses v1.4 API.</p>
 
         </section>
       
@@ -97,52 +95,52 @@ friendly format</p>
     <a href="#id_by_name/2">id_by_name(region, name)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Contains ; retrieved by</p>
+    <div class="summary-synopsis"><p>Contains summoner id; retrieved by summoner name</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#masteries_by_id/2">masteries_by_id(region, id)</a>
+    <a href="#masteries/2">masteries(region, summoner_id)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Contains ; retrieved by</p>
+    <div class="summary-synopsis"><p>Contains mastery data; retrieved by summoner id</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#name_by_id/2">name_by_id(region, id)</a>
+    <a href="#name/2">name(region, summoner_id)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Contains ; retrieved by</p>
+    <div class="summary-synopsis"><p>Contains summoner name; retrieved by summoner id</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#runes_by_id/2">runes_by_id(region, id)</a>
+    <a href="#runes/2">runes(region, summoner_id)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Contains ; retrieved by</p>
+    <div class="summary-synopsis"><p>Contains rune data; retrieved by summoner id</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#summoner_by_id/2">summoner_by_id(region, id)</a>
+    <a href="#summoner_by_id/2">summoner_by_id(region, summoner_id)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Contains ; retrieved by</p>
+    <div class="summary-synopsis"><p>Contains summoner data; retrieved by summoner id</p>
 </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#summoner_by_name/2">summoner_by_name(region, summoner)</a>
+    <a href="#summoner_by_name/2">summoner_by_name(region, summoner_name)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Contains ; retrieved by</p>
+    <div class="summary-synopsis"><p>Contains summoner data; retrieved by summoner name</p>
 </div>
   
 </div>
@@ -175,7 +173,7 @@ friendly format</p>
     </a>
     <span class="signature">id_by_name(region, name)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L116" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L162" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -183,20 +181,21 @@ friendly format</p>
     
   </div>
   <section class="docstring">
-    <p>Contains ; retrieved by .</p>
+    <p>Contains summoner id; retrieved by summoner name.</p>
 <p>Sample output:</p>
+<pre><code class="elixir">51666047</code></pre>
 
   </section>
 </div>
-<div class="detail" id="masteries_by_id/2">
+<div class="detail" id="masteries/2">
   
   <div class="detail-header">
-    <a href="#masteries_by_id/2" class="detail-link" title="Link to this function">
+    <a href="#masteries/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">masteries_by_id(region, id)</span>
+    <span class="signature">masteries(region, summoner_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L59" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L71" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -204,20 +203,31 @@ friendly format</p>
     
   </div>
   <section class="docstring">
-    <p>Contains ; retrieved by .</p>
+    <p>Contains mastery data; retrieved by summoner id.</p>
 <p>Sample output:</p>
+<pre><code class="elixir">{:ok,
+ %{&quot;51666047&quot; =&gt; %{&quot;pages&quot; =&gt; [%{&quot;current&quot; =&gt; false, &quot;id&quot; =&gt; 44027520,
+        &quot;masteries&quot; =&gt; [%{&quot;id&quot; =&gt; 6121, &quot;rank&quot; =&gt; 1},
+         %{&quot;id&quot; =&gt; 6343, &quot;rank&quot; =&gt; 1}, %{&quot;id&quot; =&gt; 6131, &quot;rank&quot; =&gt; 5},
+         %{&quot;id&quot; =&gt; 6114, &quot;rank&quot; =&gt; 5}, %{&quot;id&quot; =&gt; 6331, &quot;rank&quot; =&gt; 5},
+         %{&quot;id&quot; =&gt; 6141, &quot;rank&quot; =&gt; 1}, %{&quot;id&quot; =&gt; 6323, &quot;rank&quot; =&gt; 1},
+         %{&quot;id&quot; =&gt; 6312, &quot;rank&quot; =&gt; 5}, %{&quot;id&quot; =&gt; 6351, &quot;rank&quot; =&gt; 5},
+         %{&quot;id&quot; =&gt; 6362, &quot;rank&quot; =&gt; 1}], &quot;name&quot; =&gt; &quot;AP/BURST&quot;},
+    ...
+    ],
+    &quot;summonerId&quot; =&gt; 51666047}}}</code></pre>
 
   </section>
 </div>
-<div class="detail" id="name_by_id/2">
+<div class="detail" id="name/2">
   
   <div class="detail-header">
-    <a href="#name_by_id/2" class="detail-link" title="Link to this function">
+    <a href="#name/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">name_by_id(region, id)</span>
+    <span class="signature">name(region, summoner_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L78" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L90" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -225,20 +235,21 @@ friendly format</p>
     
   </div>
   <section class="docstring">
-    <p>Contains ; retrieved by .</p>
+    <p>Contains summoner name; retrieved by summoner id.</p>
 <p>Sample output:</p>
+<pre><code class="elixir">{:ok, %{&quot;51666047&quot; =&gt; &quot;jrizznezz&quot;}}</code></pre>
 
   </section>
 </div>
-<div class="detail" id="runes_by_id/2">
+<div class="detail" id="runes/2">
   
   <div class="detail-header">
-    <a href="#runes_by_id/2" class="detail-link" title="Link to this function">
+    <a href="#runes/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">runes_by_id(region, id)</span>
+    <span class="signature">runes(region, summoner_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L97" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L143" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -246,8 +257,44 @@ friendly format</p>
     
   </div>
   <section class="docstring">
-    <p>Contains ; retrieved by .</p>
-<p>Sample output:</p>
+    <p>Contains rune data; retrieved by summoner id.</p>
+<p>Sample output:
+{:ok,
+ %{“51666047” =&gt; %{“pages” =&gt; [%{“current” =&gt; true, “id” =&gt; 69960969,</p>
+<pre><code class="elixir">    &quot;name&quot; =&gt; &quot;Blitzcrank&quot;,
+    &quot;slots&quot; =&gt; [%{&quot;runeId&quot; =&gt; 5257, &quot;runeSlotId&quot; =&gt; 1},
+     %{&quot;runeId&quot; =&gt; 5257, &quot;runeSlotId&quot; =&gt; 2},
+     %{&quot;runeId&quot; =&gt; 5257, &quot;runeSlotId&quot; =&gt; 3},
+     %{&quot;runeId&quot; =&gt; 5257, &quot;runeSlotId&quot; =&gt; 4},
+     %{&quot;runeId&quot; =&gt; 5257, &quot;runeSlotId&quot; =&gt; 5},
+     %{&quot;runeId&quot; =&gt; 5257, &quot;runeSlotId&quot; =&gt; 6},
+     %{&quot;runeId&quot; =&gt; 5257, &quot;runeSlotId&quot; =&gt; 7},
+     %{&quot;runeId&quot; =&gt; 5257, &quot;runeSlotId&quot; =&gt; 8},
+     %{&quot;runeId&quot; =&gt; 5257, &quot;runeSlotId&quot; =&gt; 9},
+     %{&quot;runeId&quot; =&gt; 5315, &quot;runeSlotId&quot; =&gt; 10},
+     %{&quot;runeId&quot; =&gt; 5315, &quot;runeSlotId&quot; =&gt; 11},
+     %{&quot;runeId&quot; =&gt; 5315, &quot;runeSlotId&quot; =&gt; 12},
+     %{&quot;runeId&quot; =&gt; 5315, &quot;runeSlotId&quot; =&gt; 13},
+     %{&quot;runeId&quot; =&gt; 5315, &quot;runeSlotId&quot; =&gt; 14},
+     %{&quot;runeId&quot; =&gt; 5315, &quot;runeSlotId&quot; =&gt; 15},
+     %{&quot;runeId&quot; =&gt; 5315, &quot;runeSlotId&quot; =&gt; 16},
+     %{&quot;runeId&quot; =&gt; 5315, &quot;runeSlotId&quot; =&gt; 17},
+     %{&quot;runeId&quot; =&gt; 5315, &quot;runeSlotId&quot; =&gt; 18},
+     %{&quot;runeId&quot; =&gt; 5289, &quot;runeSlotId&quot; =&gt; 19},
+     %{&quot;runeId&quot; =&gt; 5289, &quot;runeSlotId&quot; =&gt; 20},
+     %{&quot;runeId&quot; =&gt; 5289, &quot;runeSlotId&quot; =&gt; 21},
+     %{&quot;runeId&quot; =&gt; 5289, &quot;runeSlotId&quot; =&gt; 22},
+     %{&quot;runeId&quot; =&gt; 5289, &quot;runeSlotId&quot; =&gt; 23},
+     %{&quot;runeId&quot; =&gt; 5289, &quot;runeSlotId&quot; =&gt; 24},
+     %{&quot;runeId&quot; =&gt; 5296, &quot;runeSlotId&quot; =&gt; 25},
+     %{&quot;runeId&quot; =&gt; 5296, &quot;runeSlotId&quot; =&gt; 26},
+     %{&quot;runeId&quot; =&gt; 5296, &quot;runeSlotId&quot; =&gt; 27},
+     %{&quot;runeId&quot; =&gt; 5356, &quot;runeSlotId&quot; =&gt; 28},
+     %{&quot;runeId&quot; =&gt; 5356, &quot;runeSlotId&quot; =&gt; 29},
+     %{&quot;runeId&quot; =&gt; 5356, &quot;runeSlotId&quot; =&gt; 30}]},
+...
+],
+&quot;summonerId&quot; =&gt; 51666047}}}</code></pre>
 
   </section>
 </div>
@@ -257,9 +304,9 @@ friendly format</p>
     <a href="#summoner_by_id/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">summoner_by_id(region, id)</span>
+    <span class="signature">summoner_by_id(region, summoner_id)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L40" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L43" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -267,8 +314,12 @@ friendly format</p>
     
   </div>
   <section class="docstring">
-    <p>Contains ; retrieved by .</p>
+    <p>Contains summoner data; retrieved by summoner id.</p>
 <p>Sample output:</p>
+<pre><code class="elixir">{:ok,
+ %{&quot;51666047&quot; =&gt; %{&quot;id&quot; =&gt; 51666047, &quot;name&quot; =&gt; &quot;jrizznezz&quot;,
+     &quot;profileIconId&quot; =&gt; 1450, &quot;revisionDate&quot; =&gt; 1488042401000,
+     &quot;summonerLevel&quot; =&gt; 30}}}</code></pre>
 
   </section>
 </div>
@@ -278,9 +329,9 @@ friendly format</p>
     <a href="#summoner_by_name/2" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">summoner_by_name(region, summoner)</span>
+    <span class="signature">summoner_by_name(region, summoner_name)</span>
     
-      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L21" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/jscheel42/chemist/blob/master/lib/chemist/summoner.ex#L22" class="view-source" rel="help" title="View Source">
        <i class="icon-code"></i>
      </a>
     
@@ -288,8 +339,12 @@ friendly format</p>
     
   </div>
   <section class="docstring">
-    <p>Contains ; retrieved by .</p>
+    <p>Contains summoner data; retrieved by summoner name.</p>
 <p>Sample output:</p>
+<pre><code class="elixir">{:ok,
+ %{&quot;jrizznezz&quot; =&gt; %{&quot;id&quot; =&gt; 51666047, &quot;name&quot; =&gt; &quot;jrizznezz&quot;,
+     &quot;profileIconId&quot; =&gt; 1450, &quot;revisionDate&quot; =&gt; 1488042401000,
+     &quot;summonerLevel&quot; =&gt; 30}}}</code></pre>
 
   </section>
 </div>
