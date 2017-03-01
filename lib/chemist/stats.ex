@@ -1,6 +1,6 @@
 defmodule Chemist.Stats do
 
-  @api_version_stats             Application.get_env(:chemist, :api_version_stats)
+  @api_version_stats             1.3
 
   @moduledoc """
   Uses stats-v#{@api_version_stats} API.

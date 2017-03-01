@@ -1,8 +1,8 @@
 defmodule Chemist.Game do
 
-  @api_version_game             Application.get_env(:chemist, :api_version_game)
-  @api_version_current_game     Application.get_env(:chemist, :api_version_current_game)
-  @api_version_featured_games   Application.get_env(:chemist, :api_version_featured_games)
+  @api_version_game             1.3
+  @api_version_current_game     1.0
+  @api_version_featured_games   1.0
 
   @moduledoc """
   Uses current-game-v#{@api_version_current_game}, 

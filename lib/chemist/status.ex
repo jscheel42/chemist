@@ -1,6 +1,6 @@
 defmodule Chemist.Status do
 
-  @api_version_status             Application.get_env(:chemist, :api_version_status)
+  @api_version_status             1
 
   @moduledoc """
   Uses Status-v#{@api_version_status} API.

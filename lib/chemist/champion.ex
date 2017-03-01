@@ -1,6 +1,6 @@
 defmodule Chemist.Champion do
 
-  @api_version_champion    Application.get_env(:chemist, :api_version_champion)
+  @api_version_champion    1.2
 
   @moduledoc """
   Uses champion-v#{@api_version_champion} API.

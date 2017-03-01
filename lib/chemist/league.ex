@@ -1,6 +1,6 @@
 defmodule Chemist.League do
 
-  @api_version_league             Application.get_env(:chemist, :api_version_league)
+  @api_version_league             2.5
 
   @moduledoc """
   Uses league-v#{@api_version_league} API.

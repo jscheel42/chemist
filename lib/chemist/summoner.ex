@@ -1,6 +1,6 @@
 defmodule Chemist.Summoner do
 
-  @api_version_summoner    Application.get_env(:chemist, :api_version_summoner)
+  @api_version_summoner    1.4
 
   @moduledoc """
   Uses v#{@api_version_summoner} API.

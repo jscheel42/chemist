@@ -1,7 +1,7 @@
 defmodule Chemist.Match do
 
-  @api_version_match             Application.get_env(:chemist, :api_version_match)
-  @api_version_matchlist         Application.get_env(:chemist, :api_version_matchlist)
+  @api_version_match             2.2
+  @api_version_matchlist         2.2
 
   @moduledoc """
   Uses match-v#{@api_version_match} and 

@@ -4,7 +4,7 @@ defmodule Chemist.Mixfile do
   def project do
     [
       app: :chemist,
-      version: "0.1.0",
+      version: "0.3.1",
       name: "Chemist",
       description: "Chemist is an Elixir wrapper for the Riot API.",
       source_url: "https://github.com/jscheel42/chemist",
@@ -18,7 +18,9 @@ defmodule Chemist.Mixfile do
   end
 
   def application do
-    [applications: [ :logger, :httpoison, :poison ]]
+    [
+      applications: [ :logger, :httpoison, :poison ]
+    ]
   end
 
   defp deps do
@@ -26,7 +28,7 @@ defmodule Chemist.Mixfile do
       { :distillery,  "~> 1.1"                },
       { :ex_doc,      "~> 0.14.5", only: :dev },
       { :httpoison,   "~> 0.11"               },
-      { :poison,      "~> 3.1"                }
+      { :poison,      "~> 2.2"                }
     ]
   end
   

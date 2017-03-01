@@ -1,6 +1,6 @@
 defmodule Chemist.Static do
 
-  @api_version_lol_static_data             Application.get_env(:chemist, :api_version_lol_static_data)
+  @api_version_lol_static_data             1.2
 
   @moduledoc """
   Use lol-static-v#{@api_version_lol_static_data} API.
