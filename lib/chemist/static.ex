@@ -1,21 +1,21 @@
 defmodule Chemist.Static do
 
-  @api_version_lol_static_data             1.2
+  @api_version_lol_static_data             3
 
   @moduledoc """
   Use lol-static-v#{@api_version_lol_static_data} API.
   """
-    
+
   import Chemist.Util
 
   @doc """
   Contains champion data for all champions.
-  
+
   Default opts:
   * locale: default varies based on region
       * Locale code for returned data (e.g., en_US, es_ES).
   * version: latest version based on region
-      * Data dragon version for returned data.
+      * Data version for returned data.
   * dataById: false
       * If specified as true, the returned data map will use the champions' IDs as the keys. If not specified or specified as false, the returned data map will use the champions' keys instead.
   * champData: Only type, version, data, id, key, name, and title are returned by default if this parameter isn't specified
@@ -52,7 +52,7 @@ defmodule Chemist.Static do
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
       |> url_champions(opts, default_opts)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -94,11 +94,11 @@ defmodule Chemist.Static do
 
   def champion(region, champion_id, opts \\ %{}) do
     default_opts = %{locale: nil, version: nil, champData: nil}
-    
+
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
       |> url_champion(champion_id, opts, default_opts)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -162,7 +162,7 @@ defmodule Chemist.Static do
              "rFlatHPModPerLevel" => 0.0, "FlatEnergyRegenMod" => 0.0,
              "rFlatMPModPerLevel" => 0.0, "PercentSpellVampMod" => 0.0,
              "rFlatArmorPenetrationMod" => 0.0,
-             "rPercentMovementSpeedModPerLevel" => 0.0, "rFlatDodgeMod" => 0.0, 
+             "rPercentMovementSpeedModPerLevel" => 0.0, "rFlatDodgeMod" => 0.0,
              "rFlatMPRegenModPerLevel" => 0.0,
              "rPercentMagicPenetrationModPerLevel" => 0.0,
              "PercentDodgeMod" => 0.0, "FlatCritChanceMod" => 0.0, ...},
@@ -180,11 +180,11 @@ defmodule Chemist.Static do
 
   def items(region, opts \\ %{}) do
     default_opts = %{locale: nil, version: nil, itemListData: nil}
-    
+
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
       |> url_items(opts, default_opts)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -193,7 +193,7 @@ defmodule Chemist.Static do
 
   @doc """
   Contains item data; retrieved by item id.
-  
+
   Default opts:
   * locale: default varies based on region
       * Locale code for returned data (e.g., en_US, es_ES).
@@ -223,7 +223,7 @@ defmodule Chemist.Static do
           * stats
           * tags
           * tree
-  
+
   Sample output:
       {:ok,
        %{"description" => "<stats>+500 Health<br>+60 Armor<br>-10% Damage taken from Critical Strikes</stats><br><br><unique>UNIQUE Passive - Cold Steel:</unique> When hit by basic attacks, reduces the attacker's Attack Speed by 15% (1 second duration).<br><active>UNIQUE Active:</active> Slows the Movement Speed of nearby enemy units by 35% for 4 seconds (60 second cooldown).",
@@ -233,11 +233,11 @@ defmodule Chemist.Static do
 
   def item(region, item_id, opts \\ %{}) do
     default_opts = %{locale: nil, version: nil, itemData: nil}
-    
+
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
       |> url_item(item_id, opts, default_opts)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -252,10 +252,10 @@ defmodule Chemist.Static do
       * Locale code for returned data (e.g., en_US, es_ES).
   * version: latest version based on region
       * Data dragon version for returned data.
-  
+
   Sample output:
       {:ok,
-       %{"data" => %{"FlatArmorMod" => "Armor", "PercentBlockMod" => "Block %", 
+       %{"data" => %{"FlatArmorMod" => "Armor", "PercentBlockMod" => "Block %",
            "PrimaryRole" => "Primary Role",
            "rFlatMagicDamageModPerLevel" => "Ability Power at level 18",
            "categoryMastery" => "Masteries", "colloq_Tenacity" => ";",
@@ -282,17 +282,17 @@ defmodule Chemist.Static do
            "rPercentTimeDeadMod" => "Time Dead %", "modeAram" => "ARAM",
            "colloq_Armor" => ";armour", "Tenacity" => "Tenacity",
            "PercentHPRegenMod" => "Health % / 5", "Require_" => "Requires:",
-           "colloq_HealthRegen" => ";hpregen;hp5", "ManaRegen" => "Mana Regen", 
+           "colloq_HealthRegen" => ";hpregen;hp5", "ManaRegen" => "Mana Regen",
            ...}, "type" => "language", "version" => "7.4.3"}}
   """
 
   def language_strings(region, opts \\ %{}) do
     default_opts = %{locale: nil, version: nil}
-    
+
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
       |> url_language_strings(opts, default_opts)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -301,12 +301,12 @@ defmodule Chemist.Static do
 
   @doc """
   Contains languages for the region.
-  
+
   Sample output:
       {:ok,
-       ["en_US", "cs_CZ", "de_DE", "el_GR", "en_AU", "en_GB", "en_PH", "en_PL", 
-        "en_SG", "es_AR", "es_ES", "es_MX", "fr_FR", "hu_HU", "id_ID", "it_IT", 
-        "ja_JP", "ko_KR", "ms_MY", "pl_PL", "pt_BR", "ro_RO", "ru_RU", "th_TH", 
+       ["en_US", "cs_CZ", "de_DE", "el_GR", "en_AU", "en_GB", "en_PH", "en_PL",
+        "en_SG", "es_AR", "es_ES", "es_MX", "fr_FR", "hu_HU", "id_ID", "it_IT",
+        "ja_JP", "ko_KR", "ms_MY", "pl_PL", "pt_BR", "ro_RO", "ru_RU", "th_TH",
         "tr_TR", "vn_VN", "zh_CN", "zh_MY", "zh_TW"]}
   """
 
@@ -314,7 +314,7 @@ defmodule Chemist.Static do
     if valid_region?(region) do
       region
       |> url_languages
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -353,11 +353,11 @@ defmodule Chemist.Static do
 
   def map(region, opts \\ %{}) do
     default_opts = %{locale: nil, version: nil}
-    
+
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
       |> url_map(opts, default_opts)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -373,7 +373,7 @@ defmodule Chemist.Static do
   * version: latest version based on region
       * Data dragon version for returned data.
   * masteryListData: Only type, version, data, id, name, and description are returned by default if this parameter isn't specified
-      * Tags to return additional data. 
+      * Tags to return additional data.
       * Possible values:
           * all
           * image
@@ -388,18 +388,18 @@ defmodule Chemist.Static do
        %{"data" => %{"6343" => %{"description" => ["Champion kills and assists restore 5% of your missing Health and Mana"],
              "id" => 6343, "name" => "Dangerous Game"},
             ...
-          }, 
+          },
           "type" => "mastery",
           "version" => "7.4.3"}}
   """
 
   def masteries(region, opts \\ %{}) do
     default_opts = %{locale: nil, version: nil, masteryListData: nil}
-    
+
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
       |> url_masteries(opts, default_opts)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -408,14 +408,14 @@ defmodule Chemist.Static do
 
   @doc """
   Contains mastery data for a mastery; retrieved by mastery id.
-  
+
   Default opts:
   * locale: default varies based on region
       * Locale code for returned data (e.g., en_US, es_ES).
   * version: latest version based on region
       * Data dragon version for returned data.
   * masteryData: Only type, version, data, id, name, and description are returned by default if this parameter isn't specified
-      * Tags to return additional data. 
+      * Tags to return additional data.
       * Possible values:
           * all
           * image
@@ -432,11 +432,27 @@ defmodule Chemist.Static do
 
   def mastery(region, mastery_id, opts \\ %{}) do
     default_opts = %{locale: nil, version: nil, masteryData: nil}
-    
+
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
       |> url_mastery(mastery_id, opts, default_opts)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
+      |> handle_response
+    else
+      {:error, "invalid request"}
+    end
+  end
+
+  @doc """
+  Contains profile icon data.
+  Reference: https://developer.riotgames.com/api-methods/#lol-static-data-v3/GET_getProfileIcons
+  """
+
+  def profile_icons(region) do
+    if valid_region?(region) do
+      region
+      |> url_profile_icons
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -445,14 +461,14 @@ defmodule Chemist.Static do
 
   @doc """
   Contains realm data.
-  
+
   Sample output:
       {:ok,
        %{"cdn" => "http://ddragon.leagueoflegends.com/cdn", "css" => "7.4.3",
          "dd" => "7.4.3", "l" => "en_US", "lg" => "7.4.3",
          "n" => %{"champion" => "7.4.3", "item" => "7.4.3",
            "language" => "7.4.3", "map" => "7.4.3", "mastery" => "7.4.3",
-           "profileicon" => "7.4.3", "rune" => "7.4.3", "summoner" => "7.4.3"}, 
+           "profileicon" => "7.4.3", "rune" => "7.4.3", "summoner" => "7.4.3"},
          "profileiconmax" => 28, "v" => "7.4.3"}}
   """
 
@@ -460,7 +476,7 @@ defmodule Chemist.Static do
     if valid_region?(region) do
       region
       |> url_realm
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -510,11 +526,11 @@ defmodule Chemist.Static do
 
   def runes(region, opts \\ %{}) do
     default_opts = %{locale: nil, version: nil, runeListData: nil}
-    
+
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
       |> url_runes(opts, default_opts)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -561,11 +577,11 @@ defmodule Chemist.Static do
 
   def rune(region, rune_id, opts \\ %{}) do
     default_opts = %{locale: nil, version: nil, runeData: nil}
-    
+
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
       |> url_rune(rune_id, opts, default_opts)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -619,11 +635,11 @@ defmodule Chemist.Static do
 
   def summoner_spells(region, opts \\ %{}) do
     default_opts = %{locale: nil, version: nil, dataById: nil, spellData: nil}
-    
+
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
       |> url_summoner_spells(opts, default_opts)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -671,11 +687,11 @@ defmodule Chemist.Static do
 
   def summoner_spell(region, summoner_spell_id, opts \\ %{}) do
     default_opts = %{locale: nil, version: nil, dataById: nil, spellData: nil}
-    
+
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
       |> url_summoner_spell(summoner_spell_id, opts, default_opts)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -684,10 +700,10 @@ defmodule Chemist.Static do
 
   @doc """
   Contains version list.
-  
+
   Sample output:
       {:ok,
-       ["7.4.3", "7.4.2", "7.4.1", "7.3.3", "7.3.2", "7.3.1", "7.2.1", "7.1.1", 
+       ["7.4.3", "7.4.2", "7.4.1", "7.3.3", "7.3.2", "7.3.1", "7.2.1", "7.1.1",
         "6.24.1", "6.23.1", "6.22.1", "6.21.1", "6.20.1", "6.19.1", "6.18.1",
         "6.17.1", "6.16.2", "6.16.1", "6.15.1", "6.14.2", "6.14.1", "6.13.1",
         "6.12.1", "6.11.1", "6.10.1", "6.9.1", "6.8.1", "6.7.1", "6.6.1",
@@ -700,7 +716,7 @@ defmodule Chemist.Static do
     if valid_region?(region) do
       region
       |> url_versions
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -708,103 +724,122 @@ defmodule Chemist.Static do
   end
 
   defp url_champions(region, opts, default_opts) do
-    base_url_global()
-    <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/champion?"
+    base_url_region(region)
+    <> "/lol/static-data/v#{@api_version_lol_static_data}/champions?"
     <> url_opts(opts, default_opts)
-    <> url_key()
+    # base_url_region(region)
+    # <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/champion?"
+    # <> url_key()
   end
 
-  defp url_champion(region, id, opts, default_opts) do
-    base_url_global()
-    <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/champion/#{id}?"
+  defp url_champion(region, champion_id, opts, default_opts) do
+    base_url_region(region)
+    <> "/lol/static-data/v#{@api_version_lol_static_data}/champions/#{champion_id}?"
     <> url_opts(opts, default_opts)
-    <> url_key()
+    # base_url_region(region)
+    # <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/champion/#{id}?"
+    # <> url_key()
   end
 
   defp url_items(region, opts, default_opts) do
-    base_url_global()
-    <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/item?"
+    base_url_region(region)
+    <> "/lol/static-data/v#{@api_version_lol_static_data}/items?"
     <> url_opts(opts, default_opts)
-    <> url_key()
+    # <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/item?"
+    # base_url_region(region)
+    # <> url_key()
   end
 
-  defp url_item(region, id, opts, default_opts) do
-    base_url_global()
-    <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/item/#{id}?"
+  defp url_item(region, item_id, opts, default_opts) do
+    base_url_region(region)
+    <> "/lol/static-data/v#{@api_version_lol_static_data}/items/#{item_id}?"
     <> url_opts(opts, default_opts)
-    <> url_key()
+    # <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/item/#{item_id}?"
+    # <> url_key()
   end
 
   defp url_language_strings(region, opts, default_opts) do
-    base_url_global()
-    <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/language-strings?"
+    base_url_region(region)
+    <> "/lol/static-data/v#{@api_version_lol_static_data}/language-strings?"
     <> url_opts(opts, default_opts)
-    <> url_key()
+    # <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/language-strings?"
+    # <> url_key()
   end
 
   defp url_languages(region) do
-    base_url_global()
-    <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/languages?"
-    <> url_key()
+    base_url_region(region)
+    <> "/lol/static-data/v#{@api_version_lol_static_data}/languages?"
+    # <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/languages?"
+    # <> url_key()
   end
 
   defp url_map(region, opts, default_opts) do
-    base_url_global()
-    <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/map?"
+    base_url_region(region)
+    <> "/lol/static-data/v#{@api_version_lol_static_data}/maps?"
     <> url_opts(opts, default_opts)
-    <> url_key()
+    # <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/map?"
+    # <> url_key()
   end
 
   defp url_masteries(region, opts, default_opts) do
-    base_url_global()
-    <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/mastery?"
+    base_url_region(region)
+    <> "/lol/static-data/v#{@api_version_lol_static_data}/masteries?"
     <> url_opts(opts, default_opts)
-    <> url_key()
+    # <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/mastery?"
+    # <> url_key()
   end
 
-  defp url_mastery(region, id, opts, default_opts) do
-    base_url_global()
-    <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/mastery/#{id}?"
+  defp url_mastery(region, mastery_id, opts, default_opts) do
+    base_url_region(region)
+    <> "/lol/static-data/v#{@api_version_lol_static_data}/masteries/#{mastery_id}?"
     <> url_opts(opts, default_opts)
-    <> url_key()
+    # <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/mastery/#{mastery_id}?"
+    # <> url_key()
+  end
+
+  defp url_profile_icons(region) do
+    base_url_region(region)
+    <> "/lol/static-data/v#{@api_version_lol_static_data}/profile-icons?"
+    # <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/realm?"
+    # <> url_key()
   end
 
   defp url_realm(region) do
-    base_url_global()
+    base_url_region(region)
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/realm?"
     <> url_key()
   end
-  
+
   defp url_runes(region, opts, default_opts) do
-    base_url_global()
+    base_url_region(region)
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/rune?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
-  
+
   defp url_rune(region, id, opts, default_opts) do
-    base_url_global()
+    base_url_region(region)
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/rune/#{id}?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
-  
+
   defp url_summoner_spells(region, opts, default_opts) do
-    base_url_global()
+    base_url_region(region)
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/summoner-spell?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
-  
+
   defp url_summoner_spell(region, id, opts, default_opts) do
-    base_url_global()
+    base_url_region(region)
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/summoner-spell/#{id}?"
     <> url_opts(opts, default_opts)
     <> url_key()
   end
-  
+
   defp url_versions(region) do
-    base_url_global()
+    base_url_region(region)
     <> "/api/lol/static-data/#{region}/v#{@api_version_lol_static_data}/versions?"
     <> url_key()
   end

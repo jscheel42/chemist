@@ -47,7 +47,7 @@ defmodule Chemist.ChampionMastery do
     if valid_region?(region) do
       region
       |> url_champions(player_id)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
@@ -65,66 +65,63 @@ defmodule Chemist.ChampionMastery do
     if valid_region?(region) do
       region
       |> url_score(player_id)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
     end
   end
 
-  @doc """
-  Contains a list of Champion Mastery information for a player's top champions; retrieved by player id.
+  # @doc """
+  # Contains a list of Champion Mastery information for a player's top champions; retrieved by player id.
+  #
+  # Default opts:
+  # * count: 3
+  #     * Number of entries to retrieve
+  #
+  # Sample output (default options):
+  #     {:ok,
+  #      [%{"championId" => 104, "championLevel" => 5,
+  #         "championPoints" => 152302, "championPointsSinceLastLevel" => 130702,
+  #         "championPointsUntilNextLevel" => 0, "chestGranted" => true,
+  #         "lastPlayTime" => 1487921982000, "playerId" => 51666047,
+  #         "tokensEarned" => 2}, ...
+  # """
 
-  Default opts:
-  * count: 3
-      * Number of entries to retrieve
-
-  Sample output (default options):
-      {:ok,
-       [%{"championId" => 104, "championLevel" => 5,
-          "championPoints" => 152302, "championPointsSinceLastLevel" => 130702,
-          "championPointsUntilNextLevel" => 0, "chestGranted" => true,
-          "lastPlayTime" => 1487921982000, "playerId" => 51666047,
-          "tokensEarned" => 2}, ...
-  """
-
-  def top_champions(region, player_id, opts \\ %{}) do
-    default_opts = %{count: nil}
-
-    if valid_region?(region) and valid_keys?(opts, default_opts) do
-      region
-      |> url_top_champions(player_id, opts, default_opts)
-      |> HTTPoison.get
-      |> handle_response
-    else
-      {:error, "invalid request"}
-    end
-  end
+  ## Cannot find equivalent api in v3, disabled for now
+  # def top_champions(region, player_id, opts \\ %{}) do
+  #   default_opts = %{count: nil}
+  #
+  #   if valid_region?(region) and valid_keys?(opts, default_opts) do
+  #     region
+  #     |> url_top_champions(player_id, opts, default_opts)
+  #     |> httpoison_get_w_key
+  #     |> handle_response
+  #   else
+  #     {:error, "invalid request"}
+  #   end
+  # end
 
   defp url_champion(region, player_id, champion_id) do
     base_url_region(region)
     <> "/lol/champion-mastery/v#{@api_version_champion_mastery}/champion-masteries/by-summoner/#{player_id}/by-champion/#{champion_id}?"
-    # <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/champion/#{champion_id}?"
-    # <> url_key()
   end
 
   defp url_champions(region, player_id) do
     base_url_region(region)
-    <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/champions?"
-    # <> url_key()
+    <> "/lol/champion-mastery/v#{@api_version_champion_mastery}/champion-masteries/by-summoner/#{player_id}?"
   end
 
   defp url_score(region, player_id) do
     base_url_region(region)
-    <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/score?"
-    # <> url_key()
+    <> "/lol/champion-mastery/v#{@api_version_champion_mastery}/scores/by-summoner/#{player_id}?"
   end
 
-  defp url_top_champions(region, player_id, opts, default_opts) do
-    base_url_region(region)
-    <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/topchampions?"
-    <> url_opts(opts, default_opts)
-    # <> url_key()
-  end
+  # defp url_top_champions(region, player_id, opts, default_opts) do
+  #   base_url_region(region)
+  #   <> "/championmastery/location/#{get_platform_id(region)}/player/#{player_id}/topchampions?"
+  #   <> url_opts(opts, default_opts)
+  #   # <> url_key()
+  # end
 
 end

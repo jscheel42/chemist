@@ -5,3 +5,4 @@ summoner id: 51666047
 summoner name: jrizznezz
 champion id: 36
 match id: 2434912258
+leagueId: af4d9f40-3956-11e7-8125-c81f66dbb56c

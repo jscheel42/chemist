@@ -4,60 +4,73 @@ defmodule Chemist.Util do
   @regions_and_platform_ids %{
     br: %{
       platform: "BR1",
-      url: "br1.api.riotgames.com"
+      url: "https://br1.api.riotgames.com"
     },
     eune: %{
       platform: "EUN1",
-      url: "eun1.api.riotgames.com"
+      url: "https://eun1.api.riotgames.com"
     },
     euw: %{
       platform: "EUW1",
-      url: "euw1.api.riotgames.com"
+      url: "https://euw1.api.riotgames.com"
     },
     jp: %{
       platform: "JP1",
-      url: "jp1.api.riotgames.com"
+      url: "https://jp1.api.riotgames.com"
     },
     kr: %{
       platform: "KR",
-      url: "kr.api.riotgames.com"
+      url: "https://kr.api.riotgames.com"
     },
     lan: %{
       platform: "LA1",
-      url: "la1.api.riotgames.com"
+      url: "https://la1.api.riotgames.com"
     },
     las: %{
       platform: "LA2",
-      url: "la2.api.riotgames.com"
+      url: "https://la2.api.riotgames.com"
     },
     na: %{
       platform: "NA1",
-      url: "na1.api.riotgames.com"
+      url: "https://na1.api.riotgames.com"
     },
     oce: %{
       platform: "OC1",
-      url: "oc1.api.riotgames.com"
+      url: "https://oc1.api.riotgames.com"
     },
     tr: %{
       platform: "TR1",
-      url: "tr1.api.riotgames.com"
+      url: "https://tr1.api.riotgames.com"
     },
     ru: %{
       platform: "RU",
-      url: "ru.api.riotgames.com"
+      url: "https://ru.api.riotgames.com"
     },
     pbe: %{
       platform: "PBE1",
-      url: "pbe1.api.riotgames.com"
+      url: "https://pbe1.api.riotgames.com"
     }
   }
 
   @doc """
-  Returns true is the region is valid.
+  Returns an atom, param can be a string or atom
+  """
+
+  def atomize(p) do
+    if String.valid?(p) do
+      String.to_atom(p)
+    else
+      p
+    end
+  end
+
+  @doc """
+  Returns true is the region is valid,
+  region can be a string or an atom
   """
 
   def valid_region?(region) do
-    Map.has_key?(@regions_and_platform_ids, String.to_atom(region))
+    Map.has_key?(@regions_and_platform_ids, atomize(region))
   end
 
   @doc """
@@ -67,32 +80,27 @@ defmodule Chemist.Util do
   def valid_keys?(check_map, allowed_map) do
     check_keys = Map.keys(check_map)
     allowed_keys = Map.keys(allowed_map)
-
     Enum.empty?(check_keys -- allowed_keys)
   end
 
   @doc """
-  Returns platform id based on the region
+  Returns platform id based on the region,
+  region can be a string or an atom
   """
 
   def get_platform_id(region) do
-    # region can be a string or an atom
-    if String.valid?(region), do: region = String.to_atom(region)
-
-    { :ok, platform_id } = Map.fetch(@regions_and_platform_ids, String.to_atom(region))
-    platform_id
+    Map.get(@regions_and_platform_ids, atomize(region))
+    |> Map.get(:platform)
   end
 
   @doc """
-  Returns the base url based on region
+  Returns the base url based on region,
+  region can be a string or an atom
   """
 
   def base_url_region(region) do
-    # region can be a string or an atom
-    if String.valid?(region), do: region = String.to_atom(region)
-
-    Map.get(@regions_and_platform_ids, region)
-    |> Map.get :url
+    Map.get(@regions_and_platform_ids, atomize(region))
+    |> Map.get(:url)
   end
 
   @doc """
@@ -116,7 +124,6 @@ defmodule Chemist.Util do
   """
 
   def header_key() do
-    # api_key = System.get_env("RIOT_API_KEY")
     ["X-Riot-Token": "#{System.get_env("RIOT_API_KEY")}"]
   end
 
@@ -187,12 +194,20 @@ defmodule Chemist.Util do
   Handles and transforms response from API.
   """
 
-  def handle_response({ :ok, %{status_code: 200, body: body}}) do
+  def handle_response(%{status_code: 200, body: body}) do
     { :ok, Poison.Parser.parse!(body) }
   end
 
-  def handle_response({ _,   %{status_code: _,   body: body}}) do
+  def handle_response(%{status_code: _, body: body}) do
     { :error, Poison.Parser.parse!(body) }
   end
+
+  # def handle_response({ :ok, %{status_code: 200, body: body}}) do
+  #   { :ok, Poison.Parser.parse!(body) }
+  # end
+  #
+  # def handle_response({ _,   %{status_code: _,   body: body}}) do
+  #   { :error, Poison.Parser.parse!(body) }
+  # end
 
 end

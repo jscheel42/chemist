@@ -4,10 +4,10 @@ defmodule Chemist.Match do
   @api_version_matchlist         2.2
 
   @moduledoc """
-  Uses match-v#{@api_version_match} and 
+  Uses match-v#{@api_version_match} and
   matchlist-v#{@api_version_matchlist} APIs.
   """
-    
+
   import Chemist.Util
 
   @doc """
@@ -100,7 +100,7 @@ defmodule Chemist.Match do
                %{"championId" => 107, "pickTurn" => 4},
                %{"championId" => 126, "pickTurn" => 6}], "baronKills" => 1,
               "dominionVictoryScore" => 0, "dragonKills" => 1,
-              "firstBaron" => true, "firstBlood" => true, "firstDragon" => false, 
+              "firstBaron" => true, "firstBlood" => true, "firstDragon" => false,
               "firstInhibitor" => true, "firstRiftHerald" => false,
               "firstTower" => true, "inhibitorKills" => 3,
               "riftHeraldKills" => 0, "teamId" => 200, "towerKills" => 11,
@@ -113,13 +113,13 @@ defmodule Chemist.Match do
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
       |> url_match_by_id(match_id, opts, default_opts)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
     end
   end
-  
+
   @doc """
   Contains recent matches for a player; retrieved by player id.
 
@@ -159,13 +159,65 @@ defmodule Chemist.Match do
     if valid_region?(region) and valid_keys?(opts, default_opts) do
       region
       |> url_matchlist_by_id(player_id, opts, default_opts)
-      |> HTTPoison.get
+      |> httpoison_get_w_key
       |> handle_response
     else
       {:error, "invalid request"}
     end
   end
-  
+
+  @doc """
+  Contains game data for a player's recent games; retrieved by player id.
+
+  Sample Output:
+      {:ok,
+        %{"games" => [%{"championId" => 104, "createDate" => 1487921982640,
+          "fellowPlayers" => [%{"championId" => 31, "summonerId" => 25238654,
+             "teamId" => 200},
+           %{"championId" => 81, "summonerId" => 45434952, "teamId" => 100},
+           %{"championId" => 13, "summonerId" => 59735223, "teamId" => 100},
+           %{"championId" => 53, "summonerId" => 43095159, "teamId" => 100},
+           %{"championId" => 157, "summonerId" => 71470965, "teamId" => 200},
+           %{"championId" => 111, "summonerId" => 34173835, "teamId" => 200},
+           %{"championId" => 64, "summonerId" => 43551883, "teamId" => 200},
+           %{"championId" => 202, "summonerId" => 37304326, "teamId" => 200},
+           %{"championId" => 17, "summonerId" => 29491836, "teamId" => 100}],
+          "gameId" => 2434387924, "gameMode" => "CLASSIC",
+          "gameType" => "MATCHED_GAME", "invalid" => false,
+          "ipEarned" => 235, "level" => 30, "mapId" => 11, "spell1" => 4,
+          "spell2" => 11,
+          "stats" => %{"totalDamageTaken" => 24174,
+            "neutralMinionsKilled" => 135, "wardPlaced" => 8,
+            "totalTimeCrowdControlDealt" => 536, "wardKilled" => 1,
+            "trueDamageTaken" => 1187, "level" => 15,
+            "magicDamageDealtToChampions" => 1552,
+            "totalDamageDealtToChampions" => 14200,
+            "physicalDamageDealtPlayer" => 164961,
+            "largestKillingSpree" => 4, "item5" => 3134,
+            "visionWardsBought" => 1, "timePlayed" => 1751,
+            "playerPosition" => 3, "totalHeal" => 10792, "team" => 100,
+            "bountyLevel" => 2, "trueDamageDealtPlayer" => 12858,
+            "magicDamageDealtPlayer" => 5937, "largestMultiKill" => 2,
+            "item1" => 1033, "minionsKilled" => 31, "turretsKilled" => 2,
+            "magicDamageTaken" => 5616, "barracksKilled" => 1,
+            "numDeaths" => 2, "championsKilled" => 6, "win" => true,
+            "item0" => 1412, "item3" => 3047, "totalDamageDealt" => 183758,
+            "trueDamageDealtToChampions" => 294,
+            "neutralMinionsKilledYourJungle" => 74, ...},
+          "subType" => "RANKED_SOLO_5x5", "teamId" => 100}, ...
+  """
+
+  def recent(region, player_id) do
+    if valid_region?(region) do
+      region
+      |> url_recent(player_id)
+      |> httpoison_get_w_key
+      |> handle_response
+    else
+      {:error, "invalid request"}
+    end
+  end
+
   defp url_match_by_id(region, id, opts, default_opts) do
     base_url_region(region)
     <> "/api/lol/na/v#{@api_version_match}/match/#{id}?"
@@ -179,4 +231,11 @@ defmodule Chemist.Match do
     <> url_opts(opts, default_opts)
     <> url_key()
   end
+
+  defp url_recent(region, player_id) do
+    base_url_region(region)
+    <> "/api/lol/#{region}/v#{@api_version_match}/game/by-summoner/#{player_id}/recent?"
+    <> url_key()
+  end
+
 end
