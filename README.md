@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/jscheel42/chemist.svg?branch=master)](https://travis-ci.org/jscheel42/chemist)
 
+Incompatible/outdated with the current (v3+) API.
+
 # Chemist
 
 [Chemist Documentation]
